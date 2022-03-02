@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Auth;
+use App\Http\Controllers\CategoryController;
+use App\Models\Product;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +21,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+// Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/product/all', [ProductController::class, 'index'])->name('all.product');
