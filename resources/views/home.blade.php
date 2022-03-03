@@ -20,4 +20,7 @@
         </div>
     </div>
 </div>
+
+<test-component></test-component>
+                    <example-component></example-component>
 @endsection
