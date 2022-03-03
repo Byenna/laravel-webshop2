@@ -2,14 +2,14 @@
 
 namespace Database\Seeders;
 
-use App\Database\ProductDiscountSeeder;
-use App\Database\ProductHasSpecSeeder;
-use App\Database\ProductMediaSeeder;
-use App\Database\ProductSpecSeeder;
-use App\Database\ProductHasCategorySeeder;
-use App\Database\ProductHasDiscountSeeder;
-use App\Database\ProductCategorySeeder;
-use App\Database\ProductSeeder;
+// use App\Database\ProductDiscountSeeder;
+// use App\Database\ProductHasSpecSeeder;
+// use App\Database\ProductMediaSeeder;
+// use App\Database\ProductSpecSeeder;
+// use App\Database\ProductHasCategorySeeder;
+// use App\Database\ProductHasDiscountSeeder;
+// use App\Database\ProductCategorySeeder;
+// use App\Database\ProductSeeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 

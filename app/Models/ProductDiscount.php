@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class ProductDiscount extends Model
 {
     use HasFactory;
+    
+    protected $table = 'product_discounts';
+
+    protected $guarded = [
+        'id',
+    ];
+
 }
