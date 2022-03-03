@@ -74,11 +74,13 @@
                 </div>
             </div>
         </nav>
-        <div id="app">
-        <main class="py-4">
-            @yield('content')
-        </main>
-        </div>
+        
+            <main class="py-4">
+                @yield('content')
+            </main>
+            <div id="app">
+                <example-component></example-component>
+                </div>  
     </div>
 </body>
 </html>
