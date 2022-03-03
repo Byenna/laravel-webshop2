@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\ProductDiscount;
+use App\Models\ProductHasCategory;
 use App\Models\ProductMedia;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -21,5 +22,6 @@ class DatabaseSeeder extends Seeder
       $this->call(ProductStock::class);
       $this->call(ProductCategory::class);
       $this->call(ProductDiscount::class);
+      $this->call(ProductHasCategory::class);
     }
 }

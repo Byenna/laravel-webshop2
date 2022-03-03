@@ -80,6 +80,14 @@ return new class extends Migration
             $table->foreign('deleted_by')->references('id')->on('users');
         });
 
+        Schema::create('product_has_categories', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('product_id');
+            $table->foreign('product_id')->references('id')->on('products');
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('product_categories');
+        });
+
 
 
     }
