@@ -96,7 +96,7 @@ return new class extends Migration
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products');
             $table->unsignedBigInteger('discount_id');
-            $table->foreign('discount_id')->references('id')->on('product_specs');
+            $table->foreign('discount_id')->references('id')->on('product_discounts');
         });
 
         Schema::create('product_specs', function (Blueprint $table) {
