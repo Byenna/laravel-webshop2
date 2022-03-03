@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
 
-class ProdutDiscountSeeder extends Seeder
+class ProductDiscountSeeder extends Seeder
 {
     /**
      * Run the database seeds.
