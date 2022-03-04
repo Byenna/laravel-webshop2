@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,14 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/product/all', [ProductController::class, 'index'])->name('all.product');
+
+//ADMIN ROUTES
+Route::get('/admin/index', [AdminController::class, 'index']);
+Route::get('/admin/products', [AdminController::class, 'products']);
+Route::get('/admin/category', [AdminController::class, 'category']);
+Route::get('/admin/media', [AdminController::class, 'media']);
+Route::get('/admin/stock', [AdminController::class, 'stock']);
+
 
 Route::get('/home', function(){
     return view('home');
