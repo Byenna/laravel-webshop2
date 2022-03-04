@@ -11286,6 +11286,10 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+
+.admin_menu {
+  display: flex;
+
 body {
   display: block;
   margin: auto;
@@ -11845,4 +11849,5 @@ body {
   .form-group {
     padding: 4rem;
   }
+
 }
