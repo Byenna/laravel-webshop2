@@ -22,5 +22,7 @@
 </div>
 
 <test-component></test-component>
-          
+<example-component></example-component>
+<cart-component></cart-component>  
+<productsx-component></productsx-component>       
 @endsection

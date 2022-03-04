@@ -80,7 +80,10 @@
             </main>
             <div id="app">
                 <example-component></example-component>
-                </div>  
+                <cart-component></cart-component>
+                <productsx-component></productsx-component>
+                <test-component></test-component>
+            </div>  
     </div>
 </body>
 </html>
