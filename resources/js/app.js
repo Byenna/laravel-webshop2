@@ -5,7 +5,7 @@
  */
 //  import Vue from 'vue';
 require('./bootstrap');
-
+require('./machines');
 
 window.Vue = require('vue').default;
 
@@ -23,7 +23,7 @@ window.Vue = require('vue').default;
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('test-component', require('./components/TestComponent.vue').default);
 Vue.component('cart-component', require('./components/CartComponent.vue').default);
-Vue.component('productsx-component', require('./components/ProductsxComponent.vue').default);
+Vue.component('products-component', require('./components/ProductsComponent.vue').default);
 
 
 /**
@@ -41,7 +41,8 @@ const app = new Vue({
 		appName: 'Coffee Products',
 		shoppingCart: [],
 		products:[],
-		product_filter: 'all',
+        machines:[],
+        product_filter: 'all',
 		filters :'all',
 		totalPrice: 0,
 		totalQuantity: 0,

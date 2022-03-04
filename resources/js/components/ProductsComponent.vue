@@ -48,21 +48,21 @@
             }
         },
          created() {
-        let self = this;
-        // this.products = machines;
+        // let self = this;
+        this.products = machines;
 
         // // Get all products calling function in controller (Ajax call)
-        axios({
-            method: 'GET',
-            url: 'home/products',
-            headers: {
-                "X-Requested-With": "XMLHttpRequest"
-            }
-        }).then(function(response) {
-            self.machines = response.data.machines;
-        }).catch(function(response) {
+        // axios({
+        //     method: 'GET',
+        //     url: 'home/products',
+        //     headers: {
+        //         "X-Requested-With": "XMLHttpRequest"
+        //     }
+        // }).then(function(response) {
+        //     self.machines = response.data.machines;
+        // }).catch(function(response) {
 
-        })
+        // })
     },
 
 
