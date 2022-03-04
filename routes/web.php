@@ -29,7 +29,11 @@ Route::get('/product/all', [ProductController::class, 'index'])->name('all.produ
 //ADMIN ROUTES
 Route::get('/admin/index', [AdminController::class, 'index']);
 Route::get('/admin/products', [AdminController::class, 'products']);
-Route::get('/admin/category', [AdminController::class, 'category']);
+
+//CATEGORY ROUTES
+Route::get('/category/all', [CategoryController::class, 'AllCategory'])->name('all.category');
+
+
 Route::get('/admin/media', [AdminController::class, 'media']);
 Route::get('/admin/stock', [AdminController::class, 'stock']);
 

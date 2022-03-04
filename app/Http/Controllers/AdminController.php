@@ -17,9 +17,9 @@ class AdminController extends Controller
         return view('admin/products');
     }
 
-    public function category(){
-        return view('admin/category');
-    }
+    // public function category(){
+    //     return view('admin/category');
+    // }
 
     public function media(){
         return view('admin/media');

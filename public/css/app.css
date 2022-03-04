@@ -11286,9 +11286,19 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-
 .admin_menu {
   display: flex;
+  justify-content: center;
+}
+
+.admin_btn {
+  margin-bottom: 0.5em;
+}
+
+.text_welcome_admin {
+  display: flex;
+  justify-content: center;
+}
 
 body {
   display: block;
@@ -11849,5 +11859,4 @@ body {
   .form-group {
     padding: 4rem;
   }
-
 }
