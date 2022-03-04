@@ -5519,10 +5519,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ProductsxComponent.vue?vue&type=script&lang=js&":
-/*!*************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ProductsxComponent.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ProductsComponent.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ProductsComponent.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -5579,18 +5579,18 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    var self = this; // this.products = machines;
-    // // Get all products calling function in controller (Ajax call)
-
-    axios({
-      method: 'GET',
-      url: 'home/products',
-      headers: {
-        "X-Requested-With": "XMLHttpRequest"
-      }
-    }).then(function (response) {
-      self.machines = response.data.machines;
-    })["catch"](function (response) {});
+    // let self = this;
+    this.products = machines; // // Get all products calling function in controller (Ajax call)
+    // axios({
+    //     method: 'GET',
+    //     url: 'home/products',
+    //     headers: {
+    //         "X-Requested-With": "XMLHttpRequest"
+    //     }
+    // }).then(function(response) {
+    //     self.machines = response.data.machines;
+    // }).catch(function(response) {
+    // })
   },
   methods: {
     updateCart: function updateCart(product, updateType) {
@@ -5650,6 +5650,8 @@ __webpack_require__.r(__webpack_exports__);
 //  import Vue from 'vue';
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+__webpack_require__(/*! ./machines */ "./resources/js/machines.js");
+
 window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js")["default"]);
 /**
  * The following block of code may be used to automatically register your
@@ -5664,7 +5666,7 @@ window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js
 Vue.component('example-component', (__webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]));
 Vue.component('test-component', (__webpack_require__(/*! ./components/TestComponent.vue */ "./resources/js/components/TestComponent.vue")["default"]));
 Vue.component('cart-component', (__webpack_require__(/*! ./components/CartComponent.vue */ "./resources/js/components/CartComponent.vue")["default"]));
-Vue.component('productsx-component', (__webpack_require__(/*! ./components/ProductsxComponent.vue */ "./resources/js/components/ProductsxComponent.vue")["default"]));
+Vue.component('products-component', (__webpack_require__(/*! ./components/ProductsComponent.vue */ "./resources/js/components/ProductsComponent.vue")["default"]));
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -5679,6 +5681,7 @@ var app = new Vue({
     appName: 'Coffee Products',
     shoppingCart: [],
     products: [],
+    machines: [],
     product_filter: 'all',
     filters: 'all',
     totalPrice: 0,
@@ -5900,6 +5903,954 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/machines.js":
+/*!**********************************!*\
+  !*** ./resources/js/machines.js ***!
+  \**********************************/
+/***/ (() => {
+
+var machines = [{
+  name: "Simple and tasty",
+  image: "simplecoffem.jpg",
+  alt: "Photo by mentatdgt from Pexels",
+  info: "CM357e",
+  text: "A simple coffee machine that makes a tasty coffee, takes no space in the kitchen.",
+  price: 45,
+  onSale30: true,
+  onSale50: false,
+  stock: 10,
+  id: 1,
+  quantity: 0,
+  category: 'smallmachine',
+  show: true
+}, {
+  name: "Profitional",
+  image: "profitionalcoffem.jpg",
+  alt: "Photo by Eka Sutrisno from Pexels",
+  info: "CM359e",
+  text: "For coffee lovers, this is the one you need.",
+  price: 899,
+  onSale30: false,
+  onSale50: true,
+  stock: 4,
+  id: 2,
+  quantity: 0,
+  category: 'bigmachine',
+  show: true
+}, {
+  name: "Fresh",
+  image: "freshcoffeem.jpg",
+  alt: "Photo by Matt Jerome Connor from Pexels",
+  info: "CM356f",
+  text: "Always fresh coffee. With or without milk, so tasty.",
+  price: 150,
+  onSale30: false,
+  onSale50: false,
+  stock: 8,
+  id: 3,
+  quantity: 0,
+  category: 'smallmachine',
+  show: true
+}, {
+  name: "Filter",
+  image: "filtercoffeem.jpg",
+  alt: "Photo by Thirdman from Pexels",
+  info: "CM352f",
+  text: "A wonderfull coffee machine. For people who love filtered coffee, this is the best.",
+  price: 200,
+  onSale30: true,
+  onSale50: false,
+  stock: 12,
+  id: 4,
+  quantity: 0,
+  category: 'smallmachine',
+  show: true
+}, {
+  name: "Easy",
+  image: "easycoffeem.jpg",
+  alt: "Photo by Ketut Subiyanto from Pexels",
+  info: "CM363f",
+  text: "Nice set. Making coffee with this set is an easy and wonderfull experience.",
+  price: 450,
+  onSale30: false,
+  onSale50: true,
+  stock: 25,
+  id: 5,
+  quantity: 0,
+  category: 'bigmachine',
+  show: true
+}, {
+  name: "Silver",
+  image: "silvercoffeem.jpg",
+  alt: "Photo by Karolina Grabowska from Pexels",
+  text: "A beautifull silver coffee machine, tasty espresso and cappuccino.",
+  info: "CM365f",
+  price: 130,
+  onSale30: false,
+  onSale50: false,
+  stock: 30,
+  id: 6,
+  quantity: 0,
+  category: 'bigmachine',
+  show: true
+}, {
+  name: "Small & Red",
+  image: "smallcoffeem.jpg",
+  alt: "Photo by Hiago Italo from Pexels",
+  info: "CM368e",
+  text: "Small but tasty. A beautifull red coffee machine that makes a tasty coffee.",
+  price: 99,
+  onSale30: false,
+  onSale50: false,
+  stock: 0,
+  id: 7,
+  quantity: 0,
+  category: 'smallmachine',
+  show: true
+}, {
+  name: "Take away and enjoy",
+  image: "takeawaycoffeem.jpg",
+  alt: "Photo by Taryn Elliott from Pexels",
+  info: "CM369e",
+  text: "So tasty, so easy to use. Take it with you wherever you go.",
+  price: 55,
+  onSale30: false,
+  onSale50: false,
+  stock: 60,
+  id: 8,
+  quantity: 0,
+  category: 'smallmachine',
+  show: true
+}, {
+  name: "Handy and tasty",
+  image: "handycoffeem.jpg",
+  alt: "Photo by Maria Orlova from Pexels",
+  info: "CM363e",
+  text: "Handy and easy to use coffee machine. Makes very tasty coffee.",
+  price: 80,
+  onSale30: true,
+  onSale50: false,
+  stock: 20,
+  id: 9,
+  quantity: 0,
+  category: 'smallmachine',
+  show: true
+}, {
+  name: "Super Machine",
+  image: "soprofitionalcoffeem.jpg",
+  alt: "Photo by Ivan Samkov from Pexels",
+  info: "CM370f",
+  text: "A profitional coffee machine, for coffee lovers.",
+  price: 999,
+  onSale30: true,
+  onSale50: false,
+  stock: 8,
+  id: 10,
+  quantity: 0,
+  category: 'bigmachine',
+  show: true
+}, {
+  name: "Everyday Coffee",
+  image: "everydaycoffeem.jpg",
+  alt: "Photo by Cleyder Duque from Pexels",
+  info: "CM373e",
+  text: "Tasty coffee for your everyday life, for you, for your guests, for everybody.",
+  price: 80,
+  onSale30: false,
+  onSale50: true,
+  stock: 15,
+  id: 11,
+  quantity: 0,
+  category: 'smallmachine',
+  show: true
+}, {
+  name: "Modern",
+  image: "moderncoffeem.jpg",
+  alt: "Photo by Jonathan Borba from Pexels",
+  info: "CM377f",
+  text: "Modern coffee machine, so beautifull and tasty.",
+  price: 199,
+  onSale30: true,
+  onSale50: false,
+  stock: 12,
+  id: 12,
+  quantity: 0,
+  category: 'smallmachine',
+  show: true
+}, {
+  name: "Super easy",
+  image: "supereasycoffeem.jpg",
+  alt: "Photo by Svetlana Ponomareva from Pexels",
+  info: "CM371e",
+  text: "Super easy coffee machine, for who wants tasty coffee fast.",
+  price: 50,
+  onSale30: false,
+  onSale50: false,
+  stock: 22,
+  id: 13,
+  quantity: 0,
+  category: 'smallmachine',
+  show: true
+}, {
+  name: "Arabic",
+  image: "arabiccoffeem.jpg",
+  alt: "Photo by Michaela S. from Pexels",
+  info: "CM378e",
+  text: "Set for fresh bewed arabic coffee, so tasty, you'll never regret it.",
+  price: 80,
+  onSale30: false,
+  onSale50: false,
+  stock: 10,
+  id: 14,
+  quantity: 0,
+  category: 'smallmachine',
+  show: true
+}, {
+  name: "Super profitional",
+  image: "superprofitionalcoffeem.jpg",
+  alt: "Photo by Pavel Danilyuk from Pexels",
+  info: "CM380f",
+  text: "Super profitional coffee machine. Tasty coffee, it's worth it.",
+  price: 1982,
+  onSale30: false,
+  onSale50: false,
+  stock: 2,
+  id: 15,
+  quantity: 0,
+  category: 'bigmachine',
+  show: true
+}, {
+  name: "Work time coffee",
+  image: "worktimecoffeem.jpg",
+  alt: "Photo by Ekrulila from Pexels",
+  info: "CM490e",
+  text: "Tasty coffee. You can make it fast and start your work actively",
+  price: 75,
+  onSale30: false,
+  onSale50: false,
+  stock: 43,
+  id: 16,
+  quantity: 0,
+  category: 'smallmachine',
+  show: true
+}, {
+  name: "Time out",
+  image: "timeoutcoffeem.jpg",
+  alt: "Photo by Rachel Claire from Pexels",
+  info: "CM495e",
+  text: "Drink this tasty coffee from this machine to relax and take a time out.",
+  price: 160,
+  onSale30: true,
+  onSale50: false,
+  stock: 16,
+  id: 17,
+  quantity: 0,
+  category: 'smallmachine',
+  show: true
+}, {
+  name: "Nice coffee",
+  image: "nicecoffeem.jpg",
+  alt: "Photo by Lynnelle Richardson from Pexels",
+  info: "CM494e",
+  text: "Nice coffee machine that makes a tasty coffee for you.",
+  price: 399,
+  onSale30: true,
+  onSale50: false,
+  stock: 20,
+  id: 18,
+  quantity: 0,
+  category: 'bigmachine',
+  show: true
+}, {
+  name: "Coffee lovers",
+  image: "coffeeloverscoffeem.jpg",
+  alt: "Photo by Clam Lo from Pexels",
+  info: "CM483e",
+  text: "If you love coffe, you will love this coffee machine.",
+  price: 275,
+  onSale30: false,
+  onSale50: true,
+  stock: 18,
+  id: 19,
+  quantity: 0,
+  category: 'smallmachine',
+  show: true
+}, {
+  name: "Cappuccino lovers",
+  image: "cappuccinoloverscoffeem.jpg",
+  alt: "Photo by Pavel Danilyuk from Pexels",
+  info: "CM400f",
+  text: "This coffee machine is espically for you cappuccino lovers.",
+  price: 2560,
+  onSale30: false,
+  onSale50: true,
+  stock: 9,
+  id: 20,
+  quantity: 0,
+  category: 'bigmachine',
+  show: true
+}, {
+  name: "Cappuccino professional",
+  image: "cappuccinoprofitionalcoffeem.jpg",
+  alt: "Photo by Lisa from Pexels",
+  info: "CM402f",
+  text: "This professional coffee machine makes a tasty cappuccino.",
+  price: 2470,
+  onSale30: true,
+  onSale50: false,
+  stock: 11,
+  id: 21,
+  quantity: 0,
+  category: 'bigmachine',
+  show: true
+}, {
+  name: "Espresso",
+  image: "espressocoffeem.jpg",
+  alt: "Photo by Sander Dalhuisen from Pexels",
+  info: "CM410f",
+  text: "Tasty espresso. You'll always like it",
+  price: 1999,
+  onSale30: false,
+  onSale50: true,
+  stock: 18,
+  id: 22,
+  quantity: 0,
+  category: 'bigmachine',
+  show: true
+}, {
+  name: "Tasty",
+  image: "tastycoffeem.jpg",
+  alt: "Photo by Ida Bagus Anggarama from Pexels",
+  info: "CM501m",
+  text: "Tasty coffee. Small coffee machine that fits in small kitchens",
+  price: 400,
+  onSale30: true,
+  onSale50: false,
+  stock: 4,
+  id: 23,
+  quantity: 0,
+  category: 'smallmachine',
+  show: true
+}, {
+  name: "Small cappuccino machine",
+  image: "smallcappuccinocoffeem.jpg",
+  alt: "Photo by Noah Frohn from Pexels",
+  info: "CM512m",
+  text: "This small coffee machine is perfect for a cup of cappuccino.",
+  price: 680,
+  onSale30: false,
+  onSale50: false,
+  stock: 22,
+  id: 24,
+  quantity: 0,
+  category: 'smallmachine',
+  show: true
+}, {
+  name: "Tiny",
+  image: "tinycoffeem.jpg",
+  alt: "Photo by Tim Douglas from Pexels",
+  info: "CM514m",
+  text: "Tiny coffee machine. filtered coffee is the best.",
+  price: 89,
+  onSale30: true,
+  onSale50: false,
+  stock: 8,
+  id: 25,
+  quantity: 0,
+  category: 'smallmachine',
+  show: true
+}, {
+  name: "Unic",
+  image: "uniccoffeem.jpg",
+  alt: "Photo by Georgi Petrov from Pexels",
+  info: "CM911m",
+  text: "Unic coffee machine. You will always love it.",
+  price: 90,
+  onSale30: false,
+  onSale50: false,
+  stock: 3,
+  id: 26,
+  quantity: 0,
+  category: 'smallmachine',
+  show: true
+}, {
+  name: "INDONESIA Medium",
+  image: "beans1.jpg",
+  alt: "Photo by Cup of Couple from Pexels",
+  text: "Indonesian coffee beans. Tasty coffee espically for cappuccino.",
+  info: 1,
+  price: 25,
+  onSale30: false,
+  onSale50: false,
+  stock: 30,
+  id: 27,
+  quantity: 0,
+  category: 'medium',
+  show: true
+}, {
+  name: "COLOMBIA Medium",
+  image: "beans2.jpg",
+  alt: "Photo by Cup of Couple from Pexels",
+  text: "colombian coffee beans.",
+  info: 1,
+  price: 28,
+  onSale30: true,
+  onSale50: false,
+  stock: 50,
+  id: 28,
+  quantity: 0,
+  category: 'medium',
+  show: true
+}, {
+  name: "COLOMBIA Blond",
+  image: "beans3.jpg",
+  alt: "Photo by Denys Gromov from Pexels",
+  text: "Colombian coffee beans.",
+  info: 0.5,
+  price: 13,
+  onSale30: false,
+  onSale50: false,
+  stock: 2,
+  id: 29,
+  quantity: 0,
+  category: 'blond',
+  show: true
+}, {
+  name: "BRAZIL Dark",
+  image: "beans4.jpg",
+  alt: "Photo by Thirdman from Pexels",
+  text: "Brazilian coffee beans.",
+  info: 1,
+  price: 30,
+  onSale30: false,
+  onSale50: true,
+  stock: 34,
+  id: 30,
+  quantity: 0,
+  category: 'dark',
+  show: true
+}, {
+  name: "BRAZIL Blond",
+  image: "beans5.jpg",
+  alt: "Photo by Los Muertos Crew from Pexels",
+  text: "Brazilian coffee beans.",
+  info: 1,
+  price: 28,
+  onSale30: false,
+  onSale50: false,
+  stock: 9,
+  id: 31,
+  quantity: 0,
+  category: 'blond',
+  show: true
+}, {
+  name: "INDIA Dark",
+  image: "beans6.jpg",
+  alt: "istock",
+  text: "Indian coffee beans.",
+  info: 1,
+  price: 30,
+  onSale30: true,
+  onSale50: false,
+  stock: 3,
+  id: 32,
+  quantity: 0,
+  category: 'dark',
+  show: true
+}, {
+  name: "ETHIOPIA Medium",
+  image: "beans7.jpg",
+  alt: "Photo by Ave Calvar Martinez from Pexels",
+  text: "Ethiopian coffee beans.",
+  info: 1,
+  price: 27,
+  onSale30: false,
+  onSale50: false,
+  stock: 9,
+  id: 33,
+  quantity: 0,
+  category: 'medium',
+  show: true
+}, {
+  name: "INDIA Medium",
+  image: "beans8.jpg",
+  alt: "Photo by bacho nadiradze from Pexels",
+  text: "Indian coffee beans.",
+  info: 0.5,
+  price: 12,
+  onSale30: false,
+  onSale50: true,
+  stock: 2,
+  id: 34,
+  quantity: 0,
+  category: 'medium',
+  show: true
+}, {
+  name: "ETHIOPIA Blond",
+  image: "beans9.jpg",
+  alt: "Photo by Cup of Couple from Pexels ",
+  text: "Ethiopian coffee beans.",
+  info: 1,
+  price: 29,
+  onSale30: false,
+  onSale50: false,
+  stock: 17,
+  id: 35,
+  quantity: 0,
+  category: 'blond',
+  show: true
+}, {
+  name: "INDIA Blond",
+  image: "beans10.jpg",
+  alt: "Photo by Alexas Fotos from Pexels ",
+  text: "Inidan coffee beans.",
+  info: 1,
+  price: 30,
+  onSale30: true,
+  onSale50: false,
+  stock: 22,
+  id: 36,
+  quantity: 0,
+  category: 'blond',
+  show: true
+}, {
+  name: "INDONESIA Blond",
+  image: "beans11.jpg",
+  alt: "Photo by Engin Akyurt from Pexels",
+  text: "Indonesian coffee beans.",
+  info: 1,
+  price: 27,
+  onSale30: false,
+  onSale50: false,
+  stock: 4,
+  id: 37,
+  quantity: 0,
+  category: 'blond',
+  show: true
+}, {
+  name: "INDONESIA Dark",
+  image: "beans12.jpg",
+  alt: "Photo by Ryutaro Tsukata from Pexels",
+  text: "Indonesian coffee beans.",
+  info: 1,
+  price: 30,
+  onSale30: true,
+  onSale50: false,
+  stock: 44,
+  id: 38,
+  quantity: 0,
+  category: 'dark',
+  show: true
+}, {
+  name: "BRAZIL Medium",
+  image: "beans13.jpg",
+  alt: "Photo by Cup of Couple from Pexels",
+  text: "Barazilian coffee beans.",
+  info: 0.5,
+  price: 14,
+  onSale30: false,
+  onSale50: false,
+  stock: 83,
+  id: 39,
+  quantity: 0,
+  category: 'medium',
+  show: true
+}, {
+  name: "VIETNAM Blond",
+  image: "beans14.jpg",
+  alt: "Photo by cottonbro from Pexels",
+  text: "Veitnamian coffee beans.",
+  info: 1,
+  price: 25,
+  onSale30: true,
+  onSale50: false,
+  stock: 60,
+  id: 40,
+  quantity: 0,
+  category: 'blond',
+  show: true
+}, {
+  name: "VIETNAM Dark",
+  image: "beans15.jpg",
+  alt: "Photo by Nicola Barts from Pexels",
+  text: "Veitnamian coffee beans.",
+  info: 1,
+  price: 28,
+  onSale30: false,
+  onSale50: false,
+  stock: 4,
+  id: 41,
+  quantity: 0,
+  category: 'dark',
+  show: true
+}, {
+  name: "VIETNAM Medium",
+  image: "beans16.jpg",
+  alt: "Photo by lyncoln Miller from Pexels",
+  text: "Veitnamian coffee beans.",
+  info: 1,
+  price: 27,
+  onSale30: false,
+  onSale50: true,
+  stock: 58,
+  id: 42,
+  quantity: 0,
+  category: 'medium',
+  show: true
+}, {
+  name: "PERU Blond",
+  image: "beans17.jpg",
+  alt: "Photo by Mariakray from Pexels",
+  text: "Peruvian coffee beans.",
+  info: 1,
+  price: 28,
+  onSale30: false,
+  onSale50: false,
+  stock: 45,
+  id: 43,
+  quantity: 0,
+  category: 'blond',
+  show: true
+}, {
+  name: "PERU Dark",
+  image: "beans18.jpg",
+  alt: "Photo by Pavel Danilyuk from Pexels",
+  text: "Peruvian coffee beans.",
+  info: 0.5,
+  price: 16,
+  onSale30: false,
+  onSale50: true,
+  stock: 56,
+  id: 44,
+  quantity: 0,
+  category: 'dark',
+  show: true
+}, {
+  name: "UGANDA Medium",
+  image: "beans19.jpg",
+  alt: "Photo by Cup of Couple from Pexels",
+  text: "Ugandan coffee beans.",
+  info: 1,
+  price: 26,
+  onSale30: false,
+  onSale50: true,
+  stock: 54,
+  id: 45,
+  quantity: 0,
+  category: 'medium',
+  show: true
+}, {
+  name: "UGANDA Dark",
+  image: "beans20.jpg",
+  alt: "Photo by Lisa from Pexels",
+  text: "Ugandan coffee beans.",
+  info: 1,
+  price: 28,
+  onSale30: false,
+  onSale50: false,
+  stock: 30,
+  id: 46,
+  quantity: 0,
+  category: 'dark',
+  show: true
+}, {
+  name: "Black coffee cup set",
+  image: "blackcoffeec.jpg",
+  alt: "Photo by Chevanon Photography from Pexels",
+  text: "A beautifull set of coffee cups. 6 stuks",
+  info: 6,
+  price: 35,
+  onSale30: true,
+  onSale50: false,
+  stock: 120,
+  id: 47,
+  quantity: 0,
+  category: 'setCups',
+  show: true
+}, {
+  name: "Beautifull brown coffee cup",
+  image: "nicebrowncoffeec.jpg",
+  alt: "Photo by Pelageia Zelenina from Pexels",
+  text: "A beautifull coffee cup.",
+  info: 1,
+  price: 15,
+  onSale30: false,
+  onSale50: true,
+  stock: 2,
+  id: 48,
+  quantity: 0,
+  category: 'perstuckCups',
+  show: true
+}, {
+  name: "Brown coffee cup set",
+  image: "browncoffeec.jpg",
+  alt: "Photo by Valeriia Miller from Pexels",
+  text: "A beautifull set of coffee cups. 2 stuks",
+  info: 6,
+  price: 15,
+  onSale30: false,
+  onSale50: false,
+  stock: 80,
+  id: 49,
+  quantity: 0,
+  category: 'setCups',
+  show: true
+}, {
+  name: "White coffee cup Set",
+  image: "whitecoffeec.jpg",
+  alt: "Photo by Alin Luna from Pexels",
+  text: "A nice white set of coffee cups. 6 stuks",
+  info: 6,
+  price: 40,
+  onSale30: true,
+  onSale50: false,
+  stock: 10,
+  id: 50,
+  quantity: 0,
+  category: 'setCups',
+  show: true
+}, {
+  name: "Grey coffee cup Set",
+  image: "greycoffeec.jpg",
+  alt: "Photo by Vitaly Vlasov from Pexels",
+  text: "A large grey set of coffee cups. 6 stuks",
+  info: 6,
+  price: 58,
+  onSale30: false,
+  onSale50: true,
+  stock: 5,
+  id: 51,
+  quantity: 0,
+  category: 'setCups',
+  show: true
+}, {
+  name: "Nice coffee cup Set",
+  image: "nicecoffeec.jpg",
+  alt: "Photo by Marta Dzedyshko from Pexels",
+  text: "A nice beautifull set of coffee cups. 12 stuks",
+  info: 12,
+  price: 120,
+  onSale30: false,
+  onSale50: false,
+  stock: 15,
+  id: 52,
+  quantity: 0,
+  category: 'setCups',
+  show: true
+}, {
+  name: "Pottery coffee cup",
+  image: "potterycoffeec.jpg",
+  alt: "Photo by Cup of Couple from Pexels",
+  text: "A pottery beautifull coffee cup.",
+  info: 1,
+  price: 12,
+  onSale30: true,
+  onSale50: false,
+  stock: 20,
+  id: 53,
+  quantity: 0,
+  category: 'perstuckCups',
+  show: true
+}, {
+  name: "Beautifull coffee cup",
+  image: "beautifullcoffeec.jpg",
+  alt: "Photo by SpotwizardLee from Pexels",
+  text: "A beautifull and cozy coffee cup.",
+  info: 1,
+  price: 20,
+  onSale30: true,
+  onSale50: false,
+  stock: 11,
+  id: 54,
+  quantity: 0,
+  category: 'perstuckCups',
+  show: true
+}, {
+  name: "Big coffee cup",
+  image: "bigcoffeec.jpg",
+  alt: "Photo by Ioana Motoc from Pexels",
+  text: "A big and nice coffee cup.",
+  info: 1,
+  price: 13,
+  onSale30: true,
+  onSale50: false,
+  stock: 16,
+  id: 55,
+  quantity: 0,
+  category: 'perstuckCups',
+  show: true
+}, {
+  name: "Big white coffee cup",
+  image: "whitebigcoffeec.jpg",
+  alt: "Photo by cottonbro from Pexels",
+  text: "A big white coffee cup.",
+  info: 1,
+  price: 7,
+  onSale30: false,
+  onSale50: false,
+  stock: 22,
+  id: 56,
+  quantity: 0,
+  category: 'perstuckCups',
+  show: true
+}, {
+  name: "White small coffee cup",
+  image: "smallwhitecoffeec.jpg",
+  alt: "Photo by Rachel Claire from Pexels",
+  text: "A small white coffee cup.",
+  info: 1,
+  price: 11,
+  onSale30: false,
+  onSale50: true,
+  stock: 30,
+  id: 57,
+  quantity: 0,
+  category: 'perstuckCups',
+  show: true
+}, {
+  name: "Big pink coffee cup",
+  image: "bigpinkcoffeec.jpg",
+  alt: "Photo by Harper Sunday from Pexels",
+  text: "A big pink coffee cup.",
+  info: 1,
+  price: 18,
+  onSale30: false,
+  onSale50: false,
+  stock: 3,
+  id: 58,
+  quantity: 0,
+  category: 'perstuckCups',
+  show: true
+}, {
+  name: "Green coffee cup set",
+  image: "greencoffeec.jpg",
+  alt: "Photo by Olga Mironova from Pexels",
+  text: "A green coffee cup. 6 info.",
+  info: 6,
+  price: 64,
+  onSale30: true,
+  onSale50: false,
+  stock: 38,
+  id: 59,
+  quantity: 0,
+  category: 'setCups',
+  show: true
+}, {
+  name: "Green brown coffee cup set",
+  image: "greenbrowncoffeec.jpg",
+  alt: "Photo by Nida from Pexels",
+  text: "A green brown coffee cup set. 12 info",
+  info: 12,
+  price: 112,
+  onSale30: false,
+  onSale50: false,
+  stock: 3,
+  id: 60,
+  quantity: 0,
+  category: 'setCups',
+  show: true
+}, {
+  name: "portable coffee cup.",
+  image: "portablecoffeec.jpg",
+  alt: "Photo by Quang Anh Ha Nguyen from Pexels",
+  text: "A portable coffee cup.",
+  info: 1,
+  price: 16,
+  onSale30: false,
+  onSale50: false,
+  stock: 60,
+  id: 61,
+  quantity: 0,
+  category: 'perstuckCups',
+  show: true
+}, {
+  name: "Nice grey coffee cup.",
+  image: "nicegreycoffeec.jpg",
+  alt: "Photo by Anna Rye from Pexels",
+  text: "A grey coffee cup.",
+  info: 1,
+  price: 6,
+  onSale30: false,
+  onSale50: true,
+  stock: 2,
+  id: 62,
+  quantity: 0,
+  category: 'perstuckCups',
+  show: true
+}, {
+  name: "Big beautifull coffee cup.",
+  image: "bigbeautifullcoffeec.jpg",
+  alt: "Photo by Karolina Grabowska from Pexels",
+  text: "A big and beautifull coffee cup.",
+  info: 1,
+  price: 15,
+  onSale30: false,
+  onSale50: false,
+  stock: 27,
+  id: 63,
+  quantity: 0,
+  category: 'perstuckCups',
+  show: true
+}, {
+  name: "Nice orange coffee cup set.",
+  image: "orangecoffeec.jpg",
+  alt: "Photo by Tim Douglas from Pexels",
+  text: "Orange and nice coffee cup set. 6 info",
+  info: 6,
+  price: 92,
+  onSale30: true,
+  onSale50: false,
+  stock: 33,
+  id: 64,
+  quantity: 0,
+  category: 'setCups',
+  show: true
+}, {
+  name: "White and gold coffee cup.",
+  image: "whitegoldcoffeec.jpg",
+  alt: "Photo by Ioana Motoc from Pexels",
+  text: "White and gold beautifull coffee cup.",
+  info: 1,
+  price: 18,
+  onSale30: false,
+  onSale50: true,
+  stock: 3,
+  id: 65,
+  quantity: 0,
+  category: 'perstuckCups',
+  show: true
+}, {
+  name: "Beautifull coffee cup.",
+  image: "verynicecoffeec.jpg",
+  alt: "Photo by Eneida Nieves from Pexels",
+  text: "White and gold very nice coffee cup.",
+  info: 1,
+  price: 20,
+  onSale30: false,
+  onSale50: false,
+  stock: 22,
+  id: 66,
+  quantity: 0,
+  category: 'perstuckCups',
+  show: true
+}, {
+  name: "Unic coffee cup.",
+  image: "uniccoffeec.jpg",
+  alt: "Photo by Skyler Ewing from Pexels",
+  text: "black and gold unic coffee cup.",
+  info: 1,
+  price: 28,
+  onSale30: false,
+  onSale50: false,
+  stock: 2,
+  id: 67,
+  quantity: 0,
+  category: 'perstuckCups',
+  show: true
+}];
 
 /***/ }),
 
@@ -28427,10 +29378,10 @@ component.options.__file = "resources/js/components/ExampleComponent.vue"
 
 /***/ }),
 
-/***/ "./resources/js/components/ProductsxComponent.vue":
-/*!********************************************************!*\
-  !*** ./resources/js/components/ProductsxComponent.vue ***!
-  \********************************************************/
+/***/ "./resources/js/components/ProductsComponent.vue":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/ProductsComponent.vue ***!
+  \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -28438,8 +29389,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _ProductsxComponent_vue_vue_type_template_id_4670f618___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ProductsxComponent.vue?vue&type=template&id=4670f618& */ "./resources/js/components/ProductsxComponent.vue?vue&type=template&id=4670f618&");
-/* harmony import */ var _ProductsxComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProductsxComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/ProductsxComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _ProductsComponent_vue_vue_type_template_id_5ecce49e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ProductsComponent.vue?vue&type=template&id=5ecce49e& */ "./resources/js/components/ProductsComponent.vue?vue&type=template&id=5ecce49e&");
+/* harmony import */ var _ProductsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProductsComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/ProductsComponent.vue?vue&type=script&lang=js&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -28449,9 +29400,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 ;
 var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _ProductsxComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _ProductsxComponent_vue_vue_type_template_id_4670f618___WEBPACK_IMPORTED_MODULE_0__.render,
-  _ProductsxComponent_vue_vue_type_template_id_4670f618___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _ProductsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ProductsComponent_vue_vue_type_template_id_5ecce49e___WEBPACK_IMPORTED_MODULE_0__.render,
+  _ProductsComponent_vue_vue_type_template_id_5ecce49e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
   null,
@@ -28461,7 +29412,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/ProductsxComponent.vue"
+component.options.__file = "resources/js/components/ProductsComponent.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
@@ -28537,10 +29488,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/ProductsxComponent.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************!*\
-  !*** ./resources/js/components/ProductsxComponent.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************/
+/***/ "./resources/js/components/ProductsComponent.vue?vue&type=script&lang=js&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/ProductsComponent.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -28548,8 +29499,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductsxComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ProductsxComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ProductsxComponent.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductsxComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ProductsComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ProductsComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -28603,19 +29554,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/ProductsxComponent.vue?vue&type=template&id=4670f618&":
-/*!***************************************************************************************!*\
-  !*** ./resources/js/components/ProductsxComponent.vue?vue&type=template&id=4670f618& ***!
-  \***************************************************************************************/
+/***/ "./resources/js/components/ProductsComponent.vue?vue&type=template&id=5ecce49e&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/ProductsComponent.vue?vue&type=template&id=5ecce49e& ***!
+  \**************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductsxComponent_vue_vue_type_template_id_4670f618___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductsxComponent_vue_vue_type_template_id_4670f618___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductsComponent_vue_vue_type_template_id_5ecce49e___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductsComponent_vue_vue_type_template_id_5ecce49e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductsxComponent_vue_vue_type_template_id_4670f618___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ProductsxComponent.vue?vue&type=template&id=4670f618& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ProductsxComponent.vue?vue&type=template&id=4670f618&");
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductsComponent_vue_vue_type_template_id_5ecce49e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ProductsComponent.vue?vue&type=template&id=5ecce49e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ProductsComponent.vue?vue&type=template&id=5ecce49e&");
 
 
 /***/ }),
@@ -28996,10 +29947,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ProductsxComponent.vue?vue&type=template&id=4670f618&":
-/*!******************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ProductsxComponent.vue?vue&type=template&id=4670f618& ***!
-  \******************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ProductsComponent.vue?vue&type=template&id=5ecce49e&":
+/*!*****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ProductsComponent.vue?vue&type=template&id=5ecce49e& ***!
+  \*****************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
