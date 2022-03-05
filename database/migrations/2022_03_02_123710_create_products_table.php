@@ -15,11 +15,13 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('description')->nullable();
-            $table->string('info');
-            $table->decimal('price');
-            $table->decimal('vat');
+            $table->string('product_name');
+            $table->string('product_image');
+            $table->text('product_description')->nullable();
+            $table->string('product_info')->nullable();
+            $table->decimal('product_price');
+            $table->decimal('product_vat')->nullable();
+            $table->decimal('product_stock')->nullable();
 
             $table->timestamps();
             $table->softDeletes();
@@ -30,6 +32,12 @@ return new class extends Migration
             $table->foreign('updated_by')->references('id')->on('users');
             $table->unsignedBigInteger('deleted_by')->nullable();
             $table->foreign('deleted_by')->references('id')->on('users');
+        });
+
+        Schema::create('multipics', function (Blueprint $table) {
+            $table->id();
+            $table->string('image');
+            $table->timestamps();
         });
 
         Schema::create('product_media', function (Blueprint $table) {
@@ -53,6 +61,7 @@ return new class extends Migration
 
         Schema::create('product_categories', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id');
             $table->string('name');
 
             $table->timestamps();

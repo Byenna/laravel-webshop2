@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.webshop')
 
 @section('content')
 
-<div id="app">
+
     <products-component></products-component>
-</div>  
+
 @endsection

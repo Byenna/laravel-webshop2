@@ -19,13 +19,10 @@
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}"></head>
 <body>
-    <div id="app">
-
-        @include('layouts.header')
-        
-        @yield('content')
-        
-
-    </div>
+<div id="app">
+@include('layouts.header')
+@include('layouts.side_nav')
+@yield('content')
+</div>
 </body>
 </html>
