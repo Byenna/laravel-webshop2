@@ -53,6 +53,7 @@ return new class extends Migration
 
         Schema::create('product_categories', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id');
             $table->string('name');
 
             $table->timestamps();
@@ -65,6 +66,7 @@ return new class extends Migration
             $table->unsignedBigInteger('deleted_by')->nullable();
             $table->foreign('deleted_by')->references('id')->on('users');
         });
+        
         Schema::create('product_discounts', function (Blueprint $table) {
             $table->id();
             $table->string('name');

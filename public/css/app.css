@@ -11286,10 +11286,6 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-
-.admin_menu {
-  display: flex;
-
 body {
   display: block;
   margin: auto;
@@ -11298,7 +11294,7 @@ body {
   background-image: url("/public/images/bodybg.jpg");
 }
 
-.card {
+.product_card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.411);
   transition: 0.3s;
   width: 20rem;
@@ -11374,7 +11370,7 @@ img {
   height: 90px;
 }
 
-.card:hover {
+.product_card:hover {
   box-shadow: 0 60px 100px 0 rgba(36, 20, 20, 0.918);
   background-color: #412502;
   color: #f5f0d8;
@@ -11391,7 +11387,7 @@ h5, .h5 {
   color: black;
 }
 
-.card:hover h5, .card:hover .h5 {
+.product_card:hover h5, .product_card:hover .h5 {
   color: white;
 }
 
@@ -11509,7 +11505,7 @@ h1, .h1 {
   padding: 1rem;
 }
 
-nav {
+.header_nav {
   border: lightgrey solid 2px;
   background-color: #6e4d24;
   font-weight: bold;
@@ -11849,5 +11845,21 @@ body {
   .form-group {
     padding: 4rem;
   }
+}
+.admin_menu {
+  display: flex;
+  justify-content: center;
+}
 
+.admin_btn {
+  margin-bottom: 0.5em;
+}
+
+​.path {
+  fill: blue;
+}
+
+​ .text_welcome_admin {
+  display: flex;
+  justify-content: center;
 }
