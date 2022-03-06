@@ -25,7 +25,7 @@
                     <div class="card-body">
 
 
-                        <form action="{{ url('product/update/'.$products->id) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ url('products/update/'.$products->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
 
                             <input type="hidden" name="old_image" value="{{ $products->product_image }}">

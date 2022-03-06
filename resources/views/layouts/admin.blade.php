@@ -28,13 +28,15 @@
 
                 <div class="admin_btn"><a href="{{ route('all.users') }}" class="btn btn-primary">All Users</a></div>
 
-                <div class="admin_btn"><a href="{{ url('/admin/products') }}" class="btn btn-primary">Products</a></div>
+                <div class="admin_btn"><a href="{{ route('all.product') }}" class="btn btn-primary">Products</a></div>
 
                 <div class="admin_btn"><a href="{{ route('all.category') }}" class="btn btn-primary">All Categories</a></div>
+               
+                <div class="admin_btn"><a href="{{ route('multi.image') }}" class="btn btn-primary">Add Multi Images</a></div>
 
-                <div class="admin_btn"><a href="{{ url('/admin/media') }}" class="btn btn-primary">Media</a></div>
+                <!-- <div class="admin_btn"><a href="{{ url('/admin/media') }}" class="btn btn-primary">Media</a></div> -->
 
-                <div class="admin_btn"><a href="{{ url('/admin/stock') }}" class="btn btn-primary">Stock</a></div>
+                <!-- <div class="admin_btn"><a href="{{ url('/admin/stock') }}" class="btn btn-primary">Stock</a></div> -->
 
                 <div class="admin_btn"><a href="{{ route('all.users') }}" class="btn btn-primary">Back</a></div>
                 

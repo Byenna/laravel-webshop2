@@ -49,8 +49,8 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ url('product/edit/'.$product->id) }}" class="btn btn-info">Edit</a>
-                                    <a href="{{ url('product/delete/'.$product->id) }}" onclick="return confirm('Are you sure to delete')" class="btn btn-danger">Delete</a>
+                                    <a href="{{ url('products/edit/'.$product->id) }}" class="btn btn-info">Edit</a>
+                                    <a href="{{ url('products/delete/'.$product->id) }}" onclick="return confirm('Are you sure to delete')" class="btn btn-danger">Delete</a>
                                 </td>
 
 

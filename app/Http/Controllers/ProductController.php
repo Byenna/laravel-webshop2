@@ -23,31 +23,31 @@ class productController extends Controller
     public function Allproduct(){
 
         $products = Product::latest()->paginate(5);
-        return view('admin.product.index' , compact('products'));
+        return view('admin.products.index' , compact('products'));
     }
 
 
-    public function Storeproduct(Request $request){
-        $validated = $request->validate([
+    public function StoreProduct(Request $request){
+        $validatedData = $request->validate([
             'product_name' => 'required|unique:products|min:4',
             'product_image' => 'required|mimes:jpg,jpeg,png',
         ],
         [
             'product_name.required' => 'Please Input product Name',
-            'product_image.min' => 'product Longer then 4 Characters',
+            'product_image.min' => 'Product Longer then 4 Characters',
         ]);
 
         $product_image = $request->file('product_image');
 
-        // $name_gen = hexdec(uniqid());
-        // $img_ext = strtolower($product_image->getClientOriginalExtension());
-        // $img_name = $name_gen.'.'.$img_ext;
-        // $up_location = 'image/product/';
-        // $last_img =  $up_location.$img_name;
-        // $product_image->move($up_location,$img_name);
+        $name_gen = hexdec(uniqid());
+        $img_ext = strtolower($product_image->getClientOriginalExtension());
+        $img_name = $name_gen.'.'.$img_ext;
+        $up_location = 'image/product/';
+        $last_img =  $up_location.$img_name;
+        $product_image->move($up_location,$img_name);
 
-        $name_gen = hexdec(uniqid()).'.'.$product_image->getClientOriginalExtension();
-        Image::make($product_image)->resize(300,200)->save('image/product/'.$name_gen);
+        // $name_gen = hexdec(uniqid()).'.'.$product_image->getClientOriginalExtension();
+        // Image::make($product_image)->resize(300,200)->save('image/product/'.$name_gen);
 
         $last_img = 'image/product/'.$name_gen;
 
@@ -64,7 +64,7 @@ class productController extends Controller
 
     public function Edit($id){
         $products = Product::find($id);
-        return view('admin.product.edit',compact('products'));
+        return view('admin.products.edit',compact('products'));
     }
 
     public function Update(Request $request, $id){
