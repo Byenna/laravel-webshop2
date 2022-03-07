@@ -1,5 +1,6 @@
 <!-- <select @change="filter()" v-model="filters" class="btn btn-primary"> -->
-<div class="sidenav">
+<div class="wimg" >
+    <div class="sidenav">
     <div id="homeNav">
                <select @change="filter()" v-model="filters" class="btn btn-primary">
                     <option selected value="all">All Products</option>
@@ -33,10 +34,14 @@
         <div class="sideBtn"><a href="{{ url('/') }}" class="btn btn-primary">Home</a></div>
 
         </div>
+
     </div>
+            
+                    <img id="homeImg" src="/images/coffeeGif1.gif" alt="animated coffee cup">
+                
+                
 
-
-
+    </div>
 </div>
 
    

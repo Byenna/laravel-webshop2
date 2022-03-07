@@ -7,21 +7,15 @@
 margin-bottom: 0.5em;
 }
 
-// .admin_content {
-//     display: flex;
-//     align-content: center;
-// }
-
-​.path {
-    fill: blue;
-}​
-
 .text_welcome_admin{
     display: flex;
     justify-content: center;
 }
 
-
+svg:not(:root) {
+    overflow: hidden;
+    display: none;
+}
 
 // .admin_card{
     

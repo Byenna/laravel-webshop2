@@ -38,6 +38,7 @@ Route::get('/admin/index', [AdminController::class, 'index'])->name('home.admin'
 Route::get('/admin/products', [AdminController::class, 'products']);
 
 //CATEGORY ROUTES
+// Route::get('/', [CategoryController::class, 'index']);
 Route::get('/category/all', [CategoryController::class, 'AllCategory'])->name('all.category');
 Route::post('/category/add', [CategoryController::class, 'AddCategory'])->name('store.category');
 Route::get('/category/edit/{id}', [CategoryController::class, 'Edit']);
