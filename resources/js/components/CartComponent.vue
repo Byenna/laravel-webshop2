@@ -77,15 +77,22 @@
 </div>
 </span>
 </template>
-
 <script>
     export default {
         mounted() {
-            console.log('Component mounted.')
+            console.log('Component mounted.');
+            this.loadProducts();
+            this.loadProductMedia();
+            this.loadProductDiscount();
+            this.loadProductHasDiscount();
+
         },
         data() {
             return {
                 products:[],
+                product_media: [],
+                product_discounts: [],
+                product_has_discounts: [],
             }
         },
         props: {
@@ -102,11 +109,54 @@
             },
         },
 
-        created() {
-        this.products = machines;
+
+        created() {  
         },
 
         methods: {
+            loadProducts(){
+                axios.get('/api/products')
+                .then((response) =>{
+                    this.products = response.data.data;
+                })
+                .catch(function(error){
+                    console.log(error);
+                });
+            },
+
+            loadProductMedia(){
+                axios.get('/api/product_media')
+                .then((response) =>{
+                    this.product_media = response.data.data;
+                })
+                .catch(function(error){
+                    console.log(error);
+                });
+            },
+
+            loadProductDiscount(){
+                axios.get('/api/product_discounts')
+                .then((response) =>{
+                    this.product_discounts = response.data.data;
+                })
+                .catch(function(error){
+                    console.log(error);
+                });
+            },
+
+            loadProductHasDiscount(){
+                axios.get('/api/product_has_discounts')
+                .then((response) =>{
+                    this.product_has_discounts = response.data.data;
+                })
+                .catch(function(error){
+                    console.log(error);
+                });
+            },
+
+
+
+
             remove() {
                 this.$root.$emit('remove')
             },

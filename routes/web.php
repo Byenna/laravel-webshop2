@@ -24,7 +24,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/product/all', [ProductController::class, 'index'])->name('all.product');
 
 //ADMIN ROUTES
 Route::get('/admin/index', [AdminController::class, 'index']);
@@ -37,3 +36,9 @@ Route::get('/admin/stock', [AdminController::class, 'stock']);
 Route::get('/home', function(){
     return view('home');
 });
+
+// Route::get('/products', [ProductController::class, 'index'])->name('all.product');
+// Route::get('/products', [App\Http\Controllers\Api\ProductController::class, 'index'])->name('all.product');
+// Route::view('/products', [App\Http\Controllers\Api\ProductController::class, 'index'])->name('all.product');
+Route::view('/products',['home']);
+Route::view('/product_media', ['home']);

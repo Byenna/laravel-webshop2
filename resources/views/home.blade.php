@@ -21,6 +21,5 @@
     </div>
 </div>
 
-<cart-component></cart-component>  
 <products-component></products-component>       
 @endsection

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Exception;
 
 
-class ProductHasCategoriesSeeder extends Seeder
+class ProductHasCategorySeeder extends Seeder
 {
     /**
      * Run the database seeds.

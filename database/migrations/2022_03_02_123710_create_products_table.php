@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
+// 8;Jn<lQjJA(s
 return new class extends Migration
 {
     /**
@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->string('info');
+            $table->string('info')->nullable();
             $table->decimal('price');
             $table->decimal('vat');
 
@@ -51,10 +51,10 @@ return new class extends Migration
             $table->foreign('deleted_by')->references('id')->on('users');
         });
 
-        Schema::create('product_categories', function (Blueprint $table) {
+        Schema::create('product_stock', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-
+            $table->string('stock');
+            $table->integer('quantity');
             $table->timestamps();
             $table->softDeletes();
 
@@ -65,7 +65,9 @@ return new class extends Migration
             $table->unsignedBigInteger('deleted_by')->nullable();
             $table->foreign('deleted_by')->references('id')->on('users');
         });
-        Schema::create('product_discounts', function (Blueprint $table) {
+
+
+        Schema::create('product_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
 
@@ -88,8 +90,30 @@ return new class extends Migration
             $table->foreign('category_id')->references('id')->on('product_categories');
         });
 
+        Schema::create('product_discounts', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            // $table->decimal('percentage');
 
+            $table->timestamps();
+            $table->softDeletes();
 
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->foreign('created_by')->references('id')->on('users');
+            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->foreign('updated_by')->references('id')->on('users');
+            $table->unsignedBigInteger('deleted_by')->nullable();
+            $table->foreign('deleted_by')->references('id')->on('users');
+        });
+
+        Schema::create('product_has_discounts', function (Blueprint $table) {
+            $table->id();
+            
+            $table->unsignedBigInteger('product_id');
+            $table->foreign('product_id')->references('id')->on('products');
+            $table->unsignedBigInteger('discount_id');
+            $table->foreign('discount_id')->references('id')->on('product_discounts');
+        });
     }
 
     /**

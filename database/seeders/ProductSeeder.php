@@ -21,8 +21,7 @@ class ProductSeeder extends Seeder
             'description'   => 'A simple coffee machine that makes a tasty coffee, takes no space in the kitchen.',
             'info'          => 'CM357e',
             'price'         => 45,
-            'vat'           => 0.5,         
-            //'category_id'   => 1,      
+            'vat'           => 0.5,                          
             'created_at'    => now(),
             'created_by'    => 1, 
         ]);
@@ -34,7 +33,7 @@ class ProductSeeder extends Seeder
             'info'          => 'CM359e',
             'price'         => 899,
             'vat'           => 0.9,         
-            //'category_id'   => 1,            
+                       
             'created_at'    => now(),
             'created_by'    => 1, 
         ]);
@@ -46,7 +45,7 @@ class ProductSeeder extends Seeder
             'info'          => 'CM356f',
             'price'         => 150,
             'vat'           => 0.9,         
-            //'category_id'   => 1,            
+                       
             'created_at'    => now(),
             'created_by'    => 1, 
         ]);
@@ -58,7 +57,7 @@ class ProductSeeder extends Seeder
             'info'          => 'CM352f',
             'price'         => 200,
             'vat'           => 0.9,         
-            //'category_id'   => 1,            
+                       
             'created_at'    => now(),
             'created_by'    => 1, 
         ]);
@@ -70,7 +69,7 @@ class ProductSeeder extends Seeder
             'info'          => 'CM363f',
             'price'         => 450,
             'vat'           => 0.9,         
-            //'category_id'   => 1,            
+                       
             'created_at'    => now(),
             'created_by'    => 1, 
         ]);
@@ -82,7 +81,7 @@ class ProductSeeder extends Seeder
             'info'          => 'CM365f',
             'price'         => 130,
             'vat'           => 0.9,         
-            //'category_id'   => 1,            
+                       
             'created_at'    => now(),
             'created_by'    => 1, 
         ]);
@@ -94,7 +93,7 @@ class ProductSeeder extends Seeder
             'info'          => 'CM368e',
             'price'         => 99,
             'vat'           => 0.9,         
-            //'category_id'   => 1,            
+                       
             'created_at'    => now(),
             'created_by'    => 1, 
         ]);
@@ -106,7 +105,7 @@ class ProductSeeder extends Seeder
             'info'          => 'CM369e',
             'price'         => 55,
             'vat'           => 0.9,         
-            //'category_id'   => 1,            
+                       
             'created_at'    => now(),
             'created_by'    => 1, 
         ]);
@@ -118,7 +117,7 @@ class ProductSeeder extends Seeder
             'info'          => 'CM363e',
             'price'         => 80,
             'vat'           => 0.9,         
-            //'category_id'   => 1,            
+                       
             'created_at'    => now(),
             'created_by'    => 1, 
         ]);
@@ -130,7 +129,7 @@ class ProductSeeder extends Seeder
             'info'          => 'CM370f',
             'price'         => 999,
             'vat'           => 0.9,         
-            //'category_id'   => 1,            
+                       
             'created_at'    => now(),
             'created_by'    => 1, 
         ]);
@@ -142,7 +141,7 @@ class ProductSeeder extends Seeder
             'info'          => 'CM373e',
             'price'         => 80,
             'vat'           => 0.9,         
-            //'category_id'   => 1,            
+                       
             'created_at'    => now(),
             'created_by'    => 1, 
         ]);
@@ -154,7 +153,7 @@ class ProductSeeder extends Seeder
             'info'          => 'CM377f',
             'price'         => 199,
             'vat'           => 0.9,         
-            //'category_id'   => 1,            
+                       
             'created_at'    => now(),
             'created_by'    => 1, 
         ]);
@@ -166,7 +165,7 @@ class ProductSeeder extends Seeder
             'info'          => 'CM371e',
             'price'         => 50,
             'vat'           => 0.9,         
-            //'category_id'   => 1,            
+                       
             'created_at'    => now(),
             'created_by'    => 1, 
         ]);
@@ -178,7 +177,7 @@ class ProductSeeder extends Seeder
             'info'          => 'CM378e',
             'price'         => 80,
             'vat'           => 0.9,         
-            //'category_id'   => 1,            
+                       
             'created_at'    => now(),
             'created_by'    => 1, 
         ]);
@@ -190,7 +189,7 @@ class ProductSeeder extends Seeder
             'info'          => 'CM380f',
             'price'         => 1982,
             'vat'           => 0.9,         
-            //'category_id'   => 1,            
+                       
             'created_at'    => now(),
             'created_by'    => 1, 
         ]);
@@ -202,7 +201,7 @@ class ProductSeeder extends Seeder
             'info'          => 'CM490e',
             'price'         => 75,
             'vat'           => 0.9,         
-            //'category_id'   => 1,            
+                       
             'created_at'    => now(),
             'created_by'    => 1, 
         ]);
@@ -214,7 +213,7 @@ class ProductSeeder extends Seeder
             'info'          => 'CM495e',
             'price'         => 160,
             'vat'           => 0.9,         
-            //'category_id'   => 1,            
+                       
             'created_at'    => now(),
             'created_by'    => 1, 
         ]);
@@ -226,7 +225,7 @@ class ProductSeeder extends Seeder
             'info'          => 'CM494e',
             'price'         => 399,
             'vat'           => 0.9,         
-            //'category_id'   => 1,            
+                       
             'created_at'    => now(),
             'created_by'    => 1, 
         ]);
@@ -238,7 +237,7 @@ class ProductSeeder extends Seeder
             'info'          => 'CM483e',
             'price'         => 275,
             'vat'           => 0.9,         
-            //'category_id'   => 1,            
+                       
             'created_at'    => now(),
             'created_by'    => 1, 
         ]);
@@ -250,7 +249,7 @@ class ProductSeeder extends Seeder
             'info'          => 'CM400f',
             'price'         => 2560,
             'vat'           => 0.9,         
-            //'category_id'   => 1,            
+                       
             'created_at'    => now(),
             'created_by'    => 1, 
         ]);
@@ -262,7 +261,7 @@ class ProductSeeder extends Seeder
             'info'          => 'CM402f',
             'price'         => 2470,
             'vat'           => 0.9,         
-            //'category_id'   => 1,            
+                       
             'created_at'    => now(),
             'created_by'    => 1, 
         ]);
@@ -274,7 +273,7 @@ class ProductSeeder extends Seeder
             'info'          => 'CM410f',
             'price'         => 1999,
             'vat'           => 0.9,         
-            //'category_id'   => 1,            
+                       
             'created_at'    => now(),
             'created_by'    => 1, 
         ]);
@@ -286,7 +285,7 @@ class ProductSeeder extends Seeder
             'info'          => 'CM501m',
             'price'         => 400,
             'vat'           => 0.9,         
-            //'category_id'   => 1,            
+                       
             'created_at'    => now(),
             'created_by'    => 1, 
         ]);
@@ -298,7 +297,7 @@ class ProductSeeder extends Seeder
             'info'          => 'CM512m',
             'price'         => 680,
             'vat'           => 0.9,         
-            //'category_id'   => 1,            
+                       
             'created_at'    => now(),
             'created_by'    => 1, 
         ]);
@@ -310,7 +309,7 @@ class ProductSeeder extends Seeder
             'info'          => 'CM514m',
             'price'         => 89,
             'vat'           => 0.9,         
-            //'category_id'   => 1,            
+                       
             'created_at'    => now(),
             'created_by'    => 1, 
         ]);
@@ -322,7 +321,7 @@ class ProductSeeder extends Seeder
             'info'          => 'CM911m',
             'price'         => 90,
             'vat'           => 0.9,         
-            //'category_id'   => 1,            
+                       
             'created_at'    => now(),
             'created_by'    => 1, 
         ]);
