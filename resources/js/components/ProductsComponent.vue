@@ -5,7 +5,7 @@
                 <img :src="imagePath+product_image.file_name" class="card-img-top" :alt="product_image.alt" >
             </a>
         </div> -->
-        <div class="card container-fluid col-md-5" v-for="product in products" :key="product.id">
+        <div class="product_card card container-fluid col-md-5" v-for="product in products" :key="product.id">
             <div v-for="product_image in product_media" :key="product_image.product_id">
                 <div v-if="product.id === product_image.product_id">
                     <img :src="imagePath+product_image.file_name" class="card-img-top" :alt="product_image.alt" >
@@ -28,6 +28,9 @@
                     <span class="newPrice50"> New Price: <b>{{product.price*50/100}}$</b></span>
                 </p>
             </div>
+            <div v-for="product_stock in product_stocks" :key="product_stock.product_id">
+                
+            </div>
         </div>
 
             
@@ -48,9 +51,11 @@
                 <span class="newPrice50"> New Price: <b>{{product.newPrice50}}$</b></span>
             </p>
             <p v-else>Price: {{product.price}}$</p>
+
             <p class="soldOut" v-if="product.stock===0">Sold Out</p>
             <p class="soldOut" v-else-if="product.stock<=5 && product.stock>0">Almost Sold Out</p>
             <p v-else-if="product.stock>5">In Stock</p>
+
             <span>&#x1F6D2;</span>
             <button class="addToCart btn btn-primary" @click="updateCart(product,'substract')"
                 :disabled="product.stock === 0 && product.quantity===0"
@@ -81,6 +86,9 @@
                 product_media: [],
                 product_discounts: [],
                 product_has_discounts: [],
+                product_categories: [],
+                product_has_categories: [],
+                product_stocks: [],
                 imagePath: '/images/webshop/',
             }
         },
@@ -91,6 +99,11 @@
             this.loadProductMedia();
             this.loadProductDiscount();
             this.loadProductHasDiscount();
+            this.loadProductCategories();
+            this.loadProductHasCategories();
+            this.loadProductStocks();
+
+
         },
          created() {
     },
@@ -131,6 +144,36 @@
             axios.get('/api/product_has_discounts')
             .then((response) =>{
                 this.product_has_discounts = response.data.data;
+            })
+            .catch(function(error){
+                console.log(error);
+            });
+        },
+
+        loadProductCategories(){
+            axios.get('/api/product_categories')
+            .then((response) =>{
+                this.product_categories = response.data.data;
+            })
+            .catch(function(error){
+                console.log(error);
+            });
+        },
+
+        loadProductHasCategories(){
+            axios.get('/api/product_has_categories')
+            .then((response) =>{
+                this.product_has_categories = response.data.data;
+            })
+            .catch(function(error){
+                console.log(error);
+            });
+        },
+
+        loadProductStocks(){
+            axios.get('/api/product_stocks')
+            .then((response) =>{
+                this.product_stocks = response.data.data;
             })
             .catch(function(error){
                 console.log(error);

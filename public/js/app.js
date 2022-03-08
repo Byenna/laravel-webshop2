@@ -5450,13 +5450,19 @@ __webpack_require__.r(__webpack_exports__);
     this.loadProductMedia();
     this.loadProductDiscount();
     this.loadProductHasDiscount();
+    this.loadProductCategories();
+    this.loadProductHasCategories();
+    this.loadProductStocks();
   },
   data: function data() {
     return {
       products: [],
       product_media: [],
       product_discounts: [],
-      product_has_discounts: []
+      product_has_discounts: [],
+      product_categories: [],
+      product_has_categories: [],
+      product_stocks: []
     };
   },
   props: {
@@ -5506,6 +5512,33 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/api/product_has_discounts').then(function (response) {
         _this4.product_has_discounts = response.data.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    loadProductCategories: function loadProductCategories() {
+      var _this5 = this;
+
+      axios.get('/api/product_categories').then(function (response) {
+        _this5.product_categories = response.data.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    loadProductHasCategories: function loadProductHasCategories() {
+      var _this6 = this;
+
+      axios.get('/api/product_has_categories').then(function (response) {
+        _this6.product_has_categories = response.data.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    loadProductStocks: function loadProductStocks() {
+      var _this7 = this;
+
+      axios.get('/api/product_stocks').then(function (response) {
+        _this7.product_stocks = response.data.data;
       })["catch"](function (error) {
         console.log(error);
       });
@@ -5640,6 +5673,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {},
   data: function data() {
@@ -5648,6 +5686,9 @@ __webpack_require__.r(__webpack_exports__);
       product_media: [],
       product_discounts: [],
       product_has_discounts: [],
+      product_categories: [],
+      product_has_categories: [],
+      product_stocks: [],
       imagePath: '/images/webshop/'
     };
   },
@@ -5657,6 +5698,9 @@ __webpack_require__.r(__webpack_exports__);
     this.loadProductMedia();
     this.loadProductDiscount();
     this.loadProductHasDiscount();
+    this.loadProductCategories();
+    this.loadProductHasCategories();
+    this.loadProductStocks();
   },
   created: function created() {},
   methods: {
@@ -5692,6 +5736,33 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/api/product_has_discounts').then(function (response) {
         _this4.product_has_discounts = response.data.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    loadProductCategories: function loadProductCategories() {
+      var _this5 = this;
+
+      axios.get('/api/product_categories').then(function (response) {
+        _this5.product_categories = response.data.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    loadProductHasCategories: function loadProductHasCategories() {
+      var _this6 = this;
+
+      axios.get('/api/product_has_categories').then(function (response) {
+        _this6.product_has_categories = response.data.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    loadProductStocks: function loadProductStocks() {
+      var _this7 = this;
+
+      axios.get('/api/product_stocks').then(function (response) {
+        _this7.product_stocks = response.data.data;
       })["catch"](function (error) {
         console.log(error);
       });
@@ -5791,6 +5862,9 @@ var app = new Vue({
     product_media: [],
     product_discounts: [],
     product_has_discounts: [],
+    product_categoies: [],
+    product_has_categories: [],
+    product_stocks: [],
     // product_filter: 'all',
     // filters :'all',
     totalPrice: 0,
@@ -5855,11 +5929,38 @@ var app = new Vue({
         console.log(error);
       });
     },
-    sale30: function sale30() {
+    loadProductCategories: function loadProductCategories() {
       var _this5 = this;
 
+      axios.get('/api/product_categories').then(function (response) {
+        _this5.product_categories = response.data.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    loadProductHasCategories: function loadProductHasCategories() {
+      var _this6 = this;
+
+      axios.get('/api/product_has_categories').then(function (response) {
+        _this6.product_has_categories = response.data.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    loadProductStocks: function loadProductStocks() {
+      var _this7 = this;
+
+      axios.get('/api/product_stocks').then(function (response) {
+        _this7.product_stocks = response.data.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    sale30: function sale30() {
+      var _this8 = this;
+
       this.products.forEach(function (product) {
-        _this5.product_has_discounts.forEach(function (hasdiscount) {
+        _this8.product_has_discounts.forEach(function (hasdiscount) {
           if (product.id == hasdiscount.product_id && hasdiscount.discount_id == 1) {
             product.newPrice30 = product.price - product.price * 30 / 100;
           } else {
@@ -5869,10 +5970,10 @@ var app = new Vue({
       });
     },
     sale50: function sale50() {
-      var _this6 = this;
+      var _this9 = this;
 
       this.products.forEach(function (product) {
-        _this6.product_has_discounts.forEach(function (hasdiscount) {
+        _this9.product_has_discounts.forEach(function (hasdiscount) {
           if (product.id == hasdiscount.product_id && hasdiscount.discount_id == 2) {
             product.newPrice50 = product.price - product.price * 50 / 100;
           } else {
@@ -5985,14 +6086,14 @@ var app = new Vue({
 
   },
   mounted: function mounted() {
-    var _this7 = this;
+    var _this10 = this;
 
     if (localStorage.shoppingCart) {
       this.shoppingCart = JSON.parse(localStorage.shoppingCart);
     }
 
     this.products.forEach(function (productItem) {
-      _this7.shoppingCart.forEach(function (cartItem) {
+      _this10.shoppingCart.forEach(function (cartItem) {
         if (productItem.id === cartItem.id) {
           productItem.quantity = cartItem.quantity;
           productItem.stock = cartItem.stock;
@@ -6000,18 +6101,21 @@ var app = new Vue({
       });
     });
     this.$on('update-cart', function (product, updateType) {
-      _this7.addToCart(product, updateType);
+      _this10.addToCart(product, updateType);
     });
     this.$on('remove', function () {
-      _this7.removeAll();
+      _this10.removeAll();
     });
     this.$on('remove-product', function (index) {
-      _this7.removeItem(index);
+      _this10.removeItem(index);
     });
     this.loadProducts();
     this.loadProductMedia();
     this.loadProductDiscount();
     this.loadProductHasDiscount();
+    this.loadProductCategories();
+    this.loadProductHascategories();
+    this.loadProductStocks();
   },
   watch: {
     shoppingCart: {
@@ -29178,7 +29282,10 @@ var render = function () {
     _vm._l(_vm.products, function (product) {
       return _c(
         "div",
-        { key: product.id, staticClass: "card container-fluid col-md-5" },
+        {
+          key: product.id,
+          staticClass: "product_card card container-fluid col-md-5",
+        },
         [
           _vm._l(_vm.product_media, function (product_image) {
             return _c("div", { key: product_image.product_id }, [
@@ -29251,6 +29358,10 @@ var render = function () {
                   ])
                 : _vm._e(),
             ])
+          }),
+          _vm._v(" "),
+          _vm._l(_vm.product_stocks, function (product_stock) {
+            return _c("div", { key: product_stock.product_id })
           }),
         ],
         2

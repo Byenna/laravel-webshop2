@@ -47,6 +47,12 @@ const app = new Vue({
 		product_media: [],
 		product_discounts: [],
 		product_has_discounts: [],
+		product_categoies: [],
+		product_has_categories: [],
+		product_stocks: [],
+
+
+
         // product_filter: 'all',
 		// filters :'all',
 		totalPrice: 0,
@@ -120,6 +126,38 @@ const app = new Vue({
 				console.log(error);
 			});
 		},
+
+        loadProductCategories(){
+            axios.get('/api/product_categories')
+            .then((response) =>{
+                this.product_categories = response.data.data;
+            })
+            .catch(function(error){
+                console.log(error);
+            });
+        },
+
+        loadProductHasCategories(){
+            axios.get('/api/product_has_categories')
+            .then((response) =>{
+                this.product_has_categories = response.data.data;
+            })
+            .catch(function(error){
+                console.log(error);
+            });
+        },
+
+		loadProductStocks(){
+			axios.get('/api/product_stocks')
+			.then((response) =>{
+				this.product_stocks = response.data.data;
+			})
+			.catch(function(error){
+				console.log(error);
+			});
+		},
+
+
 
 
 
@@ -295,6 +333,11 @@ const app = new Vue({
 		this.loadProductMedia();
 		this.loadProductDiscount();
 		this.loadProductHasDiscount();
+		this.loadProductCategories();
+		this.loadProductHascategories();
+		this.loadProductStocks();
+
+
 
 
 
