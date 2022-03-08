@@ -85,6 +85,10 @@
             this.loadProductMedia();
             this.loadProductDiscount();
             this.loadProductHasDiscount();
+            this.loadProductCategories();
+            this.loadProductHasCategories();
+            this.loadProductStocks();
+
 
         },
         data() {
@@ -93,6 +97,10 @@
                 product_media: [],
                 product_discounts: [],
                 product_has_discounts: [],
+                product_categories: [],
+                product_has_categories: [],
+                product_stocks: [],
+
             }
         },
         props: {
@@ -153,6 +161,38 @@
                     console.log(error);
                 });
             },
+
+            loadProductCategories(){
+                axios.get('/api/product_categories')
+                .then((response) =>{
+                    this.product_categories = response.data.data;
+                })
+                .catch(function(error){
+                    console.log(error);
+                });
+            },
+
+            loadProductHasCategories(){
+                axios.get('/api/product_has_categories')
+                .then((response) =>{
+                    this.product_has_categories = response.data.data;
+                })
+                .catch(function(error){
+                    console.log(error);
+                });
+            },
+
+            loadProductStocks(){
+                axios.get('/api/product_stocks')
+                .then((response) =>{
+                    this.product_stocks = response.data.data;
+                })
+                .catch(function(error){
+                    console.log(error);
+                });
+            },
+
+
 
 
 
