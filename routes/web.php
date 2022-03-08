@@ -37,8 +37,4 @@ Route::get('/home', function(){
     return view('home');
 });
 
-// Route::get('/products', [ProductController::class, 'index'])->name('all.product');
-// Route::get('/products', [App\Http\Controllers\Api\ProductController::class, 'index'])->name('all.product');
-// Route::view('/products', [App\Http\Controllers\Api\ProductController::class, 'index'])->name('all.product');
 Route::view('/products',['home']);
-Route::view('/product_media', ['home']);

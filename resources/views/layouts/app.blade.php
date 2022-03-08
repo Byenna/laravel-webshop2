@@ -24,7 +24,7 @@
 </head>
 <body>
     <div id="app">
-        <header>
+        <header class="header_nav">
             <h2>
             <div v-html='brand'>@yield('brand')</div>
             </h2>

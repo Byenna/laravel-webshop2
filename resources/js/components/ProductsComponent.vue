@@ -5,7 +5,7 @@
                 <img :src="imagePath+product_image.file_name" class="card-img-top" :alt="product_image.alt" >
             </a>
         </div> -->
-        <div class="card container-fluid col-md-5" v-for="product in products" :key="product.id">
+        <div class="product_card card container-fluid col-md-5" v-for="product in products" :key="product.id">
             <div v-for="product_image in product_media" :key="product_image.product_id">
                 <div v-if="product.id === product_image.product_id">
                     <img :src="imagePath+product_image.file_name" class="card-img-top" :alt="product_image.alt" >
