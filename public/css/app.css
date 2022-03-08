@@ -11899,3 +11899,9 @@ svg:not(:root) {
   opacity: 0.3;
   margin-left: -2em;
 }
+
+.welcome_menu {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}

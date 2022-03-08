@@ -32,7 +32,7 @@
 <body>
     <div id="app">
 
-        @include('layouts.header')
+        @include('layouts.header_welcome')
         
         @yield('content')
         @include('layouts.footer')

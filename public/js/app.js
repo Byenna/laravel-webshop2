@@ -29178,7 +29178,10 @@ var render = function () {
     _vm._l(_vm.products, function (product) {
       return _c(
         "div",
-        { key: product.id, staticClass: "card container-fluid col-md-5" },
+        {
+          key: product.id,
+          staticClass: "product_card card container-fluid col-md-5",
+        },
         [
           _vm._l(_vm.product_media, function (product_image) {
             return _c("div", { key: product_image.product_id }, [
