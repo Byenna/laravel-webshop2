@@ -5637,6 +5637,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {},
   data: function data() {
@@ -29176,40 +29179,81 @@ var render = function () {
       return _c(
         "div",
         { key: product.id, staticClass: "card container-fluid col-md-5" },
-        _vm._l(_vm.product_media, function (product_image) {
-          return _c("div", { key: product_image.product_id }, [
-            product.id === product_image.product_id
-              ? _c("div", [
-                  _c("img", {
-                    staticClass: "card-img-top",
-                    attrs: {
-                      src: _vm.imagePath + product_image.file_name,
-                      alt: product_image.alt,
-                    },
-                  }),
-                  _vm._v(" "),
-                  _c("h5", [_vm._v(_vm._s(product.name))]),
-                  _c("hr"),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "card-text" }, [
-                    _vm._v(_vm._s(product.description)),
-                  ]),
-                  _c("hr"),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "card-text" }, [
-                    _vm._v(_vm._s(product.info)),
-                  ]),
-                  _c("hr"),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "card-text" }, [
-                    _vm._v(_vm._s(product.price)),
-                  ]),
-                  _c("hr"),
-                ])
-              : _vm._e(),
-          ])
-        }),
-        0
+        [
+          _vm._l(_vm.product_media, function (product_image) {
+            return _c("div", { key: product_image.product_id }, [
+              product.id === product_image.product_id
+                ? _c("div", [
+                    _c("img", {
+                      staticClass: "card-img-top",
+                      attrs: {
+                        src: _vm.imagePath + product_image.file_name,
+                        alt: product_image.alt,
+                      },
+                    }),
+                    _vm._v(" "),
+                    _c("h5", [_vm._v(_vm._s(product.name))]),
+                    _c("hr"),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "card-text" }, [
+                      _vm._v(_vm._s(product.description)),
+                    ]),
+                    _c("hr"),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "card-text" }, [
+                      _vm._v(_vm._s(product.info)),
+                    ]),
+                    _c("hr"),
+                  ])
+                : _vm._e(),
+            ])
+          }),
+          _vm._v(" "),
+          _c("p", { staticClass: "card-text" }, [
+            _vm._v(_vm._s(product.price) + "$"),
+          ]),
+          _vm._v(" "),
+          _vm._l(_vm.product_has_discounts, function (product_has_dis) {
+            return _c("div", { key: product_has_dis.product_id }, [
+              product.id === product_has_dis.product_id &&
+              product_has_dis.discount_id === 1
+                ? _c("p", [
+                    _c("b", [_vm._v("Sale 30%")]),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "onSale" }, [
+                      _vm._v(_vm._s(product.price) + "$"),
+                    ]),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "newPrice30" }, [
+                      _vm._v(" New Price: "),
+                      _c("b", [
+                        _vm._v(_vm._s((product.price * 30) / 100) + "$"),
+                      ]),
+                    ]),
+                  ])
+                : product.id === product_has_dis.product_id &&
+                  product_has_dis.discount_id === 2
+                ? _c("p", [
+                    _c("b", [_vm._v("Sale 50%")]),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "onSale" }, [
+                      _vm._v(_vm._s(product.price) + "$"),
+                    ]),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "newPrice50" }, [
+                      _vm._v(" New Price: "),
+                      _c("b", [
+                        _vm._v(_vm._s((product.price * 50) / 100) + "$"),
+                      ]),
+                    ]),
+                  ])
+                : _vm._e(),
+            ])
+          }),
+        ],
+        2
       )
     }),
     0

@@ -12,5 +12,6 @@ class ProductDiscountController extends Controller
     public function index()
     {
         return ProductDiscountResource::collection(ProductDiscount::all());
+        // return  ProductDiscount::all();
     }
 };

@@ -5,25 +5,28 @@
                 <img :src="imagePath+product_image.file_name" class="card-img-top" :alt="product_image.alt" >
             </a>
         </div> -->
-        
         <div class="card container-fluid col-md-5" v-for="product in products" :key="product.id">
             <div v-for="product_image in product_media" :key="product_image.product_id">
                 <div v-if="product.id === product_image.product_id">
                     <img :src="imagePath+product_image.file_name" class="card-img-top" :alt="product_image.alt" >
                 
-                <h5>{{product.name}}</h5><hr>
-                <p class="card-text">{{product.description}}</p><hr>
-                <p class="card-text">{{product.info}}</p><hr> 
-                <p class="card-text">{{product.price}}</p><hr>
-
+                    <h5>{{product.name}}</h5><hr>
+                    <p class="card-text">{{product.description}}</p><hr>
+                    <p class="card-text">{{product.info}}</p><hr> 
                 </div>
-                <!-- <div v-for="product_has_dis in product_has_discounts" :key="product_has_dis.product_id">
-                    <p v-if="product.id == hasdiscount.product_id && hasdiscount.discount_id == 1">
-                        <b>Sale 30%</b> 
-                        <span class="onSale">{{product.price}}$</span><br>
-                        <span class="newPrice30"> New Price: <b>{{product.newPrice30}}$</b></span>
-                    </p>
-                </div> -->
+            </div>
+            <p class="card-text">{{product.price}}$</p>
+            <div v-for="product_has_dis in product_has_discounts" :key="product_has_dis.product_id">
+                <p v-if="product.id === product_has_dis.product_id && product_has_dis.discount_id === 1">
+                    <b>Sale 30%</b> 
+                    <span class="onSale">{{product.price}}$</span><br>
+                    <span class="newPrice30"> New Price: <b>{{product.price*30/100}}$</b></span>
+                </p>
+                <p v-else-if="product.id === product_has_dis.product_id && product_has_dis.discount_id === 2">
+                    <b>Sale 50%</b>
+                    <span class="onSale">{{product.price}}$</span><br>
+                    <span class="newPrice50"> New Price: <b>{{product.price*50/100}}$</b></span>
+                </p>
             </div>
         </div>
 

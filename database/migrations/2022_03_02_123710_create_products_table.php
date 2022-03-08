@@ -51,7 +51,7 @@ return new class extends Migration
             $table->foreign('deleted_by')->references('id')->on('users');
         });
 
-        Schema::create('product_stock', function (Blueprint $table) {
+        Schema::create('product_stocks', function (Blueprint $table) {
             $table->id();
             $table->string('stock');
             $table->integer('quantity');
