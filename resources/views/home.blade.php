@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('content')
+<!-- @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -19,7 +19,12 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 </div>
 
 <products-component :sale-30()="sale30()" :sale-50()="sale50()"></products-component>       
 @endsection
+=======
+</div>     
+@endsection -->
+>>>>>>> dev7

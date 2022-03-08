@@ -53,8 +53,11 @@ return new class extends Migration
 
         Schema::create('product_stocks', function (Blueprint $table) {
             $table->id();
+
             $table->string('stock');
             $table->integer('quantity');
+
+
             $table->timestamps();
             $table->softDeletes();
 
@@ -67,7 +70,22 @@ return new class extends Migration
         });
 
 
+
         Schema::create('product_categories', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
+            $table->softDeletes();
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->foreign('created_by')->references('id')->on('users');
+            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->foreign('updated_by')->references('id')->on('users');
+            $table->unsignedBigInteger('deleted_by')->nullable();
+            $table->foreign('deleted_by')->references('id')->on('users');
+        });
+
+        
+        Schema::create('product_discounts', function (Blueprint $table) {
             $table->id();
             $table->string('name');
 

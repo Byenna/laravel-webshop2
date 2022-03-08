@@ -13,12 +13,18 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
+<<<<<<< HEAD
     <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
+=======
+    <script src="{{ mix('js/app.js') }}" defer></script>
+
+>>>>>>> dev7
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
+<<<<<<< HEAD
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 </head>
@@ -75,9 +81,21 @@
         <main class="py-4">
             @yield('content')
         </main>
+=======
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}"></head>
+<body>
+    <div id="app">
+
+        @include('layouts.header')
+        
+        @yield('content')
+        
+
+>>>>>>> dev7
     </div>
     <script src="{{ mix('js/app.js') }}"></script>
 </body>
+<<<<<<< HEAD
 <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top" id="footer">
     <p class="col-md-4 mb-0 text-muted">&copy; 2021 Cherkkoffie</p>
     <ul class="nav col-md-4 justify-content-end">
@@ -97,3 +115,6 @@
 </footer>
 
 </html>
+=======
+</html>
+>>>>>>> dev7
