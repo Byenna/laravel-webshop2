@@ -37,7 +37,7 @@
 
     </div>
             
-                    <img id="homeImg" src="/images/coffeeGif1.gif" alt="animated coffee cup">
+                    <!-- <img id="homeImg" src="/images/coffeeGif1.gif" alt="animated coffee cup"> -->
                 
                 
 

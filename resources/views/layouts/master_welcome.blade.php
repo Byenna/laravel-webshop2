@@ -24,7 +24,7 @@
 <body class="welcome_body_img">
     <!-- <div id="app"> -->
     @include('layouts.header_welcome')
-    @include('layouts.side_nav')
+    
 
     @yield('content')
     <!-- </div> -->
