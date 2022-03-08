@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Model\Product;
+use App\Models\Product;
 use App\Models\ProductDiscount;
 use App\Models\ProductHasCategory;
 use App\Models\ProductMedia;
@@ -19,7 +19,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
       $this->call(Product::class);
-      $this->call(ProductSeeder::class);
       $this->call(ProductMedia::class);
       $this->call(ProductStock::class);
       $this->call(ProductCategory::class);

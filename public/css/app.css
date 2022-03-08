@@ -11286,16 +11286,16 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-
 .admin_menu {
   display: flex;
+}
 
 body {
   display: block;
   margin: auto;
   padding: 0px;
   border: solid lightgrey 1px;
-  background-image: url("/public/images/bodybg.jpg");
+  background-image: url("/images/bodybg.jpg");
 }
 
 .card {
@@ -11612,7 +11612,7 @@ h2, .h2 {
 }
 
 header {
-  background-image: url("/public/images/background.jpg");
+  background-image: url("/images/background.jpg");
   background-repeat: no-repeat;
   background-size: 100% 100%;
   border: solid grey 2px;
@@ -11801,7 +11801,7 @@ option {
 }
 
 body {
-  background-image: url(/public/images/bodybg.jpg);
+  background-image: url("/images/bodybg.jpg");
 }
 
 .btn-primary {
@@ -11849,5 +11849,4 @@ body {
   .form-group {
     padding: 4rem;
   }
-
 }

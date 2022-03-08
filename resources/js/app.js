@@ -3,9 +3,12 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+
+const { distanceAndSkiddingToXY } = require('@popperjs/core/lib/modifiers/offset');
+const { defaultsDeep } = require('lodash');
+
 //  import Vue from 'vue';
 require('./bootstrap');
-require('./machines');
 
 window.Vue = require('vue').default;
 
@@ -41,15 +44,16 @@ const app = new Vue({
 		appName: 'Coffee Products',
 		shoppingCart: [],
 		products:[],
-        machines:[],
-        product_filter: 'all',
-		filters :'all',
+		product_media: [],
+		product_discounts: [],
+		product_has_discounts: [],
+        // product_filter: 'all',
+		// filters :'all',
 		totalPrice: 0,
 		totalQuantity: 0,
 	},
 
 	created() {
-		this.products = machines;
 
 		this.totalPrice = localStorage.getItem('totalPrice') !== null ? parseInt(localStorage.getItem('totalPrice')) : 0;
 		this.totalQuantity = localStorage.getItem('totalQuantity') !== null ? parseInt(localStorage.getItem('totalQuantity')) : 0;
@@ -69,32 +73,78 @@ const app = new Vue({
 	},
 
 	methods: {
+
 		        /**
          * Adds a new product to the cart or changes the amount of an 
          *  existing product in the cart
-         * 
          * @param product (object)
          * @returns void
          */
 
+        loadProducts(){
+            axios.get('/api/products')
+            .then((response) =>{
+                this.products = response.data.data;
+            })
+            .catch(function(error){
+                console.log(error);
+            });
+        },
+
+		loadProductMedia(){
+            axios.get('/api/product_media')
+            .then((response) =>{
+                this.product_media = response.data.data;
+            })
+            .catch(function(error){
+                console.log(error);
+            });
+        },
+
+		loadProductDiscount(){
+            axios.get('/api/product_discounts')
+            .then((response) =>{
+                this.product_discounts = response.data.data;
+            })
+            .catch(function(error){
+                console.log(error);
+            });
+        },
+		
+		loadProductHasDiscount(){
+			axios.get('/api/product_has_discounts')
+			.then((response) =>{
+				this.product_has_discounts = response.data.data;
+			})
+			.catch(function(error){
+				console.log(error);
+			});
+		},
+
+
+
 
 		sale30() {
 			this.products.forEach(product => {
-				if (product.onSale30) {
-					product.newPrice30 = product.price - (product.price * 30 / 100)
-				} else {
-					product.price = product.price
-				}
+				this.product_has_discounts.forEach(hasdiscount=>{
+					if(product.id == hasdiscount.product_id && hasdiscount.discount_id == 1){
+						product.newPrice30 = product.price - (product.price * 30 / 100)
+					} else {
+						product.price = product.price
+					}
+				})
 			})
 		},
 
 		sale50() {
 			this.products.forEach(product => {
-				if (product.onSale50) {
-					product.newPrice50 = product.price - (product.price * 50 / 100)
-				} else {
-					product.price = product.price
-				}
+				this.product_has_discounts.forEach(hasdiscount=>{
+					if(product.id == hasdiscount.product_id && hasdiscount.discount_id == 2){
+						product.newPrice50 = product.price - (product.price * 50 / 100)
+					} else {
+						product.price = product.price
+					}
+				})
 			})
 		},
 
@@ -189,14 +239,14 @@ const app = new Vue({
 		// 	}
 		// 	if (this.product_filter == 'machiens') {
 		// 		this.products.forEach(element1 => {
-		// 			if (!element1.category === 'bigmachine' && element1.category === 'smallmachine'){
+		// 			if (!element1.category == 'machine'){
 		// 				element1.show = false;
 		// 			}
 		// 		})
 		// 	}
 		// 		if (this.product_filter == 'beans') {
 		// 			this.products.forEach(element2 => {
-		// 				if (!element2.category === 'dark' && element2.category === 'medium' && element2.category === 'blond'){
+		// 				if (!element2.category == 'beans'){
 		// 					element2.show = false;
 		// 				}
 		// 			})
@@ -204,7 +254,7 @@ const app = new Vue({
 
 		// 		if (this.product_filter == 'cups') {
 		// 			this.products.forEach(element3 => {
-		// 				if (!element3.category === 'setCups' && element3.category === 'perstuckCups'){
+		// 				if (!element3.category == 'cup'){
 		// 					element3.show = false;
 		// 				}
 		// 			})
@@ -214,6 +264,8 @@ const app = new Vue({
 	},
 
 	mounted() {
+
+
 		if (localStorage.shoppingCart) {	
 			this.shoppingCart = JSON.parse(localStorage.shoppingCart);
 		}
@@ -238,6 +290,14 @@ const app = new Vue({
 		this.$on('remove-product', (index) => {
 			this.removeItem(index)
 		})
+
+		this.loadProducts();
+		this.loadProductMedia();
+		this.loadProductDiscount();
+		this.loadProductHasDiscount();
+
+
+
 	},
 
 	watch: {
@@ -250,3 +310,5 @@ const app = new Vue({
 		},
     },
 });
+Vue.config.devtools = true
+Vue.config.productionTip = false

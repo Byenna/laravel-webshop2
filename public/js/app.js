@@ -5443,14 +5443,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
     console.log('Component mounted.');
+    this.loadProducts();
+    this.loadProductMedia();
+    this.loadProductDiscount();
+    this.loadProductHasDiscount();
   },
   data: function data() {
     return {
-      products: []
+      products: [],
+      product_media: [],
+      product_discounts: [],
+      product_has_discounts: []
     };
   },
   props: {
@@ -5466,10 +5472,44 @@ __webpack_require__.r(__webpack_exports__);
       "default": 0
     }
   },
-  created: function created() {
-    this.products = machines;
-  },
+  created: function created() {},
   methods: {
+    loadProducts: function loadProducts() {
+      var _this = this;
+
+      axios.get('/api/products').then(function (response) {
+        _this.products = response.data.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    loadProductMedia: function loadProductMedia() {
+      var _this2 = this;
+
+      axios.get('/api/product_media').then(function (response) {
+        _this2.product_media = response.data.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    loadProductDiscount: function loadProductDiscount() {
+      var _this3 = this;
+
+      axios.get('/api/product_discounts').then(function (response) {
+        _this3.product_discounts = response.data.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    loadProductHasDiscount: function loadProductHasDiscount() {
+      var _this4 = this;
+
+      axios.get('/api/product_has_discounts').then(function (response) {
+        _this4.product_has_discounts = response.data.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
     remove: function remove() {
       this.$root.$emit('remove');
     },
@@ -5568,31 +5608,94 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
-  },
+  props: {},
   data: function data() {
     return {
       products: [],
-      imagePath: '/public/images/webshop/'
+      product_media: [],
+      product_discounts: [],
+      product_has_discounts: [],
+      imagePath: '/images/webshop/'
     };
   },
-  created: function created() {
-    // let self = this;
-    this.products = machines; // // Get all products calling function in controller (Ajax call)
-    // axios({
-    //     method: 'GET',
-    //     url: 'home/products',
-    //     headers: {
-    //         "X-Requested-With": "XMLHttpRequest"
-    //     }
-    // }).then(function(response) {
-    //     self.machines = response.data.machines;
-    // }).catch(function(response) {
-    // })
+  mounted: function mounted() {
+    console.log('Component mounted.');
+    this.loadProducts();
+    this.loadProductMedia();
+    this.loadProductDiscount();
+    this.loadProductHasDiscount();
   },
+  created: function created() {},
   methods: {
+    loadProducts: function loadProducts() {
+      var _this = this;
+
+      axios.get('/api/products').then(function (response) {
+        _this.products = response.data.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    loadProductMedia: function loadProductMedia() {
+      var _this2 = this;
+
+      axios.get('/api/product_media').then(function (response) {
+        _this2.product_media = response.data.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    loadProductDiscount: function loadProductDiscount() {
+      var _this3 = this;
+
+      axios.get('/api/product_discounts').then(function (response) {
+        _this3.product_discounts = response.data.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    loadProductHasDiscount: function loadProductHasDiscount() {
+      var _this4 = this;
+
+      axios.get('/api/product_has_discounts').then(function (response) {
+        _this4.product_has_discounts = response.data.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
     updateCart: function updateCart(product, updateType) {
       this.$root.$emit('update-cart', product, updateType);
     }
@@ -5647,10 +5750,14 @@ __webpack_require__.r(__webpack_exports__);
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-//  import Vue from 'vue';
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+var _require = __webpack_require__(/*! @popperjs/core/lib/modifiers/offset */ "./node_modules/@popperjs/core/lib/modifiers/offset.js"),
+    distanceAndSkiddingToXY = _require.distanceAndSkiddingToXY;
 
-__webpack_require__(/*! ./machines */ "./resources/js/machines.js");
+var _require2 = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js"),
+    defaultsDeep = _require2.defaultsDeep; //  import Vue from 'vue';
+
+
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js")["default"]);
 /**
@@ -5681,14 +5788,15 @@ var app = new Vue({
     appName: 'Coffee Products',
     shoppingCart: [],
     products: [],
-    machines: [],
-    product_filter: 'all',
-    filters: 'all',
+    product_media: [],
+    product_discounts: [],
+    product_has_discounts: [],
+    // product_filter: 'all',
+    // filters :'all',
     totalPrice: 0,
     totalQuantity: 0
   },
   created: function created() {
-    this.products = machines;
     this.totalPrice = localStorage.getItem('totalPrice') !== null ? parseInt(localStorage.getItem('totalPrice')) : 0;
     this.totalQuantity = localStorage.getItem('totalQuantity') !== null ? parseInt(localStorage.getItem('totalQuantity')) : 0;
     localStorage.getItem('totalQuantity');
@@ -5708,26 +5816,69 @@ var app = new Vue({
     /**
     * Adds a new product to the cart or changes the amount of an 
     *  existing product in the cart
-    * 
     * @param product (object)
     * @returns void
     */
+    loadProducts: function loadProducts() {
+      var _this = this;
+
+      axios.get('/api/products').then(function (response) {
+        _this.products = response.data.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    loadProductMedia: function loadProductMedia() {
+      var _this2 = this;
+
+      axios.get('/api/product_media').then(function (response) {
+        _this2.product_media = response.data.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    loadProductDiscount: function loadProductDiscount() {
+      var _this3 = this;
+
+      axios.get('/api/product_discounts').then(function (response) {
+        _this3.product_discounts = response.data.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    loadProductHasDiscount: function loadProductHasDiscount() {
+      var _this4 = this;
+
+      axios.get('/api/product_has_discounts').then(function (response) {
+        _this4.product_has_discounts = response.data.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
     sale30: function sale30() {
+      var _this5 = this;
+
       this.products.forEach(function (product) {
-        if (product.onSale30) {
-          product.newPrice30 = product.price - product.price * 30 / 100;
-        } else {
-          product.price = product.price;
-        }
+        _this5.product_has_discounts.forEach(function (hasdiscount) {
+          if (product.id == hasdiscount.product_id && hasdiscount.discount_id == 1) {
+            product.newPrice30 = product.price - product.price * 30 / 100;
+          } else {
+            product.price = product.price;
+          }
+        });
       });
     },
     sale50: function sale50() {
+      var _this6 = this;
+
       this.products.forEach(function (product) {
-        if (product.onSale50) {
-          product.newPrice50 = product.price - product.price * 50 / 100;
-        } else {
-          product.price = product.price;
-        }
+        _this6.product_has_discounts.forEach(function (hasdiscount) {
+          if (product.id == hasdiscount.product_id && hasdiscount.discount_id == 2) {
+            product.newPrice50 = product.price - product.price * 50 / 100;
+          } else {
+            product.price = product.price;
+          }
+        });
       });
     },
     addToCart: function addToCart(product, updateType) {
@@ -5811,21 +5962,21 @@ var app = new Vue({
     // 	}
     // 	if (this.product_filter == 'machiens') {
     // 		this.products.forEach(element1 => {
-    // 			if (!element1.category === 'bigmachine' && element1.category === 'smallmachine'){
+    // 			if (!element1.category == 'machine'){
     // 				element1.show = false;
     // 			}
     // 		})
     // 	}
     // 		if (this.product_filter == 'beans') {
     // 			this.products.forEach(element2 => {
-    // 				if (!element2.category === 'dark' && element2.category === 'medium' && element2.category === 'blond'){
+    // 				if (!element2.category == 'beans'){
     // 					element2.show = false;
     // 				}
     // 			})
     // 		}
     // 		if (this.product_filter == 'cups') {
     // 			this.products.forEach(element3 => {
-    // 				if (!element3.category === 'setCups' && element3.category === 'perstuckCups'){
+    // 				if (!element3.category == 'cup'){
     // 					element3.show = false;
     // 				}
     // 			})
@@ -5834,14 +5985,14 @@ var app = new Vue({
 
   },
   mounted: function mounted() {
-    var _this = this;
+    var _this7 = this;
 
     if (localStorage.shoppingCart) {
       this.shoppingCart = JSON.parse(localStorage.shoppingCart);
     }
 
     this.products.forEach(function (productItem) {
-      _this.shoppingCart.forEach(function (cartItem) {
+      _this7.shoppingCart.forEach(function (cartItem) {
         if (productItem.id === cartItem.id) {
           productItem.quantity = cartItem.quantity;
           productItem.stock = cartItem.stock;
@@ -5849,14 +6000,18 @@ var app = new Vue({
       });
     });
     this.$on('update-cart', function (product, updateType) {
-      _this.addToCart(product, updateType);
+      _this7.addToCart(product, updateType);
     });
     this.$on('remove', function () {
-      _this.removeAll();
+      _this7.removeAll();
     });
     this.$on('remove-product', function (index) {
-      _this.removeItem(index);
+      _this7.removeItem(index);
     });
+    this.loadProducts();
+    this.loadProductMedia();
+    this.loadProductDiscount();
+    this.loadProductHasDiscount();
   },
   watch: {
     shoppingCart: {
@@ -5867,6 +6022,8 @@ var app = new Vue({
     }
   }
 });
+Vue.config.devtools = true;
+Vue.config.productionTip = false;
 
 /***/ }),
 
@@ -5903,954 +6060,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
-
-/***/ }),
-
-/***/ "./resources/js/machines.js":
-/*!**********************************!*\
-  !*** ./resources/js/machines.js ***!
-  \**********************************/
-/***/ (() => {
-
-var machines = [{
-  name: "Simple and tasty",
-  image: "simplecoffem.jpg",
-  alt: "Photo by mentatdgt from Pexels",
-  info: "CM357e",
-  text: "A simple coffee machine that makes a tasty coffee, takes no space in the kitchen.",
-  price: 45,
-  onSale30: true,
-  onSale50: false,
-  stock: 10,
-  id: 1,
-  quantity: 0,
-  category: 'smallmachine',
-  show: true
-}, {
-  name: "Profitional",
-  image: "profitionalcoffem.jpg",
-  alt: "Photo by Eka Sutrisno from Pexels",
-  info: "CM359e",
-  text: "For coffee lovers, this is the one you need.",
-  price: 899,
-  onSale30: false,
-  onSale50: true,
-  stock: 4,
-  id: 2,
-  quantity: 0,
-  category: 'bigmachine',
-  show: true
-}, {
-  name: "Fresh",
-  image: "freshcoffeem.jpg",
-  alt: "Photo by Matt Jerome Connor from Pexels",
-  info: "CM356f",
-  text: "Always fresh coffee. With or without milk, so tasty.",
-  price: 150,
-  onSale30: false,
-  onSale50: false,
-  stock: 8,
-  id: 3,
-  quantity: 0,
-  category: 'smallmachine',
-  show: true
-}, {
-  name: "Filter",
-  image: "filtercoffeem.jpg",
-  alt: "Photo by Thirdman from Pexels",
-  info: "CM352f",
-  text: "A wonderfull coffee machine. For people who love filtered coffee, this is the best.",
-  price: 200,
-  onSale30: true,
-  onSale50: false,
-  stock: 12,
-  id: 4,
-  quantity: 0,
-  category: 'smallmachine',
-  show: true
-}, {
-  name: "Easy",
-  image: "easycoffeem.jpg",
-  alt: "Photo by Ketut Subiyanto from Pexels",
-  info: "CM363f",
-  text: "Nice set. Making coffee with this set is an easy and wonderfull experience.",
-  price: 450,
-  onSale30: false,
-  onSale50: true,
-  stock: 25,
-  id: 5,
-  quantity: 0,
-  category: 'bigmachine',
-  show: true
-}, {
-  name: "Silver",
-  image: "silvercoffeem.jpg",
-  alt: "Photo by Karolina Grabowska from Pexels",
-  text: "A beautifull silver coffee machine, tasty espresso and cappuccino.",
-  info: "CM365f",
-  price: 130,
-  onSale30: false,
-  onSale50: false,
-  stock: 30,
-  id: 6,
-  quantity: 0,
-  category: 'bigmachine',
-  show: true
-}, {
-  name: "Small & Red",
-  image: "smallcoffeem.jpg",
-  alt: "Photo by Hiago Italo from Pexels",
-  info: "CM368e",
-  text: "Small but tasty. A beautifull red coffee machine that makes a tasty coffee.",
-  price: 99,
-  onSale30: false,
-  onSale50: false,
-  stock: 0,
-  id: 7,
-  quantity: 0,
-  category: 'smallmachine',
-  show: true
-}, {
-  name: "Take away and enjoy",
-  image: "takeawaycoffeem.jpg",
-  alt: "Photo by Taryn Elliott from Pexels",
-  info: "CM369e",
-  text: "So tasty, so easy to use. Take it with you wherever you go.",
-  price: 55,
-  onSale30: false,
-  onSale50: false,
-  stock: 60,
-  id: 8,
-  quantity: 0,
-  category: 'smallmachine',
-  show: true
-}, {
-  name: "Handy and tasty",
-  image: "handycoffeem.jpg",
-  alt: "Photo by Maria Orlova from Pexels",
-  info: "CM363e",
-  text: "Handy and easy to use coffee machine. Makes very tasty coffee.",
-  price: 80,
-  onSale30: true,
-  onSale50: false,
-  stock: 20,
-  id: 9,
-  quantity: 0,
-  category: 'smallmachine',
-  show: true
-}, {
-  name: "Super Machine",
-  image: "soprofitionalcoffeem.jpg",
-  alt: "Photo by Ivan Samkov from Pexels",
-  info: "CM370f",
-  text: "A profitional coffee machine, for coffee lovers.",
-  price: 999,
-  onSale30: true,
-  onSale50: false,
-  stock: 8,
-  id: 10,
-  quantity: 0,
-  category: 'bigmachine',
-  show: true
-}, {
-  name: "Everyday Coffee",
-  image: "everydaycoffeem.jpg",
-  alt: "Photo by Cleyder Duque from Pexels",
-  info: "CM373e",
-  text: "Tasty coffee for your everyday life, for you, for your guests, for everybody.",
-  price: 80,
-  onSale30: false,
-  onSale50: true,
-  stock: 15,
-  id: 11,
-  quantity: 0,
-  category: 'smallmachine',
-  show: true
-}, {
-  name: "Modern",
-  image: "moderncoffeem.jpg",
-  alt: "Photo by Jonathan Borba from Pexels",
-  info: "CM377f",
-  text: "Modern coffee machine, so beautifull and tasty.",
-  price: 199,
-  onSale30: true,
-  onSale50: false,
-  stock: 12,
-  id: 12,
-  quantity: 0,
-  category: 'smallmachine',
-  show: true
-}, {
-  name: "Super easy",
-  image: "supereasycoffeem.jpg",
-  alt: "Photo by Svetlana Ponomareva from Pexels",
-  info: "CM371e",
-  text: "Super easy coffee machine, for who wants tasty coffee fast.",
-  price: 50,
-  onSale30: false,
-  onSale50: false,
-  stock: 22,
-  id: 13,
-  quantity: 0,
-  category: 'smallmachine',
-  show: true
-}, {
-  name: "Arabic",
-  image: "arabiccoffeem.jpg",
-  alt: "Photo by Michaela S. from Pexels",
-  info: "CM378e",
-  text: "Set for fresh bewed arabic coffee, so tasty, you'll never regret it.",
-  price: 80,
-  onSale30: false,
-  onSale50: false,
-  stock: 10,
-  id: 14,
-  quantity: 0,
-  category: 'smallmachine',
-  show: true
-}, {
-  name: "Super profitional",
-  image: "superprofitionalcoffeem.jpg",
-  alt: "Photo by Pavel Danilyuk from Pexels",
-  info: "CM380f",
-  text: "Super profitional coffee machine. Tasty coffee, it's worth it.",
-  price: 1982,
-  onSale30: false,
-  onSale50: false,
-  stock: 2,
-  id: 15,
-  quantity: 0,
-  category: 'bigmachine',
-  show: true
-}, {
-  name: "Work time coffee",
-  image: "worktimecoffeem.jpg",
-  alt: "Photo by Ekrulila from Pexels",
-  info: "CM490e",
-  text: "Tasty coffee. You can make it fast and start your work actively",
-  price: 75,
-  onSale30: false,
-  onSale50: false,
-  stock: 43,
-  id: 16,
-  quantity: 0,
-  category: 'smallmachine',
-  show: true
-}, {
-  name: "Time out",
-  image: "timeoutcoffeem.jpg",
-  alt: "Photo by Rachel Claire from Pexels",
-  info: "CM495e",
-  text: "Drink this tasty coffee from this machine to relax and take a time out.",
-  price: 160,
-  onSale30: true,
-  onSale50: false,
-  stock: 16,
-  id: 17,
-  quantity: 0,
-  category: 'smallmachine',
-  show: true
-}, {
-  name: "Nice coffee",
-  image: "nicecoffeem.jpg",
-  alt: "Photo by Lynnelle Richardson from Pexels",
-  info: "CM494e",
-  text: "Nice coffee machine that makes a tasty coffee for you.",
-  price: 399,
-  onSale30: true,
-  onSale50: false,
-  stock: 20,
-  id: 18,
-  quantity: 0,
-  category: 'bigmachine',
-  show: true
-}, {
-  name: "Coffee lovers",
-  image: "coffeeloverscoffeem.jpg",
-  alt: "Photo by Clam Lo from Pexels",
-  info: "CM483e",
-  text: "If you love coffe, you will love this coffee machine.",
-  price: 275,
-  onSale30: false,
-  onSale50: true,
-  stock: 18,
-  id: 19,
-  quantity: 0,
-  category: 'smallmachine',
-  show: true
-}, {
-  name: "Cappuccino lovers",
-  image: "cappuccinoloverscoffeem.jpg",
-  alt: "Photo by Pavel Danilyuk from Pexels",
-  info: "CM400f",
-  text: "This coffee machine is espically for you cappuccino lovers.",
-  price: 2560,
-  onSale30: false,
-  onSale50: true,
-  stock: 9,
-  id: 20,
-  quantity: 0,
-  category: 'bigmachine',
-  show: true
-}, {
-  name: "Cappuccino professional",
-  image: "cappuccinoprofitionalcoffeem.jpg",
-  alt: "Photo by Lisa from Pexels",
-  info: "CM402f",
-  text: "This professional coffee machine makes a tasty cappuccino.",
-  price: 2470,
-  onSale30: true,
-  onSale50: false,
-  stock: 11,
-  id: 21,
-  quantity: 0,
-  category: 'bigmachine',
-  show: true
-}, {
-  name: "Espresso",
-  image: "espressocoffeem.jpg",
-  alt: "Photo by Sander Dalhuisen from Pexels",
-  info: "CM410f",
-  text: "Tasty espresso. You'll always like it",
-  price: 1999,
-  onSale30: false,
-  onSale50: true,
-  stock: 18,
-  id: 22,
-  quantity: 0,
-  category: 'bigmachine',
-  show: true
-}, {
-  name: "Tasty",
-  image: "tastycoffeem.jpg",
-  alt: "Photo by Ida Bagus Anggarama from Pexels",
-  info: "CM501m",
-  text: "Tasty coffee. Small coffee machine that fits in small kitchens",
-  price: 400,
-  onSale30: true,
-  onSale50: false,
-  stock: 4,
-  id: 23,
-  quantity: 0,
-  category: 'smallmachine',
-  show: true
-}, {
-  name: "Small cappuccino machine",
-  image: "smallcappuccinocoffeem.jpg",
-  alt: "Photo by Noah Frohn from Pexels",
-  info: "CM512m",
-  text: "This small coffee machine is perfect for a cup of cappuccino.",
-  price: 680,
-  onSale30: false,
-  onSale50: false,
-  stock: 22,
-  id: 24,
-  quantity: 0,
-  category: 'smallmachine',
-  show: true
-}, {
-  name: "Tiny",
-  image: "tinycoffeem.jpg",
-  alt: "Photo by Tim Douglas from Pexels",
-  info: "CM514m",
-  text: "Tiny coffee machine. filtered coffee is the best.",
-  price: 89,
-  onSale30: true,
-  onSale50: false,
-  stock: 8,
-  id: 25,
-  quantity: 0,
-  category: 'smallmachine',
-  show: true
-}, {
-  name: "Unic",
-  image: "uniccoffeem.jpg",
-  alt: "Photo by Georgi Petrov from Pexels",
-  info: "CM911m",
-  text: "Unic coffee machine. You will always love it.",
-  price: 90,
-  onSale30: false,
-  onSale50: false,
-  stock: 3,
-  id: 26,
-  quantity: 0,
-  category: 'smallmachine',
-  show: true
-}, {
-  name: "INDONESIA Medium",
-  image: "beans1.jpg",
-  alt: "Photo by Cup of Couple from Pexels",
-  text: "Indonesian coffee beans. Tasty coffee espically for cappuccino.",
-  info: 1,
-  price: 25,
-  onSale30: false,
-  onSale50: false,
-  stock: 30,
-  id: 27,
-  quantity: 0,
-  category: 'medium',
-  show: true
-}, {
-  name: "COLOMBIA Medium",
-  image: "beans2.jpg",
-  alt: "Photo by Cup of Couple from Pexels",
-  text: "colombian coffee beans.",
-  info: 1,
-  price: 28,
-  onSale30: true,
-  onSale50: false,
-  stock: 50,
-  id: 28,
-  quantity: 0,
-  category: 'medium',
-  show: true
-}, {
-  name: "COLOMBIA Blond",
-  image: "beans3.jpg",
-  alt: "Photo by Denys Gromov from Pexels",
-  text: "Colombian coffee beans.",
-  info: 0.5,
-  price: 13,
-  onSale30: false,
-  onSale50: false,
-  stock: 2,
-  id: 29,
-  quantity: 0,
-  category: 'blond',
-  show: true
-}, {
-  name: "BRAZIL Dark",
-  image: "beans4.jpg",
-  alt: "Photo by Thirdman from Pexels",
-  text: "Brazilian coffee beans.",
-  info: 1,
-  price: 30,
-  onSale30: false,
-  onSale50: true,
-  stock: 34,
-  id: 30,
-  quantity: 0,
-  category: 'dark',
-  show: true
-}, {
-  name: "BRAZIL Blond",
-  image: "beans5.jpg",
-  alt: "Photo by Los Muertos Crew from Pexels",
-  text: "Brazilian coffee beans.",
-  info: 1,
-  price: 28,
-  onSale30: false,
-  onSale50: false,
-  stock: 9,
-  id: 31,
-  quantity: 0,
-  category: 'blond',
-  show: true
-}, {
-  name: "INDIA Dark",
-  image: "beans6.jpg",
-  alt: "istock",
-  text: "Indian coffee beans.",
-  info: 1,
-  price: 30,
-  onSale30: true,
-  onSale50: false,
-  stock: 3,
-  id: 32,
-  quantity: 0,
-  category: 'dark',
-  show: true
-}, {
-  name: "ETHIOPIA Medium",
-  image: "beans7.jpg",
-  alt: "Photo by Ave Calvar Martinez from Pexels",
-  text: "Ethiopian coffee beans.",
-  info: 1,
-  price: 27,
-  onSale30: false,
-  onSale50: false,
-  stock: 9,
-  id: 33,
-  quantity: 0,
-  category: 'medium',
-  show: true
-}, {
-  name: "INDIA Medium",
-  image: "beans8.jpg",
-  alt: "Photo by bacho nadiradze from Pexels",
-  text: "Indian coffee beans.",
-  info: 0.5,
-  price: 12,
-  onSale30: false,
-  onSale50: true,
-  stock: 2,
-  id: 34,
-  quantity: 0,
-  category: 'medium',
-  show: true
-}, {
-  name: "ETHIOPIA Blond",
-  image: "beans9.jpg",
-  alt: "Photo by Cup of Couple from Pexels ",
-  text: "Ethiopian coffee beans.",
-  info: 1,
-  price: 29,
-  onSale30: false,
-  onSale50: false,
-  stock: 17,
-  id: 35,
-  quantity: 0,
-  category: 'blond',
-  show: true
-}, {
-  name: "INDIA Blond",
-  image: "beans10.jpg",
-  alt: "Photo by Alexas Fotos from Pexels ",
-  text: "Inidan coffee beans.",
-  info: 1,
-  price: 30,
-  onSale30: true,
-  onSale50: false,
-  stock: 22,
-  id: 36,
-  quantity: 0,
-  category: 'blond',
-  show: true
-}, {
-  name: "INDONESIA Blond",
-  image: "beans11.jpg",
-  alt: "Photo by Engin Akyurt from Pexels",
-  text: "Indonesian coffee beans.",
-  info: 1,
-  price: 27,
-  onSale30: false,
-  onSale50: false,
-  stock: 4,
-  id: 37,
-  quantity: 0,
-  category: 'blond',
-  show: true
-}, {
-  name: "INDONESIA Dark",
-  image: "beans12.jpg",
-  alt: "Photo by Ryutaro Tsukata from Pexels",
-  text: "Indonesian coffee beans.",
-  info: 1,
-  price: 30,
-  onSale30: true,
-  onSale50: false,
-  stock: 44,
-  id: 38,
-  quantity: 0,
-  category: 'dark',
-  show: true
-}, {
-  name: "BRAZIL Medium",
-  image: "beans13.jpg",
-  alt: "Photo by Cup of Couple from Pexels",
-  text: "Barazilian coffee beans.",
-  info: 0.5,
-  price: 14,
-  onSale30: false,
-  onSale50: false,
-  stock: 83,
-  id: 39,
-  quantity: 0,
-  category: 'medium',
-  show: true
-}, {
-  name: "VIETNAM Blond",
-  image: "beans14.jpg",
-  alt: "Photo by cottonbro from Pexels",
-  text: "Veitnamian coffee beans.",
-  info: 1,
-  price: 25,
-  onSale30: true,
-  onSale50: false,
-  stock: 60,
-  id: 40,
-  quantity: 0,
-  category: 'blond',
-  show: true
-}, {
-  name: "VIETNAM Dark",
-  image: "beans15.jpg",
-  alt: "Photo by Nicola Barts from Pexels",
-  text: "Veitnamian coffee beans.",
-  info: 1,
-  price: 28,
-  onSale30: false,
-  onSale50: false,
-  stock: 4,
-  id: 41,
-  quantity: 0,
-  category: 'dark',
-  show: true
-}, {
-  name: "VIETNAM Medium",
-  image: "beans16.jpg",
-  alt: "Photo by lyncoln Miller from Pexels",
-  text: "Veitnamian coffee beans.",
-  info: 1,
-  price: 27,
-  onSale30: false,
-  onSale50: true,
-  stock: 58,
-  id: 42,
-  quantity: 0,
-  category: 'medium',
-  show: true
-}, {
-  name: "PERU Blond",
-  image: "beans17.jpg",
-  alt: "Photo by Mariakray from Pexels",
-  text: "Peruvian coffee beans.",
-  info: 1,
-  price: 28,
-  onSale30: false,
-  onSale50: false,
-  stock: 45,
-  id: 43,
-  quantity: 0,
-  category: 'blond',
-  show: true
-}, {
-  name: "PERU Dark",
-  image: "beans18.jpg",
-  alt: "Photo by Pavel Danilyuk from Pexels",
-  text: "Peruvian coffee beans.",
-  info: 0.5,
-  price: 16,
-  onSale30: false,
-  onSale50: true,
-  stock: 56,
-  id: 44,
-  quantity: 0,
-  category: 'dark',
-  show: true
-}, {
-  name: "UGANDA Medium",
-  image: "beans19.jpg",
-  alt: "Photo by Cup of Couple from Pexels",
-  text: "Ugandan coffee beans.",
-  info: 1,
-  price: 26,
-  onSale30: false,
-  onSale50: true,
-  stock: 54,
-  id: 45,
-  quantity: 0,
-  category: 'medium',
-  show: true
-}, {
-  name: "UGANDA Dark",
-  image: "beans20.jpg",
-  alt: "Photo by Lisa from Pexels",
-  text: "Ugandan coffee beans.",
-  info: 1,
-  price: 28,
-  onSale30: false,
-  onSale50: false,
-  stock: 30,
-  id: 46,
-  quantity: 0,
-  category: 'dark',
-  show: true
-}, {
-  name: "Black coffee cup set",
-  image: "blackcoffeec.jpg",
-  alt: "Photo by Chevanon Photography from Pexels",
-  text: "A beautifull set of coffee cups. 6 stuks",
-  info: 6,
-  price: 35,
-  onSale30: true,
-  onSale50: false,
-  stock: 120,
-  id: 47,
-  quantity: 0,
-  category: 'setCups',
-  show: true
-}, {
-  name: "Beautifull brown coffee cup",
-  image: "nicebrowncoffeec.jpg",
-  alt: "Photo by Pelageia Zelenina from Pexels",
-  text: "A beautifull coffee cup.",
-  info: 1,
-  price: 15,
-  onSale30: false,
-  onSale50: true,
-  stock: 2,
-  id: 48,
-  quantity: 0,
-  category: 'perstuckCups',
-  show: true
-}, {
-  name: "Brown coffee cup set",
-  image: "browncoffeec.jpg",
-  alt: "Photo by Valeriia Miller from Pexels",
-  text: "A beautifull set of coffee cups. 2 stuks",
-  info: 6,
-  price: 15,
-  onSale30: false,
-  onSale50: false,
-  stock: 80,
-  id: 49,
-  quantity: 0,
-  category: 'setCups',
-  show: true
-}, {
-  name: "White coffee cup Set",
-  image: "whitecoffeec.jpg",
-  alt: "Photo by Alin Luna from Pexels",
-  text: "A nice white set of coffee cups. 6 stuks",
-  info: 6,
-  price: 40,
-  onSale30: true,
-  onSale50: false,
-  stock: 10,
-  id: 50,
-  quantity: 0,
-  category: 'setCups',
-  show: true
-}, {
-  name: "Grey coffee cup Set",
-  image: "greycoffeec.jpg",
-  alt: "Photo by Vitaly Vlasov from Pexels",
-  text: "A large grey set of coffee cups. 6 stuks",
-  info: 6,
-  price: 58,
-  onSale30: false,
-  onSale50: true,
-  stock: 5,
-  id: 51,
-  quantity: 0,
-  category: 'setCups',
-  show: true
-}, {
-  name: "Nice coffee cup Set",
-  image: "nicecoffeec.jpg",
-  alt: "Photo by Marta Dzedyshko from Pexels",
-  text: "A nice beautifull set of coffee cups. 12 stuks",
-  info: 12,
-  price: 120,
-  onSale30: false,
-  onSale50: false,
-  stock: 15,
-  id: 52,
-  quantity: 0,
-  category: 'setCups',
-  show: true
-}, {
-  name: "Pottery coffee cup",
-  image: "potterycoffeec.jpg",
-  alt: "Photo by Cup of Couple from Pexels",
-  text: "A pottery beautifull coffee cup.",
-  info: 1,
-  price: 12,
-  onSale30: true,
-  onSale50: false,
-  stock: 20,
-  id: 53,
-  quantity: 0,
-  category: 'perstuckCups',
-  show: true
-}, {
-  name: "Beautifull coffee cup",
-  image: "beautifullcoffeec.jpg",
-  alt: "Photo by SpotwizardLee from Pexels",
-  text: "A beautifull and cozy coffee cup.",
-  info: 1,
-  price: 20,
-  onSale30: true,
-  onSale50: false,
-  stock: 11,
-  id: 54,
-  quantity: 0,
-  category: 'perstuckCups',
-  show: true
-}, {
-  name: "Big coffee cup",
-  image: "bigcoffeec.jpg",
-  alt: "Photo by Ioana Motoc from Pexels",
-  text: "A big and nice coffee cup.",
-  info: 1,
-  price: 13,
-  onSale30: true,
-  onSale50: false,
-  stock: 16,
-  id: 55,
-  quantity: 0,
-  category: 'perstuckCups',
-  show: true
-}, {
-  name: "Big white coffee cup",
-  image: "whitebigcoffeec.jpg",
-  alt: "Photo by cottonbro from Pexels",
-  text: "A big white coffee cup.",
-  info: 1,
-  price: 7,
-  onSale30: false,
-  onSale50: false,
-  stock: 22,
-  id: 56,
-  quantity: 0,
-  category: 'perstuckCups',
-  show: true
-}, {
-  name: "White small coffee cup",
-  image: "smallwhitecoffeec.jpg",
-  alt: "Photo by Rachel Claire from Pexels",
-  text: "A small white coffee cup.",
-  info: 1,
-  price: 11,
-  onSale30: false,
-  onSale50: true,
-  stock: 30,
-  id: 57,
-  quantity: 0,
-  category: 'perstuckCups',
-  show: true
-}, {
-  name: "Big pink coffee cup",
-  image: "bigpinkcoffeec.jpg",
-  alt: "Photo by Harper Sunday from Pexels",
-  text: "A big pink coffee cup.",
-  info: 1,
-  price: 18,
-  onSale30: false,
-  onSale50: false,
-  stock: 3,
-  id: 58,
-  quantity: 0,
-  category: 'perstuckCups',
-  show: true
-}, {
-  name: "Green coffee cup set",
-  image: "greencoffeec.jpg",
-  alt: "Photo by Olga Mironova from Pexels",
-  text: "A green coffee cup. 6 info.",
-  info: 6,
-  price: 64,
-  onSale30: true,
-  onSale50: false,
-  stock: 38,
-  id: 59,
-  quantity: 0,
-  category: 'setCups',
-  show: true
-}, {
-  name: "Green brown coffee cup set",
-  image: "greenbrowncoffeec.jpg",
-  alt: "Photo by Nida from Pexels",
-  text: "A green brown coffee cup set. 12 info",
-  info: 12,
-  price: 112,
-  onSale30: false,
-  onSale50: false,
-  stock: 3,
-  id: 60,
-  quantity: 0,
-  category: 'setCups',
-  show: true
-}, {
-  name: "portable coffee cup.",
-  image: "portablecoffeec.jpg",
-  alt: "Photo by Quang Anh Ha Nguyen from Pexels",
-  text: "A portable coffee cup.",
-  info: 1,
-  price: 16,
-  onSale30: false,
-  onSale50: false,
-  stock: 60,
-  id: 61,
-  quantity: 0,
-  category: 'perstuckCups',
-  show: true
-}, {
-  name: "Nice grey coffee cup.",
-  image: "nicegreycoffeec.jpg",
-  alt: "Photo by Anna Rye from Pexels",
-  text: "A grey coffee cup.",
-  info: 1,
-  price: 6,
-  onSale30: false,
-  onSale50: true,
-  stock: 2,
-  id: 62,
-  quantity: 0,
-  category: 'perstuckCups',
-  show: true
-}, {
-  name: "Big beautifull coffee cup.",
-  image: "bigbeautifullcoffeec.jpg",
-  alt: "Photo by Karolina Grabowska from Pexels",
-  text: "A big and beautifull coffee cup.",
-  info: 1,
-  price: 15,
-  onSale30: false,
-  onSale50: false,
-  stock: 27,
-  id: 63,
-  quantity: 0,
-  category: 'perstuckCups',
-  show: true
-}, {
-  name: "Nice orange coffee cup set.",
-  image: "orangecoffeec.jpg",
-  alt: "Photo by Tim Douglas from Pexels",
-  text: "Orange and nice coffee cup set. 6 info",
-  info: 6,
-  price: 92,
-  onSale30: true,
-  onSale50: false,
-  stock: 33,
-  id: 64,
-  quantity: 0,
-  category: 'setCups',
-  show: true
-}, {
-  name: "White and gold coffee cup.",
-  image: "whitegoldcoffeec.jpg",
-  alt: "Photo by Ioana Motoc from Pexels",
-  text: "White and gold beautifull coffee cup.",
-  info: 1,
-  price: 18,
-  onSale30: false,
-  onSale50: true,
-  stock: 3,
-  id: 65,
-  quantity: 0,
-  category: 'perstuckCups',
-  show: true
-}, {
-  name: "Beautifull coffee cup.",
-  image: "verynicecoffeec.jpg",
-  alt: "Photo by Eneida Nieves from Pexels",
-  text: "White and gold very nice coffee cup.",
-  info: 1,
-  price: 20,
-  onSale30: false,
-  onSale50: false,
-  stock: 22,
-  id: 66,
-  quantity: 0,
-  category: 'perstuckCups',
-  show: true
-}, {
-  name: "Unic coffee cup.",
-  image: "uniccoffeec.jpg",
-  alt: "Photo by Skyler Ewing from Pexels",
-  text: "black and gold unic coffee cup.",
-  info: 1,
-  price: 28,
-  onSale30: false,
-  onSale50: false,
-  stock: 2,
-  id: 67,
-  quantity: 0,
-  category: 'perstuckCups',
-  show: true
-}];
 
 /***/ }),
 
@@ -29969,124 +29178,82 @@ var render = function () {
     _vm._l(_vm.products, function (product) {
       return _c(
         "div",
-        {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: product.show,
-              expression: "product.show",
-            },
-          ],
-          key: product.id,
-          staticClass: "card container-fluid col-md-5",
-        },
+        { key: product.id, staticClass: "card container-fluid col-md-5" },
         [
-          _c("a", { attrs: { href: _vm.imagePath + product.image } }, [
-            _c("img", {
-              staticClass: "card-img-top",
-              attrs: { src: _vm.imagePath + product.image, alt: product.alt },
-            }),
+          _vm._l(_vm.product_media, function (product_image) {
+            return _c("div", { key: product_image.product_id }, [
+              product.id === product_image.product_id
+                ? _c("div", [
+                    _c("img", {
+                      staticClass: "card-img-top",
+                      attrs: {
+                        src: _vm.imagePath + product_image.file_name,
+                        alt: product_image.alt,
+                      },
+                    }),
+                    _vm._v(" "),
+                    _c("h5", [_vm._v(_vm._s(product.name))]),
+                    _c("hr"),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "card-text" }, [
+                      _vm._v(_vm._s(product.description)),
+                    ]),
+                    _c("hr"),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "card-text" }, [
+                      _vm._v(_vm._s(product.info)),
+                    ]),
+                    _c("hr"),
+                  ])
+                : _vm._e(),
+            ])
+          }),
+          _vm._v(" "),
+          _c("p", { staticClass: "card-text" }, [
+            _vm._v(_vm._s(product.price) + "$"),
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "card-body" }, [
-            _c("h5", [_vm._v(_vm._s(product.name))]),
-            _c("hr"),
-            _vm._v(" "),
-            _c("p", { staticClass: "card-text" }, [
-              _vm._v(_vm._s(product.text)),
-            ]),
-            _c("hr"),
-            _vm._v(" "),
-            product.onSale30
-              ? _c("p", [
-                  _c("b", [_vm._v("Sale 30%")]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "onSale" }, [
-                    _vm._v(_vm._s(product.price) + "$"),
-                  ]),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "newPrice30" }, [
-                    _vm._v(" New Price: "),
-                    _c("b", [_vm._v(_vm._s(product.newPrice30) + "$")]),
-                  ]),
-                ])
-              : product.onSale50
-              ? _c("p", [
-                  _c("b", [_vm._v("Sale 50%")]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "onSale" }, [
-                    _vm._v(_vm._s(product.price) + "$"),
-                  ]),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "newPrice50" }, [
-                    _vm._v(" New Price: "),
-                    _c("b", [_vm._v(_vm._s(product.newPrice50) + "$")]),
-                  ]),
-                ])
-              : _c("p", [_vm._v("Price: " + _vm._s(product.price) + "$")]),
-            _vm._v(" "),
-            product.stock === 0
-              ? _c("p", { staticClass: "soldOut" }, [_vm._v("Sold Out")])
-              : product.stock <= 5 && product.stock > 0
-              ? _c("p", { staticClass: "soldOut" }, [_vm._v("Almost Sold Out")])
-              : product.stock > 5
-              ? _c("p", [_vm._v("In Stock")])
-              : _vm._e(),
-            _vm._v(" "),
-            _c("span", [_vm._v("🛒")]),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "addToCart btn btn-primary",
-                class: {
-                  disabledButton: product.stock === 0 && product.quantity === 0,
-                },
-                attrs: {
-                  disabled: product.stock === 0 && product.quantity === 0,
-                },
-                on: {
-                  click: function ($event) {
-                    return _vm.updateCart(product, "substract")
-                  },
-                },
-              },
-              [_vm._v("-\n            ")]
-            ),
-            _vm._v(" "),
-            _c("span", [_vm._v(_vm._s(product.quantity))]),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: " addToCart btn btn-primary",
-                class: { disabledButton: product.stock === 0 },
-                attrs: { disabled: product.stock === 0 },
-                on: {
-                  click: function ($event) {
-                    return _vm.updateCart(product, "add")
-                  },
-                },
-              },
-              [_vm._v("+\n            ")]
-            ),
-            _c("hr"),
-            _vm._v(" "),
-            _c("a", { attrs: { href: "products/" + product.id } }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-primary",
-                  staticStyle: { "margin-left": "4rem" },
-                },
-                [_vm._v("More Details")]
-              ),
-            ]),
-          ]),
-        ]
+          _vm._l(_vm.product_has_discounts, function (product_has_dis) {
+            return _c("div", { key: product_has_dis.product_id }, [
+              product.id === product_has_dis.product_id &&
+              product_has_dis.discount_id === 1
+                ? _c("p", [
+                    _c("b", [_vm._v("Sale 30%")]),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "onSale" }, [
+                      _vm._v(_vm._s(product.price) + "$"),
+                    ]),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "newPrice30" }, [
+                      _vm._v(" New Price: "),
+                      _c("b", [
+                        _vm._v(_vm._s((product.price * 30) / 100) + "$"),
+                      ]),
+                    ]),
+                  ])
+                : product.id === product_has_dis.product_id &&
+                  product_has_dis.discount_id === 2
+                ? _c("p", [
+                    _c("b", [_vm._v("Sale 50%")]),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "onSale" }, [
+                      _vm._v(_vm._s(product.price) + "$"),
+                    ]),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "newPrice50" }, [
+                      _vm._v(" New Price: "),
+                      _c("b", [
+                        _vm._v(_vm._s((product.price * 50) / 100) + "$"),
+                      ]),
+                    ]),
+                  ])
+                : _vm._e(),
+            ])
+          }),
+        ],
+        2
       )
     }),
     0
