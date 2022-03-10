@@ -13,6 +13,38 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::create('allproducts', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->text('description')->nullable();
+            $table->string('info')->nullable();
+            $table->decimal('price');
+            $table->decimal('vat');
+
+            $table->string('image');
+            $table->string('alt')->nullable();
+
+            $table->string('stock');
+            $table->integer('quantity');
+
+            $table->string('category');
+
+            $table->boolean('onsale30');
+            $table->boolean('onsale50');
+
+            $table->boolean('showstatus');
+
+            $table->timestamps();
+            $table->softDeletes();
+
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->foreign('created_by')->references('id')->on('users');
+            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->foreign('updated_by')->references('id')->on('users');
+            $table->unsignedBigInteger('deleted_by')->nullable();
+            $table->foreign('deleted_by')->references('id')->on('users');
+        });
+
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -59,7 +91,6 @@ return new class extends Migration
             $table->string('stock');
             $table->integer('quantity');
 
-
             $table->timestamps();
             $table->softDeletes();
 
@@ -76,6 +107,7 @@ return new class extends Migration
         Schema::create('product_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+
             $table->timestamps();
             $table->softDeletes();
             $table->unsignedBigInteger('created_by')->nullable();
