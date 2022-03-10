@@ -28,12 +28,12 @@
                             <span id="shopping">Name:</span> {{product.name}}<br> 
                             <span id="shopping">Quantity:</span>({{product.quantity}})<br>
                             <span id="shopping">Price:</span>
-                            <span v-if="product.onSale30">
+                            <span v-if="product.onsale30">
                                 <span class="newPrice30"> <b>$ {{(product.price - (product.price * 30 / 100))*product.quantity}}</b>
                                     <span id="saleBorder">Sale 30%</span>
                                 </span>
                             </span>
-                            <span v-else-if="product.onSale50">
+                            <span v-else-if="product.onsale50">
                                 <span class="newPrice50"> <b>$ {{(product.price - (product.price * 50 / 100))*product.quantity}}</b>
                                     <span id="saleBorder"> Sale 50%</span>
                                 </span>
@@ -77,17 +77,19 @@
 </div>
 </span>
 </template>
+
 <script>
     export default {
         mounted() {
             console.log('Component mounted.');
-            this.loadProducts();
+            this.loadProduct();
             this.loadProductMedia();
             this.loadProductDiscount();
             this.loadProductHasDiscount();
-            this.loadProductCategories();
-            this.loadProductHasCategories();
-            this.loadProductStocks();
+            this.loadProductCategorie();
+            this.loadProductHasCategorie();
+            this.loadProductStock();
+            this.loadAllproduct();
 
 
         },
@@ -100,6 +102,8 @@
                 product_categories: [],
                 product_has_categories: [],
                 product_stocks: [],
+                allproducts: [],
+                cart: [],
 
             }
         },
@@ -118,11 +122,12 @@
         },
 
 
-        created() {  
+        created() {
+            this.shoppingCart = this.cart;
         },
 
         methods: {
-            loadProducts(){
+            loadProduct(){
                 axios.get('/api/products')
                 .then((response) =>{
                     this.products = response.data.data;
@@ -162,7 +167,7 @@
                 });
             },
 
-            loadProductCategories(){
+            loadProductCategorie(){
                 axios.get('/api/product_categories')
                 .then((response) =>{
                     this.product_categories = response.data.data;
@@ -172,7 +177,7 @@
                 });
             },
 
-            loadProductHasCategories(){
+            loadProductHasCategorie(){
                 axios.get('/api/product_has_categories')
                 .then((response) =>{
                     this.product_has_categories = response.data.data;
@@ -182,7 +187,7 @@
                 });
             },
 
-            loadProductStocks(){
+            loadProductStock(){
                 axios.get('/api/product_stocks')
                 .then((response) =>{
                     this.product_stocks = response.data.data;
@@ -191,10 +196,15 @@
                     console.log(error);
                 });
             },
-
-
-
-
+            loadAllproduct(){
+                axios.get('/api/allproducts')
+                .then((response) =>{
+                    this.allproducts = response.data.data;
+                })
+                .catch(function(error){
+                    console.log(error);
+                });
+            },
 
 
             remove() {

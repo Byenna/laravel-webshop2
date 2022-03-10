@@ -31,7 +31,6 @@
     
 <body>
     <div id="app">
-
         @include('layouts.header_welcome')
         
         @yield('content')

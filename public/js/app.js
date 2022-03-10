@@ -5443,16 +5443,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
     console.log('Component mounted.');
-    this.loadProducts();
+    this.loadProduct();
     this.loadProductMedia();
     this.loadProductDiscount();
     this.loadProductHasDiscount();
-    this.loadProductCategories();
-    this.loadProductHasCategories();
-    this.loadProductStocks();
+    this.loadProductCategorie();
+    this.loadProductHasCategorie();
+    this.loadProductStock();
+    this.loadAllproduct();
   },
   data: function data() {
     return {
@@ -5462,7 +5464,9 @@ __webpack_require__.r(__webpack_exports__);
       product_has_discounts: [],
       product_categories: [],
       product_has_categories: [],
-      product_stocks: []
+      product_stocks: [],
+      allproducts: [],
+      cart: []
     };
   },
   props: {
@@ -5478,9 +5482,11 @@ __webpack_require__.r(__webpack_exports__);
       "default": 0
     }
   },
-  created: function created() {},
+  created: function created() {
+    this.shoppingCart = this.cart;
+  },
   methods: {
-    loadProducts: function loadProducts() {
+    loadProduct: function loadProduct() {
       var _this = this;
 
       axios.get('/api/products').then(function (response) {
@@ -5516,7 +5522,7 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       });
     },
-    loadProductCategories: function loadProductCategories() {
+    loadProductCategorie: function loadProductCategorie() {
       var _this5 = this;
 
       axios.get('/api/product_categories').then(function (response) {
@@ -5525,7 +5531,7 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       });
     },
-    loadProductHasCategories: function loadProductHasCategories() {
+    loadProductHasCategorie: function loadProductHasCategorie() {
       var _this6 = this;
 
       axios.get('/api/product_has_categories').then(function (response) {
@@ -5534,11 +5540,20 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       });
     },
-    loadProductStocks: function loadProductStocks() {
+    loadProductStock: function loadProductStock() {
       var _this7 = this;
 
       axios.get('/api/product_stocks').then(function (response) {
         _this7.product_stocks = response.data.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    loadAllproduct: function loadAllproduct() {
+      var _this8 = this;
+
+      axios.get('/api/allproducts').then(function (response) {
+        _this8.allproducts = response.data.data;
       })["catch"](function (error) {
         console.log(error);
       });
@@ -5641,43 +5656,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {},
   data: function data() {
@@ -5689,22 +5667,24 @@ __webpack_require__.r(__webpack_exports__);
       product_categories: [],
       product_has_categories: [],
       product_stocks: [],
+      allproducts: [],
       imagePath: '/images/webshop/'
     };
   },
   mounted: function mounted() {
-    console.log('Component mounted.');
-    this.loadProducts();
+    // console.log('Component mounted.')
+    this.loadProduct();
     this.loadProductMedia();
     this.loadProductDiscount();
     this.loadProductHasDiscount();
-    this.loadProductCategories();
-    this.loadProductHasCategories();
-    this.loadProductStocks();
+    this.loadProductCategorie();
+    this.loadProductHasCategorie();
+    this.loadProductStock();
+    this.loadAllproduct();
   },
   created: function created() {},
   methods: {
-    loadProducts: function loadProducts() {
+    loadProduct: function loadProduct() {
       var _this = this;
 
       axios.get('/api/products').then(function (response) {
@@ -5740,7 +5720,7 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       });
     },
-    loadProductCategories: function loadProductCategories() {
+    loadProductCategorie: function loadProductCategorie() {
       var _this5 = this;
 
       axios.get('/api/product_categories').then(function (response) {
@@ -5749,7 +5729,7 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       });
     },
-    loadProductHasCategories: function loadProductHasCategories() {
+    loadProductHasCategorie: function loadProductHasCategorie() {
       var _this6 = this;
 
       axios.get('/api/product_has_categories').then(function (response) {
@@ -5758,11 +5738,20 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       });
     },
-    loadProductStocks: function loadProductStocks() {
+    loadProductStock: function loadProductStock() {
       var _this7 = this;
 
       axios.get('/api/product_stocks').then(function (response) {
         _this7.product_stocks = response.data.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    loadAllproduct: function loadAllproduct() {
+      var _this8 = this;
+
+      axios.get('/api/allproducts').then(function (response) {
+        _this8.allproducts = response.data.data;
       })["catch"](function (error) {
         console.log(error);
       });
@@ -5850,6 +5839,8 @@ Vue.component('products-component', (__webpack_require__(/*! ./components/Produc
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+// import ProductComponent from './components/ProductComponent';
+// import CartComponent from './components/CartComponent';
 
 var app = new Vue({
   el: '#app',
@@ -5857,7 +5848,6 @@ var app = new Vue({
   data: {
     brand: '&#x1D554;&#x1D559;&#x1D556;&#x1D563;&#x1D55C;&#x1D55C;&#x1D560;&#x1D557;&#x1D557;&#x1D55A;&#x1D556;',
     appName: 'Coffee Products',
-    shoppingCart: [],
     products: [],
     product_media: [],
     product_discounts: [],
@@ -5865,12 +5855,16 @@ var app = new Vue({
     product_categoies: [],
     product_has_categories: [],
     product_stocks: [],
-    // product_filter: 'all',
-    // filters :'all',
+    allproducts: [],
+    product_filter: 'all',
+    filters: 'all',
+    shoppingCart: [],
     totalPrice: 0,
-    totalQuantity: 0
+    totalQuantity: 0,
+    productstorage: []
   },
   created: function created() {
+    this.productstorage = this.allporducts;
     this.totalPrice = localStorage.getItem('totalPrice') !== null ? parseInt(localStorage.getItem('totalPrice')) : 0;
     this.totalQuantity = localStorage.getItem('totalQuantity') !== null ? parseInt(localStorage.getItem('totalQuantity')) : 0;
     localStorage.getItem('totalQuantity');
@@ -5881,7 +5875,7 @@ var app = new Vue({
       return this.brand + " " + this.appName;
     },
     cart: function cart() {
-      return this.shoppingCart = this.products.filter(function (product) {
+      return this.allproducts.filter(function (product) {
         return product.quantity > 0;
       });
     }
@@ -5893,7 +5887,7 @@ var app = new Vue({
     * @param product (object)
     * @returns void
     */
-    loadProducts: function loadProducts() {
+    loadProduct: function loadProduct() {
       var _this = this;
 
       axios.get('/api/products').then(function (response) {
@@ -5929,7 +5923,7 @@ var app = new Vue({
         console.log(error);
       });
     },
-    loadProductCategories: function loadProductCategories() {
+    loadProductCategorie: function loadProductCategorie() {
       var _this5 = this;
 
       axios.get('/api/product_categories').then(function (response) {
@@ -5938,7 +5932,7 @@ var app = new Vue({
         console.log(error);
       });
     },
-    loadProductHasCategories: function loadProductHasCategories() {
+    loadProductHasCategorie: function loadProductHasCategorie() {
       var _this6 = this;
 
       axios.get('/api/product_has_categories').then(function (response) {
@@ -5947,7 +5941,7 @@ var app = new Vue({
         console.log(error);
       });
     },
-    loadProductStocks: function loadProductStocks() {
+    loadProductStock: function loadProductStock() {
       var _this7 = this;
 
       axios.get('/api/product_stocks').then(function (response) {
@@ -5956,47 +5950,93 @@ var app = new Vue({
         console.log(error);
       });
     },
-    sale30: function sale30() {
+    loadAllproduct: function loadAllproduct() {
       var _this8 = this;
 
-      this.products.forEach(function (product) {
-        _this8.product_has_discounts.forEach(function (hasdiscount) {
-          if (product.id == hasdiscount.product_id && hasdiscount.discount_id == 1) {
-            product.newPrice30 = product.price - product.price * 30 / 100;
-          } else {
-            product.price = product.price;
-          }
-        });
+      axios.get('/api/allproducts').then(function (response) {
+        _this8.allproducts = response.data.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    sale30: function sale30() {
+      this.allproducts.forEach(function (product) {
+        if (product.onSale30) {
+          product.newPrice30 = product.price - product.price * 30 / 100;
+        } else {
+          product.price = product.price;
+        }
       });
     },
     sale50: function sale50() {
-      var _this9 = this;
-
-      this.products.forEach(function (product) {
-        _this9.product_has_discounts.forEach(function (hasdiscount) {
-          if (product.id == hasdiscount.product_id && hasdiscount.discount_id == 2) {
-            product.newPrice50 = product.price - product.price * 50 / 100;
-          } else {
-            product.price = product.price;
-          }
-        });
+      this.allproducts.forEach(function (product) {
+        if (product.onSale50) {
+          product.newPrice50 = product.price - product.price * 50 / 100;
+        } else {
+          product.price = product.price;
+        }
       });
     },
+    // sale30() {
+    // 	this.products.forEach(product => {
+    // 		this.product_has_discounts.forEach(hasdiscount=>{
+    // 			if(product.id == hasdiscount.product_id && hasdiscount.discount_id == 1){
+    // 				product.newPrice30 = product.price - (product.price * 30 / 100)
+    // 			} else {
+    // 				product.price = product.price
+    // 			}
+    // 		})
+    // 	})
+    // },
+    // sale50() {
+    // 	this.products.forEach(product => {
+    // 		this.product_has_discounts.forEach(hasdiscount=>{
+    // 			if(product.id == hasdiscount.product_id && hasdiscount.discount_id == 2){
+    // 				product.newPrice50 = product.price - (product.price * 50 / 100)
+    // 			} else {
+    // 				product.price = product.price
+    // 			}
+    // 		})
+    // 	})
+    // },
     addToCart: function addToCart(product, updateType) {
-      for (var i = 0; i < this.products.length; i++) {
-        if (this.products[i].id === product.id) {
+      // this.allproducts.forEach(element => {
+      // 	if(element.id == product.id){
+      // 		if(updateType ==='substract'){
+      // 			if(element.quantity !== 0){
+      // 				this.totalQuantity--;
+      // 				element.quantity--;
+      // 				element.stock++;
+      // 				this.shoppingCart =this.cart;
+      // 				localStorage.removeItem('shoppingCart');
+      // 				localStorage.totalQuantity = this.totalQuantity
+      // 				localStorage.totalPrice = this.totalPrice
+      // 			}
+      // 			else{
+      // 				element.quantity++;
+      // 				element.stock--;
+      // 				this.totalQuantity++;
+      // 				this.shoppingCart = this.cart;
+      // 				localStorage.setItem('totalQuantity', this.totalQuantity)
+      // 				localStorage.setItem('totalPrice', this.totalPrice)
+      // 			}
+      // 		}
+      // 	}
+      // });
+      for (var i = 0; i < this.allproducts.length; i++) {
+        if (this.allproducts[i].id == product.id) {
           if (updateType === 'substract') {
-            if (this.products[i].quantity !== 0) {
+            if (this.allproducts[i].quantity !== 0) {
               this.totalQuantity--;
-              this.products[i].quantity--;
-              this.products[i].stock++;
+              this.allproducts[i].quantity--;
+              this.allproducts[i].stock++;
 
-              if (this.products[i].onSale30) {
-                this.totalPrice -= this.products[i].newPrice30;
-              } else if (this.products[i].onSale50) {
-                this.totalPrice -= this.products[i].newPrice50;
+              if (this.allproducts[i].onsale30) {
+                this.totalPrice -= this.allproducts[i] * 30 / 100;
+              } else if (this.allproducts[i].onsale50) {
+                this.totalPrice -= this.allproducts[i] * 50 / 100;
               } else {
-                this.totalPrice -= this.products[i].price;
+                this.totalPrice -= this.allproducts[i].price;
               }
 
               this.shoppingCart = this.cart;
@@ -6005,17 +6045,17 @@ var app = new Vue({
               localStorage.totalPrice = this.totalPrice;
             }
           } else {
-            this.products[i].quantity++;
-            this.products[i].stock--;
+            this.allproducts[i].quantity++;
+            this.allproducts[i].stock--;
             this.totalQuantity++;
             this.shoppingCart = this.cart;
 
-            if (this.products[i].onSale30) {
-              this.totalPrice += this.products[i].newPrice30;
-            } else if (this.products[i].onSale50) {
-              this.totalPrice += this.products[i].newPrice50;
+            if (this.allporducts[i].onsale30) {
+              this.totalPrice += this.allproducts[i].newPrice30;
+            } else if (this.allproducts[i].onsale50) {
+              this.totalPrice += this.allproducts[i].newPrice50;
             } else {
-              this.totalPrice += this.products[i].price;
+              this.totalPrice += this.allproducts[i].price;
             }
 
             localStorage.setItem('totalQuantity', this.totalQuantity);
@@ -6024,7 +6064,57 @@ var app = new Vue({
         }
       }
     },
+    // addToCart(product, updateType) {
+    // 	// console.log("It's working");
+    // 	for (let i = 0; i < this.products.length; i++) {
+    // 		for (let j = 0; j < this.product_stocks.length; j++){
+    // 			if(this.product[i].id == this.product_stocks[j].id == product.id){
+    // 				if (updateType == 'substract') {
+    // 					if (this.product_stocks[j].quantity !== 0) {
+    // 						this.totalQuantity--
+    // 						this.product_stocks[j].quantity--
+    // 						this.product_stocks[j].stock++;
+    // 						for (let k = 0; k < this.product_has_discounts.length; k++){
+    // 							if(this.product_has_discounts[k].id == this.product[i].id){
+    // 								if (this.product_has_discounts[k].discount_id == 1) {
+    // 									this.totalPrice -= this.products[i].price*30/100
+    // 								} else if (this.product_has_discounts[k].discount_id == 2) {
+    // 									this.totalPrice -= this.products[i].price*50/100
+    // 								} else if (this.product_has_categories[k].discount_id == 3) {
+    // 									this.totalPrice -= this.products[i].price
+    // 								}
+    // 							}
+    // 						}
+    // 						this.shoppingCart = this.cart
+    // 						localStorage.removeItem('shoppingCart');
+    // 						localStorage.totalQuantity = this.totalQuantity
+    // 						localStorage.totalPrice = this.totalPrice
+    // 					}
+    // 				} else {
+    // 					this.product_stocks[k].quantity++
+    // 					this.products_stocks[k].stock--;
+    // 					this.totalQuantity++;
+    // 					this.shoppingCart = this.cart
+    // 					for (let k = 0; k < this.product_has_discounts.length; k++){
+    // 						if(this.product_has_discounts[k].id == this.product[i].id){
+    // 							if (this.products_has_discounts[k].discount_id == 1) {
+    // 								this.totalPrice += this.products[i].price *30/100
+    // 							} else if (this.product_has_discount[k].discount_id == 2) {
+    // 								this.totalPrice += this.products[i].price*50/100
+    // 							} else if (this.product_has_discount[k].discount_id == 3) {
+    // 								this.totalPrice += this.products[i].price
+    // 							}
+    // 							localStorage.setItem('totalQuantity', this.totalQuantity)
+    // 							localStorage.setItem('totalPrice', this.totalPrice)
+    // 						}
+    // 					}
+    // 				}
+    // 			}
+    // 		}
+    // 	}
+    // },
     removeAll: function removeAll() {
+      // console.log('Here is working also ;)');
       this.shoppingCart.length = this.cart.length = 0;
       this.totalPrice = 0;
       this.totalQuantity = 0;
@@ -6032,57 +6122,69 @@ var app = new Vue({
       localStorage.removeItem('totalPrice');
       localStorage.removeItem('shoppingCart');
 
-      for (var k = 0; k < this.products.length; k++) {
-        if (this.products[k].quantity != 0) {
-          this.products[k].stock += this.products[k].quantity;
-          this.products[k].quantity = 0;
+      for (var k = 0; k < this.product_stocks.length; k++) {
+        if (this.product_stocks[k].quantity != 0) {
+          this.product_stocks[k].stock += this.product_stocks[k].quantity;
+          this.product_stocks[k].quantity = 0;
         }
       }
-    },
-    removeItem: function removeItem(index) {
-      this.totalQuantity -= this.shoppingCart[index].quantity;
+    } // 	removeItem(index) {
+    // 		// console.log('hello');
+    // 		this.totalQuantity -= this.shoppingCart[index].quantity
+    // 		for (let i = 0; i < this.products.length; i++){
+    // 			for (let j = 0; j < this.product_discounts.length; j++){
+    // 				if(this.product_discounts[j].product_id == this.shoppingCart[index].product_id == this.products[i].id){
+    // 					if (this.product_discounts[j].discount_id == 1) {
+    // 						this.totalPrice -= this.products[i].price*30/100 * this.shoppingCart[index].quantity
+    // 					} else if (this.product_discounts[j].discount_id == 2) {
+    // 						this.totalPrice -= this.products[i].price*50/100 * this.shoppingCart[index].quantity
+    // 					} else if(this.product_discounts[i].discount_id == 3) {
+    // 						this.totalPrice -= this.products[i].price * this.shoppingCart[index].quantity
+    // 					}
+    // 					this.shoppingCart[index].stock += this.shoppingCart[index].quantity
+    // 					this.shoppingCart[index].quantity = 0
+    // 					this.shoppingCart.splice(index, 1)
+    // 					localStorage.totalQuantity = this.totalQuantity
+    // 					localStorage.totalPrice = this.totalPrice
+    // 	}}
+    // }
 
-      if (this.shoppingCart[index].onSale30) {
-        this.totalPrice -= this.shoppingCart[index].newPrice30 * this.shoppingCart[index].quantity;
-      } else if (this.shoppingCart[index].onSale50) {
-        this.totalPrice -= this.shoppingCart[index].newPrice50 * this.shoppingCart[index].quantity;
-      } else {
-        this.totalPrice -= this.shoppingCart[index].price * this.shoppingCart[index].quantity;
-      }
+  },
+  filter: function filter() {
+    var _this9 = this;
 
-      this.shoppingCart[index].stock += this.shoppingCart[index].quantity;
-      this.shoppingCart[index].quantity = 0;
-      this.shoppingCart.splice(index, 1);
-      localStorage.totalQuantity = this.totalQuantity;
-      localStorage.totalPrice = this.totalPrice;
-    } // filter(){
-    // 	if(this.product_filter == 'all') {
-    // 		this.products.forEach(element => {
-    // 			element.show =true;
-    // 		})
-    // 	}
-    // 	if (this.product_filter == 'machiens') {
-    // 		this.products.forEach(element1 => {
-    // 			if (!element1.category == 'machine'){
-    // 				element1.show = false;
-    // 			}
-    // 		})
-    // 	}
-    // 		if (this.product_filter == 'beans') {
-    // 			this.products.forEach(element2 => {
-    // 				if (!element2.category == 'beans'){
-    // 					element2.show = false;
-    // 				}
-    // 			})
-    // 		}
-    // 		if (this.product_filter == 'cups') {
-    // 			this.products.forEach(element3 => {
-    // 				if (!element3.category == 'cup'){
-    // 					element3.show = false;
-    // 				}
-    // 			})
-    // 		} 
-    // 	}					
+    if (this.product_filter == 'all') {
+      this.products = this.products;
+    }
+
+    if (this.product_filter == 'machines') {
+      this.product_categoies.forEach(function (element1) {
+        if (element1.name == 'machines') {
+          _this9.products.forEach(function (product) {
+            if (_this9.element1.id == product.id) {
+              _this9.machines.push(product);
+
+              _this9.products = _this9.machines;
+            }
+          });
+        }
+
+        ;
+      });
+    } // if(this.product_filter == 'beans') {
+    // 	this.product_categoies.forEach(element2 => {
+    // 		if(element2.name == 'beans'){
+    // 			this.beans = this.products.filter(product2 => product2.id == element2.id )
+    // 		};
+    // 	})
+    // }
+    // if(this.product_filter == 'cups') {
+    // 	this.product_categoies.forEach(element3 => {
+    // 		if(element3.name == 'cups'){
+    // 			this.cups = this.products.filter(product3 => product3.id == element3.id )
+    // 		};
+    // 	})
+    // }
 
   },
   mounted: function mounted() {
@@ -6092,11 +6194,11 @@ var app = new Vue({
       this.shoppingCart = JSON.parse(localStorage.shoppingCart);
     }
 
-    this.products.forEach(function (productItem) {
+    this.product_stocks.forEach(function (productStock) {
       _this10.shoppingCart.forEach(function (cartItem) {
-        if (productItem.id === cartItem.id) {
-          productItem.quantity = cartItem.quantity;
-          productItem.stock = cartItem.stock;
+        if (productStock.product_id == cartItem.product_id) {
+          productStock.quantity = cartItem.quantity;
+          productStock.stock = cartItem.stock;
         }
       });
     });
@@ -6109,14 +6211,19 @@ var app = new Vue({
     this.$on('remove-product', function (index) {
       _this10.removeItem(index);
     });
-    this.loadProducts();
+    this.loadProduct();
     this.loadProductMedia();
     this.loadProductDiscount();
     this.loadProductHasDiscount();
-    this.loadProductCategories();
-    this.loadProductHascategories();
-    this.loadProductStocks();
+    this.loadProductCategorie();
+    this.loadProductHasCategorie();
+    this.loadProductStock();
+    this.loadAllproduct();
   },
+  // components:{
+  // 	ProductComponent,
+  // 	CartComponent
+  // },
   watch: {
     shoppingCart: {
       handler: function handler(newUpdate) {
@@ -6135,19 +6242,37 @@ Vue.config.productionTip = false;
 /*!***********************************!*\
   !*** ./resources/js/bootstrap.js ***!
   \***********************************/
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 
 try {
   __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.esm.js");
 } catch (e) {}
+
+
+
+window.axios = (axios__WEBPACK_IMPORTED_MODULE_0___default());
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+var token = document.head.querySelector('meta[name="csrf-token"]');
+
+if (token) {
+  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+} else {
+  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+}
+
+window.Vue = vue__WEBPACK_IMPORTED_MODULE_1__["default"];
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
-
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
@@ -28997,7 +29122,7 @@ var render = function () {
                           _vm._v("Price:"),
                         ]),
                         _vm._v(" "),
-                        product.onSale30
+                        product.onsale30
                           ? _c("span", [
                               _c("span", { staticClass: "newPrice30" }, [
                                 _c("b", [
@@ -29016,7 +29141,7 @@ var render = function () {
                                 ]),
                               ]),
                             ])
-                          : product.onSale50
+                          : product.onsale50
                           ? _c("span", [
                               _c("span", { staticClass: "newPrice50" }, [
                                 _c("b", [
@@ -29279,92 +29404,127 @@ var render = function () {
   return _c(
     "section",
     { staticClass: "products block" },
-    _vm._l(_vm.products, function (product) {
+    _vm._l(_vm.allproducts, function (product) {
       return _c(
         "div",
         {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: product.showstatus,
+              expression: "product.showstatus",
+            },
+          ],
           key: product.id,
           staticClass: "product_card card container-fluid col-md-5",
         },
         [
-          _vm._l(_vm.product_media, function (product_image) {
-            return _c("div", { key: product_image.product_id }, [
-              product.id === product_image.product_id
-                ? _c("div", [
-                    _c("img", {
-                      staticClass: "card-img-top",
-                      attrs: {
-                        src: _vm.imagePath + product_image.file_name,
-                        alt: product_image.alt,
-                      },
-                    }),
-                    _vm._v(" "),
-                    _c("h5", [_vm._v(_vm._s(product.name))]),
-                    _c("hr"),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "card-text" }, [
-                      _vm._v(_vm._s(product.description)),
-                    ]),
-                    _c("hr"),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "card-text" }, [
-                      _vm._v(_vm._s(product.info)),
-                    ]),
-                    _c("hr"),
-                  ])
-                : _vm._e(),
-            ])
-          }),
-          _vm._v(" "),
-          _c("p", { staticClass: "card-text" }, [
-            _vm._v(_vm._s(product.price) + "$"),
+          _c("a", { attrs: { href: _vm.imagePath + product.image } }, [
+            _c("img", {
+              staticClass: "card-img-top",
+              attrs: { src: _vm.imagePath + product.image, alt: product.alt },
+            }),
           ]),
           _vm._v(" "),
-          _vm._l(_vm.product_has_discounts, function (product_has_dis) {
-            return _c("div", { key: product_has_dis.product_id }, [
-              product.id === product_has_dis.product_id &&
-              product_has_dis.discount_id === 1
-                ? _c("p", [
-                    _c("b", [_vm._v("Sale 30%")]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "onSale" }, [
-                      _vm._v(_vm._s(product.price) + "$"),
-                    ]),
-                    _c("br"),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "newPrice30" }, [
-                      _vm._v(" New Price: "),
-                      _c("b", [
-                        _vm._v(_vm._s((product.price * 30) / 100) + "$"),
-                      ]),
-                    ]),
-                  ])
-                : product.id === product_has_dis.product_id &&
-                  product_has_dis.discount_id === 2
-                ? _c("p", [
-                    _c("b", [_vm._v("Sale 50%")]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "onSale" }, [
-                      _vm._v(_vm._s(product.price) + "$"),
-                    ]),
-                    _c("br"),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "newPrice50" }, [
-                      _vm._v(" New Price: "),
-                      _c("b", [
-                        _vm._v(_vm._s((product.price * 50) / 100) + "$"),
-                      ]),
-                    ]),
-                  ])
-                : _vm._e(),
-            ])
-          }),
-          _vm._v(" "),
-          _vm._l(_vm.product_stocks, function (product_stock) {
-            return _c("div", { key: product_stock.product_id })
-          }),
-        ],
-        2
+          _c("div", { staticClass: "card-body" }, [
+            _c("h5", [_vm._v(_vm._s(product.name))]),
+            _c("hr"),
+            _vm._v(" "),
+            _c("p", { staticClass: "card-text" }, [
+              _vm._v(_vm._s(product.description)),
+            ]),
+            _c("hr"),
+            _vm._v(" "),
+            product.onsale30
+              ? _c("p", [
+                  _c("b", [_vm._v("Sale 30%")]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "onSale" }, [
+                    _vm._v(_vm._s(product.price) + "$"),
+                  ]),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "newPrice30" }, [
+                    _vm._v(" New Price: "),
+                    _c("b", [_vm._v(_vm._s(product.newPrice30) + "$")]),
+                  ]),
+                ])
+              : product.onsale50
+              ? _c("p", [
+                  _c("b", [_vm._v("Sale 50%")]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "onSale" }, [
+                    _vm._v(_vm._s(product.price) + "$"),
+                  ]),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "newPrice50" }, [
+                    _vm._v(" New Price: "),
+                    _c("b", [_vm._v(_vm._s(product.newPrice50) + "$")]),
+                  ]),
+                ])
+              : _c("p", [_vm._v("Price: " + _vm._s(product.price) + "$")]),
+            _vm._v(" "),
+            product.stock === 0
+              ? _c("p", { staticClass: "soldOut" }, [_vm._v("Sold Out")])
+              : product.stock <= 5 && product.stock > 0
+              ? _c("p", { staticClass: "soldOut" }, [_vm._v("Almost Sold Out")])
+              : product.stock > 5
+              ? _c("p", [_vm._v("In Stock")])
+              : _vm._e(),
+            _vm._v(" "),
+            _c("span", [_vm._v("🛒")]),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "addToCart btn btn-primary",
+                class: {
+                  disabledButton: product.stock === 0 && product.quantity === 0,
+                },
+                attrs: {
+                  disabled: product.stock === 0 && product.quantity === 0,
+                },
+                on: {
+                  click: function ($event) {
+                    return _vm.updateCart(product, "substract")
+                  },
+                },
+              },
+              [_vm._v("-\n            ")]
+            ),
+            _vm._v(" "),
+            _c("span", [_vm._v(_vm._s(product.quantity))]),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: " addToCart btn btn-primary",
+                class: { disabledButton: product.stock === 0 },
+                attrs: { disabled: product.stock === 0 },
+                on: {
+                  click: function ($event) {
+                    return _vm.updateCart(product, "add")
+                  },
+                },
+              },
+              [_vm._v("+\n            ")]
+            ),
+            _c("hr"),
+            _vm._v(" "),
+            _c("a", { attrs: { href: "allproducts/" + product.id } }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  staticStyle: { "margin-left": "4rem" },
+                },
+                [_vm._v("More Details")]
+              ),
+            ]),
+          ]),
+        ]
       )
     }),
     0
@@ -41644,6 +41804,18 @@ Vue.compile = compileToFunctions;
 /******/ 				}
 /******/ 			}
 /******/ 			return result;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
 /******/ 		};
 /******/ 	})();
 /******/ 	
