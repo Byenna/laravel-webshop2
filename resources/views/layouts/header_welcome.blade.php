@@ -56,7 +56,7 @@
                         </ul>
                        
                     </div>
-                    <cart-component ref="shoppingComponent" :cart="cart" :shopping-cart="shoppingCart" :total-quantity="totalQuantity"
+                    <cart-component ref="shoppingComponent" :shopping-cart="shoppingCart"  :total-quantity="totalQuantity"
         :total-price="totalPrice"></cart-component>
 
 

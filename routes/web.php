@@ -31,7 +31,6 @@ Auth::routes();
 
 Route::get('/products/all', [ProductController::class, 'index'])->name('all.product');
 
-
 //ADMIN ROUTES
 Route::get('/admin/index', [AdminController::class, 'index'])->name('home.admin');
 Route::get('/admin/products', [AdminController::class, 'products']);

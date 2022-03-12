@@ -9,27 +9,20 @@
             <p class="card-text">{{product.description}}</p><hr>
             <p v-if="product.onsale30"><b>Sale 30%</b> 
                 <span class="onSale">{{product.price}}$</span><br>
-                <span class="newPrice30"> New Price: <b>{{product.newPrice30}}$</b></span>
+                <span class="newPrice30"> New Price: <b>{{product.price*30/100}}$</b></span>
             </p>
             <p v-else-if="product.onsale50"><b>Sale 50%</b>
                 <span class="onSale">{{product.price}}$</span><br>
-                <span class="newPrice50"> New Price: <b>{{product.newPrice50}}$</b></span>
+                <span class="newPrice50"> New Price: <b>{{product.price*50/100}}$</b></span>
             </p>
             <p v-else>Price: {{product.price}}$</p>
             <p class="soldOut" v-if="product.stock===0">Sold Out</p>
             <p class="soldOut" v-else-if="product.stock<=5 && product.stock>0">Almost Sold Out</p>
             <p v-else-if="product.stock>5">In Stock</p>
             <span>&#x1F6D2;</span>
-            <button class="addToCart btn btn-primary" @click="updateCart(product,'substract')"
-                :disabled="product.stock === 0 && product.quantity===0"
-                :class="{disabledButton: product.stock===0 && product.quantity===0}">-
-            </button>
-            <span>{{product.quantity}}</span>
-            <button class=" addToCart btn btn-primary" @click="updateCart(product,'add')"
-                :disabled="product.stock === 0" :class="{disabledButton: product.stock === 0}">+
-            </button><hr>
-            <a :href="'allproducts/' + product.id">
-                <button class="btn btn-primary" style="margin-left:4rem">More Details</button>
+            <button class="addToCart btn btn-primary" @click="updateCart(product)">Order </button>
+            <a :href="'products/' + product.id">
+                <button class="btn btn-primary">More Details</button>
             </a>
         </div>
     </div>
@@ -45,13 +38,13 @@
 
         data() {
             return {
-                products:[],
-                product_media: [],
-                product_discounts: [],
-                product_has_discounts: [],
-                product_categories: [],
-                product_has_categories: [],
-                product_stocks: [],
+                // products:[],
+                // product_media: [],
+                // product_discounts: [],
+                // product_has_discounts: [],
+                // product_categories: [],
+                // product_has_categories: [],
+                // product_stocks: [],
                 allproducts: [],
                 imagePath: '/images/webshop/',
             }
@@ -59,13 +52,13 @@
 
         mounted() {
             // console.log('Component mounted.')
-            this.loadProduct();
-            this.loadProductMedia();
-            this.loadProductDiscount();
-            this.loadProductHasDiscount();
-            this.loadProductCategorie();
-            this.loadProductHasCategorie();
-            this.loadProductStock();
+            // this.loadProduct();
+            // this.loadProductMedia();
+            // this.loadProductDiscount();
+            // this.loadProductHasDiscount();
+            // this.loadProductCategorie();
+            // this.loadProductHasCategorie();
+            // this.loadProductStock();
             this.loadAllproduct();
         },
 
@@ -74,74 +67,74 @@
 
 
         methods: {
-            loadProduct(){
-                axios.get('/api/products')
-                .then((response) =>{
-                    this.products = response.data.data;
-                })
-                .catch(function(error){
-                    console.log(error);
-                });
-            },
+            // loadProduct(){
+            //     axios.get('/api/products')
+            //     .then((response) =>{
+            //         this.products = response.data.data;
+            //     })
+            //     .catch(function(error){
+            //         console.log(error);
+            //     });
+            // },
 
-            loadProductMedia(){
-                axios.get('/api/product_media')
-                .then((response) =>{
-                    this.product_media = response.data.data;
-                })
-                .catch(function(error){
-                    console.log(error);
-                });
-            },
+            // loadProductMedia(){
+            //     axios.get('/api/product_media')
+            //     .then((response) =>{
+            //         this.product_media = response.data.data;
+            //     })
+            //     .catch(function(error){
+            //         console.log(error);
+            //     });
+            // },
 
-            loadProductDiscount(){
-                axios.get('/api/product_discounts')
-                .then((response) =>{
-                    this.product_discounts = response.data.data;
-                })
-                .catch(function(error){
-                    console.log(error);
-                });
-            },
-            loadProductHasDiscount(){
-                axios.get('/api/product_has_discounts')
-                .then((response) =>{
-                    this.product_has_discounts = response.data.data;
-                })
-                .catch(function(error){
-                    console.log(error);
-                });
-            },
+            // loadProductDiscount(){
+            //     axios.get('/api/product_discounts')
+            //     .then((response) =>{
+            //         this.product_discounts = response.data.data;
+            //     })
+            //     .catch(function(error){
+            //         console.log(error);
+            //     });
+            // },
+            // loadProductHasDiscount(){
+            //     axios.get('/api/product_has_discounts')
+            //     .then((response) =>{
+            //         this.product_has_discounts = response.data.data;
+            //     })
+            //     .catch(function(error){
+            //         console.log(error);
+            //     });
+            // },
 
-            loadProductCategorie(){
-                axios.get('/api/product_categories')
-                .then((response) =>{
-                    this.product_categories = response.data.data;
-                })
-                .catch(function(error){
-                    console.log(error);
-                });
-            },
+            // loadProductCategorie(){
+            //     axios.get('/api/product_categories')
+            //     .then((response) =>{
+            //         this.product_categories = response.data.data;
+            //     })
+            //     .catch(function(error){
+            //         console.log(error);
+            //     });
+            // },
 
-            loadProductHasCategorie(){
-                axios.get('/api/product_has_categories')
-                .then((response) =>{
-                    this.product_has_categories = response.data.data;
-                })
-                .catch(function(error){
-                    console.log(error);
-                });
-            },
+            // loadProductHasCategorie(){
+            //     axios.get('/api/product_has_categories')
+            //     .then((response) =>{
+            //         this.product_has_categories = response.data.data;
+            //     })
+            //     .catch(function(error){
+            //         console.log(error);
+            //     });
+            // },
 
-            loadProductStock(){
-                axios.get('/api/product_stocks')
-                .then((response) =>{
-                    this.product_stocks = response.data.data;
-                })
-                .catch(function(error){
-                    console.log(error);
-                });
-            },
+            // loadProductStock(){
+            //     axios.get('/api/product_stocks')
+            //     .then((response) =>{
+            //         this.product_stocks = response.data.data;
+            //     })
+            //     .catch(function(error){
+            //         console.log(error);
+            //     });
+            // },
             loadAllproduct(){
                 axios.get('/api/allproducts')
                 .then((response) =>{

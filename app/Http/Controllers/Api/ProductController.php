@@ -16,7 +16,5 @@ class ProductController extends Controller
         // return view('products', compact('products'));
 
     }
-        // return ProductResource::collection(Product::all());
-        // return Product::all();
 
 }

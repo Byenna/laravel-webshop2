@@ -18,13 +18,13 @@ return new class extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->string('info')->nullable();
-            $table->decimal('price');
+            $table->string('price');
             $table->decimal('vat');
 
             $table->string('image');
             $table->string('alt')->nullable();
 
-            $table->string('stock');
+            $table->integer('stock');
             $table->integer('quantity');
 
             $table->string('category');
@@ -50,7 +50,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->string('info')->nullable();
-            $table->decimal('price');
+            $table->string('price');
             $table->decimal('vat');
 
             $table->timestamps();

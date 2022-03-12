@@ -27,4 +27,3 @@ Route::get('/product_categories', [App\Http\Controllers\Api\ProductCategorieCont
 Route::get('/product_has_categories', [App\Http\Controllers\Api\ProductHasCategorieController::class, 'index'])->name('all.product.has.categorie');
 Route::get('/allproducts', [App\Http\Controllers\Api\AllproductController::class, 'index'])->name('all.products.tables');
 
-Route::put('/product_stocks', [App\Http\Controllers\Api\ProductStockController::class, 'store'])->name('all.product.stock');
