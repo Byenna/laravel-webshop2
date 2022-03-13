@@ -105,8 +105,6 @@
                 // product_has_ca-0potegories: [],
                 // product_stocks: [],
                 allproducts: [],
-                cart: [],
-
             }
         },
         props: {

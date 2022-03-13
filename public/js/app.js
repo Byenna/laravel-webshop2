@@ -5467,8 +5467,7 @@ __webpack_require__.r(__webpack_exports__);
       // product_categories: [],
       // product_has_ca-0potegories: [],
       // product_stocks: [],
-      allproducts: [],
-      cart: []
+      allproducts: []
     };
   },
   props: {
