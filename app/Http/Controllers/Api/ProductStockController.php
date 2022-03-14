@@ -15,4 +15,8 @@ class ProductStockController extends Controller
         // return  ProductStock::all();
 
     }
+    
+    public function store(){
+
+    }
 }
