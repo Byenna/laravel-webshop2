@@ -11498,19 +11498,23 @@ h5, .h5 {
 }
 
 h1, .h1 {
-  color: #f5f0d8;
+  color: #370617;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   text-align: center;
   font-size: 2em;
   padding: 1rem;
 }
 
-.header_nav {
+.header_products_nav {
   border: lightgrey solid 2px;
   background-color: #6e4d24;
   font-weight: bold;
   border-radius: 20px;
   margin: 1em;
+}
+
+.header_nav {
+  font-weight: bold;
 }
 
 .basket {
@@ -11874,26 +11878,17 @@ svg:not(:root) {
   display: none;
 }
 
-.header_welcome_nav {
-  border: lightgrey solid 2px;
-  background-color: #6e4d24;
-  font-weight: bold;
-  border-radius: 20px;
-  margin: 1em;
-  height: 16em;
-}
-
 .welcome_menu {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
 }
 
 .image-space {
-  height: 40em;
+  height: 50em;
 }
 
 .welcome_page {
+  opacity: 0.4;
   /* Location of the image */
   background-image: url("/images/coffeeGif1.gif");
   /* Background image is centered vertically and horizontally at all times */

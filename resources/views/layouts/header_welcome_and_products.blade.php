@@ -51,8 +51,11 @@
                                 </li>
                             @endguest
                         </ul>
-                        <cart-component></cart-component>
+                        <cart-component ref="shoppingComponent" :cart="cart" :shopping-cart="shoppingCart" :total-quantity="totalQuantity"
+        :total-price="totalPrice"></cart-component>
                     </div>
                 </div>
             </nav>
         </div>
+
+       

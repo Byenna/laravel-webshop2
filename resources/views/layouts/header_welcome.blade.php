@@ -1,16 +1,12 @@
-<div id="app">
-    <nav class="header_welcome_nav navbar navbar-expand-md navbar-light shadow-sm">
+<nav class="header_welcome_nav navbar navbar-expand-md navbar-light shadow-sm">
                 <div class="container">
-                    
                     <a class="navbar-brand" href="{{ url('/') }}">
                     <h2 class="cherk_title"  >&#x1D554;&#x1D559;&#x1D556;&#x1D563;&#x1D55C;&#x1D55C;&#x1D560;&#x1D557;&#x1D557;&#x1D55A;&#x1D556;</h2>
 
                     </a>
-
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <!-- Left Side Of Navbar -->
@@ -53,24 +49,18 @@
                                 </li>
                             @endguest
                         </ul>
+
                        
                     </div>
                     <cart-component ref="shoppingComponent" :shopping-cart="shoppingCart"  :total-quantity="totalQuantity"
-        :total-price="totalPrice"></cart-component>
-
 
                     
+
+        :total-price="totalPrice"></cart-component>
+                    </div>
                 </div>
-                
             </nav>
         </div>
-        <div class='welcome_menu'>
-               <select @change="filter()" v-model="filters" class="btn btn-primary">
-                    <option selected value="all">All Products</option>
-                    <option value="machines">Machines</option>
-                    <option value="beans">Beans</option>
-                    <option value="cups">cups</option>
-                </select>
 
         
                 <!-- <select class="btn btn-primary">
