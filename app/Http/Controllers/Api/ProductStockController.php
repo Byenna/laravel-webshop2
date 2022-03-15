@@ -13,10 +13,5 @@ class ProductStockController extends Controller
 
         return ProductStockResource::collection(ProductStock::all());
         // return  ProductStock::all();
-
-    }
-    
-    public function store(){
-
     }
 }
