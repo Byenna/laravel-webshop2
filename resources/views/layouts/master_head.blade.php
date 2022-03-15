@@ -20,19 +20,10 @@
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
-
-<body class="welcome_body_img">
-    <div id="app">
-    @include('layouts.header_welcome')
-    
-
-    @yield('content')
-
-    @include('layouts.footer')
-     </div>
-
-    @yield('scripts')
-   
-</body>
-
+    <body>
+        <div id="app" >
+            @yield('content')
+        </div>
+            @yield('scripts')
+    </body>
 </html>

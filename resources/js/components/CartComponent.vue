@@ -119,6 +119,7 @@
                 type: parseFloat(Number),
                 default: 0,
             },
+            
         },
 
 
