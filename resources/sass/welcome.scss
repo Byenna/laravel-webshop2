@@ -28,13 +28,10 @@
  .welcome_menu {
      display: flex;
      justify-content: center;
-     flex-wrap: wrap;
+    //  flex-wrap: wrap;
  }
 
-//  .welcome_page {
-//     background: url('/images/coffeeGif1.gif');
-//    opacity: 0.5;
-//  }
+
 
  .image-space {
      height: 50em;
@@ -53,4 +50,5 @@
       background-size: cover; /* Set a background color that will be displayed while the background image is loading */ 
       background-color: #464646; 
       overflow: hidden;
+   
 } 

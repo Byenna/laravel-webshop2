@@ -26,6 +26,11 @@ Route::get('/checkout', function () {
     return view('checkout');
 });
 
+Route::get('/webshop', function () {
+    return view('webshop');
+});
+
+
 Auth::routes();
 
 

@@ -11498,7 +11498,7 @@ h5, .h5 {
 }
 
 h1, .h1 {
-  color: #f5f0d8;
+  color: #370617;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   text-align: center;
   font-size: 2em;
@@ -11881,7 +11881,6 @@ svg:not(:root) {
 .welcome_menu {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
 }
 
 .image-space {
