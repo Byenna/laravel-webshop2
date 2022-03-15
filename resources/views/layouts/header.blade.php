@@ -1,4 +1,4 @@
-<div id="app">
+
     <nav class="header_nav navbar navbar-expand-md navbar-light shadow-sm">
                 <div class="container">
                     <a class="navbar-brand" href="{{ url('/') }}">
