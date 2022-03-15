@@ -29,12 +29,12 @@
                             <span id="shopping">Quantity:</span>({{product.quantity}})<br>
                             <span id="shopping">Price:</span>
                             <span v-if="product.onsale30">
-                                <span class="newPrice30"> <b>$ {{(product.price - product.newPrice30)*product.quantity}}</b>
+                                <span class="newPrice30"> <b>$ {{(product.price - product.price*30/100)*product.quantity}}</b>
                                     <span id="saleBorder">Sale 30%</span>
                                 </span>
                             </span>
                             <span v-else-if="product.onsale50">
-                                <span class="newPrice50"> <b>$ {{(product.price - product.newPrice50)*product.quantity}}</b>
+                                <span class="newPrice50"> <b>$ {{(product.price - product.price*50/100)*product.quantity}}</b>
                                     <span id="saleBorder"> Sale 50%</span>
                                 </span>
                             </span>

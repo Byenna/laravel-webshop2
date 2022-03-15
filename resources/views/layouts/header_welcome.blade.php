@@ -87,7 +87,7 @@
 
         <div class="sideBtn"><a href="{{ url('frontend/cups') }}" class="btn btn-primary">Coffee Cups</a></div> -->
 
-        
+        <a href="/products" class="fixlink btn btn-primary">Products</a>
         
             <div>
                 <button class="btn btn-primary" type="button" id="dropdownMenuButton1"

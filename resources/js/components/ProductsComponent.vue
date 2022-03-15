@@ -34,6 +34,7 @@
     export default {
        
         props:{
+            product:{}
         },
 
         data() {
@@ -146,8 +147,8 @@
             },
 
 
-            updateCart(product, updateType) {
-                this.$root.$emit('update-cart', product, updateType)
+            updateCart(product) {
+                this.$root.$emit('update-cart', product)
             },
         },
     }

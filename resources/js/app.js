@@ -7,7 +7,7 @@
 const { distanceAndSkiddingToXY } = require('@popperjs/core/lib/modifiers/offset');
 const { defaultsDeep, isEmpty } = require('lodash');
 
-//  import Vue from 'vue';
+ import Vue from 'vue';
 require('./bootstrap');
 
 window.Vue = require('vue').default;
@@ -24,11 +24,9 @@ window.Vue = require('vue').default;
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('test-component', require('./components/TestComponent.vue').default);
 Vue.component('cart-component', require('./components/CartComponent.vue').default);
 Vue.component('products-component', require('./components/ProductsComponent.vue').default);
-
+Vue.component('detail-component', require('./components/DetailComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -163,28 +161,6 @@ const app = new Vue({
 			});
 		},
 
-
-		sale30() {
-			this.allproducts.forEach(product => {
-				if (product.onsale30) {
-					product.newPrice30 = parseFloat(product.price) - ((parseFloat(product.price))*30/100)
-				} else {
-					product.price = parseFloat(product.price);
-
-				}
-			})
-		},
-
-		sale50() {
-			this.allproducts.forEach(product => {
-				if (product.onsale50) {
-					product.newPrice50 = parseFloat(product.price) - ((parseFloat(product.price))*50/100)
-				} else {
-					product.price = parseFloat(product.price);
-				}
-			})
-		},
-
 		addToCart(product) {
 			this.allproducts.forEach(item => {
 				if(item.id === product.id){
@@ -234,11 +210,11 @@ const app = new Vue({
 						cart.stock--;
 						this.totalQuantity++;
 						if(cart.onsale30){
-							this.totalPrice += cart.price*30/100;
+							this.totalPrice += parseFloat(cart.price*30/100);
 						}else if(cart.onsale50){
-							this.totalPrice += cart.price*50/100;
+							this.totalPrice += parseFloat(cart.price*50/100);
 						}else{
-							this.totalPrice += cart.price;
+							this.totalPrice += parseFloat(cart.price);
 						}
 						localStorage.setItem('totalQuantity', this.totalQuantity)
 						localStorage.setItem('totalPrice', this.totalPrice)
@@ -309,36 +285,8 @@ const app = new Vue({
 			localStorage.totalPrice = this.totalPrice
 		},
 		
-		filter(){
-			if(this.product_filter == 'all') {
-				this.allproducts.forEach(element => {
-					element.showstatus =true;
-				})
-			}
-			if (this.product_filter == 'machiens') {
-				this.allproducts.forEach(element1 => {
-					if (!element1.category === 'machines'){
-						element1.showstatus = false;
-					}
-				})
-			}
-			if (this.product_filter == 'beans') {
-				this.allproducts.forEach(element2 => {
-					if (!element2.category === 'beans'){
-						element2.showstatus = false;
-					}
-				})
-			}
-
-			if (this.product_filter == 'cups') {
-				this.allproducts.forEach(element3 => {
-					if (!element3.category === 'cups')		{
-						element3.showstatus = false;
-					}
-				})
-			} 
-		}					
 	},
+	
 	mounted() {
 
 
@@ -360,7 +308,6 @@ const app = new Vue({
 		this.$on('update-product', (product, index, updateType) => {
 			this.updateItem(product, index, updateType)
 		})
-
 
 		// this.loadProduct();
 		// this.loadProductMedia();

@@ -21,7 +21,6 @@
     </div>
 
 </div> -->
-
-<products-component :sale-30()="sale30()" :sale-50()="sale50()"></products-component>  
+<products-component></products-component>  
 @endsection
 
