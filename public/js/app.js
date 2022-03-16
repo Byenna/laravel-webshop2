@@ -5449,7 +5449,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
     console.log('Component mounted.'); // this.loadProduct();
@@ -5567,9 +5566,6 @@ __webpack_require__.r(__webpack_exports__);
     removeProduct: function removeProduct(index) {
       this.$root.$emit('remove-product', index);
     },
-    updateCart: function updateCart(product) {
-      this.$root.$emit('update-cart', product);
-    },
     updateProduct: function updateProduct(product, index, updateType) {
       this.$root.$emit('update-product', product, index, updateType);
     }
@@ -5629,29 +5625,17 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       allproducts: [],
-      imagePath: '/images/webshop/'
+      imagePath: '/images/webshop/',
+      shoppingCart: []
     };
   },
-  props: {
-    shoppingCart: {
-      type: Array
-    },
-    totalQuantity: {
-      type: Number,
-      "default": 0
-    },
-    totalPrice: {
-      type: parseFloat(Number),
-      "default": 0
-    }
+  props: {},
+  created: function created() {
+    this.productindex = localStorage.getItem('productindex');
   },
-  created: function created() {},
   methods: {
-    remove: function remove() {
-      this.$root.$emit('remove');
-    },
-    removeProduct: function removeProduct(index) {
-      this.$root.$emit('remove-product', index);
+    detail: function detail(index) {
+      this.$root.$emit('detail', index);
     },
     updateCart: function updateCart(product) {
       this.$root.$emit('update-cart', product);
@@ -5711,11 +5695,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: {
-    product: {}
-  },
+  props: {},
   data: function data() {
     return {
       // products:[],
@@ -5816,6 +5797,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     updateCart: function updateCart(product) {
       this.$root.$emit('update-cart', product);
+    },
+    detail: function detail(index) {
+      this.$root.$emit('detail', index);
     }
   }
 });
@@ -5830,7 +5814,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -5842,6 +5828,7 @@ var _require = __webpack_require__(/*! @popperjs/core/lib/modifiers/offset */ ".
 var _require2 = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js"),
     defaultsDeep = _require2.defaultsDeep,
     isEmpty = _require2.isEmpty;
+
 
 
 
@@ -5858,9 +5845,9 @@ window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('cart-component', (__webpack_require__(/*! ./components/CartComponent.vue */ "./resources/js/components/CartComponent.vue")["default"]));
-vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('products-component', (__webpack_require__(/*! ./components/ProductsComponent.vue */ "./resources/js/components/ProductsComponent.vue")["default"]));
-vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('detail-component', (__webpack_require__(/*! ./components/DetailComponent.vue */ "./resources/js/components/DetailComponent.vue")["default"]));
+vue__WEBPACK_IMPORTED_MODULE_1__["default"].component('cart-component', (__webpack_require__(/*! ./components/CartComponent.vue */ "./resources/js/components/CartComponent.vue")["default"]));
+vue__WEBPACK_IMPORTED_MODULE_1__["default"].component('products-component', (__webpack_require__(/*! ./components/ProductsComponent.vue */ "./resources/js/components/ProductsComponent.vue")["default"]));
+vue__WEBPACK_IMPORTED_MODULE_1__["default"].component('detail-component', (__webpack_require__(/*! ./components/DetailComponent.vue */ "./resources/js/components/DetailComponent.vue")["default"]));
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -5869,9 +5856,13 @@ vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('detail-component', (__web
 // import ProductComponent from './components/ProductComponent';
 // import CartComponent from './components/CartComponent';
 
-var app = new vue__WEBPACK_IMPORTED_MODULE_0__["default"]({
+var app = new vue__WEBPACK_IMPORTED_MODULE_1__["default"]({
   el: '#app',
-  props: {},
+  props: {
+    productindex: {
+      type: Number
+    }
+  },
   data: {
     brand: '&#x1D554;&#x1D559;&#x1D556;&#x1D563;&#x1D55C;&#x1D55C;&#x1D560;&#x1D557;&#x1D557;&#x1D55A;&#x1D556;',
     appName: 'Coffee Products',
@@ -5887,13 +5878,15 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0__["default"]({
     filters: 'all',
     shoppingCart: [],
     totalPrice: 0,
-    totalQuantity: 0
+    totalQuantity: 0 // productindex:0
+
   },
   created: function created() {
-    this.totalPrice = localStorage.getItem('totalPrice') !== null ? parseInt(localStorage.getItem('totalPrice')) : 0;
+    this.totalPrice = localStorage.getItem('totalPrice') !== null ? parseFloat(localStorage.getItem('totalPrice')) : 0;
     this.totalQuantity = localStorage.getItem('totalQuantity') !== null ? parseInt(localStorage.getItem('totalQuantity')) : 0;
     localStorage.getItem('totalQuantity');
     localStorage.getItem('totalPrice');
+    localStorage.getItem('productindex');
   },
   computed: {
     title: function title() {
@@ -5973,7 +5966,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0__["default"]({
     loadAllproduct: function loadAllproduct() {
       var _this = this;
 
-      axios.get('/api/allproducts').then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/allproducts').then(function (response) {
         _this.allproducts = response.data.data;
       })["catch"](function (error) {
         console.log(error);
@@ -5984,22 +5977,9 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0__["default"]({
 
       this.allproducts.forEach(function (item) {
         if (item.id === product.id) {
-          if (_this2.shoppingCart.includes(item)) {
-            item.quantity++;
-            item.stock--;
-            _this2.totalQuantity++;
-
-            if (item.onsale30) {
-              _this2.totalPrice += parseFloat(product.price) * 30 / 100;
-            } else if (item.onsale50) {
-              _this2.totalPrice += parseFloat(product.price) * 50 / 100;
-            } else {
-              _this2.totalPrice += parseFloat(item.price);
-            }
-
-            localStorage.setItem('totalQuantity', _this2.totalQuantity);
-            localStorage.setItem('totalPrice', parseFloat(_this2.totalPrice));
-          } else {
+          if (!_this2.shoppingCart.some(function (elem) {
+            return elem.id === item.id;
+          })) {
             _this2.shoppingCart.push(item);
 
             _this2.totalQuantity++;
@@ -6016,6 +5996,25 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0__["default"]({
 
             localStorage.setItem('totalQuantity', _this2.totalQuantity);
             localStorage.setItem('totalPrice', _this2.totalPrice);
+          } else {
+            _this2.shoppingCart.forEach(function (ele) {
+              if (ele.id === product.id) {
+                ele.quantity++;
+                ele.stock--;
+                _this2.totalQuantity++;
+
+                if (ele.onsale30) {
+                  _this2.totalPrice += parseFloat(ele.price) * 30 / 100;
+                } else if (ele.onsale50) {
+                  _this2.totalPrice += parseFloat(ele.price) * 50 / 100;
+                } else {
+                  _this2.totalPrice += parseFloat(ele.price);
+                }
+
+                localStorage.setItem('totalQuantity', _this2.totalQuantity);
+                localStorage.setItem('totalPrice', parseFloat(_this2.totalPrice));
+              }
+            });
           }
         }
       });
@@ -6103,6 +6102,10 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0__["default"]({
       this.shoppingCart.splice(index, 1);
       localStorage.totalQuantity = this.totalQuantity;
       localStorage.totalPrice = this.totalPrice;
+    },
+    detail: function detail(index) {
+      this.productindex == index;
+      localStorage.setItem('productindex', index);
     }
   },
   mounted: function mounted() {
@@ -6123,6 +6126,9 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0__["default"]({
     });
     this.$on('update-product', function (product, index, updateType) {
       _this4.updateItem(product, index, updateType);
+    });
+    this.$on('detail', function (index) {
+      _this4.detail(index);
     }); // this.loadProduct();
     // this.loadProductMedia();
     // this.loadProductDiscount();
@@ -6142,8 +6148,8 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0__["default"]({
     }
   }
 });
-vue__WEBPACK_IMPORTED_MODULE_0__["default"].config.devtools = true;
-vue__WEBPACK_IMPORTED_MODULE_0__["default"].config.productionTip = false;
+vue__WEBPACK_IMPORTED_MODULE_1__["default"].config.devtools = true;
+vue__WEBPACK_IMPORTED_MODULE_1__["default"].config.productionTip = false;
 
 /***/ }),
 
@@ -29195,88 +29201,128 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", [
-    _c("div", { staticClass: "products block" }, [
-      _c("img", {
-        staticClass: "col-5",
-        attrs: {
-          src: _vm.imagePath + _vm.allproducts[1].image,
-          height: "700px",
-        },
-      }),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-5", attrs: { id: "detail" } }, [
-        _c("h3", [_vm._v(" " + _vm._s(_vm.allproducts[1].name) + " ")]),
-        _vm._v(" "),
-        _c("h3", [_vm._v(" " + _vm._s(_vm.allproducts[1].info) + " ")]),
-        _c("hr"),
-        _vm._v(" "),
-        _c("h4", [_vm._v(" " + _vm._s(_vm.allproducts[1].description))]),
-        _c("hr"),
-        _vm._v(" "),
-        _vm.allproducts[1].onsale30
-          ? _c("h3", [
-              _c("b", [_vm._v("Sale 30%")]),
-              _vm._v(" "),
-              _c("span", { staticClass: "onSale" }, [
-                _vm._v(_vm._s(_vm.allproducts[1].price) + "$"),
-              ]),
-              _c("br"),
-              _vm._v(" "),
-              _c("span", { staticClass: "newPrice30" }, [
-                _vm._v(" New Price: "),
-                _c("b", [
-                  _vm._v(_vm._s((_vm.allproducts[1].price * 30) / 100) + "$"),
-                ]),
-              ]),
-            ])
-          : _vm.allproducts[1].onsale50
-          ? _c("h3", [
-              _c("b", [_vm._v("Sale 50%")]),
-              _vm._v(" "),
-              _c("span", { staticClass: "onSale" }, [
-                _vm._v(_vm._s(_vm.allproducts[1].price) + "$"),
-              ]),
-              _c("br"),
-              _vm._v(" "),
-              _c("span", { staticClass: "newPrice50" }, [
-                _vm._v(" New Price: "),
-                _c("b", [
-                  _vm._v(_vm._s((_vm.allproducts[1].price * 50) / 100) + "$"),
-                ]),
-              ]),
-            ])
-          : _c("h3", [
-              _vm._v("Price: " + _vm._s(_vm.allproducts[1].price) + "$"),
-            ]),
-        _vm._v(" "),
-        _vm.allproducts[1].stock === 0
-          ? _c("h3", { staticClass: "soldOut" }, [_vm._v("Sold Out")])
-          : _vm.allproducts[1].stock <= 5 && _vm.allproducts[1].stock > 0
-          ? _c("h3", { staticClass: "soldOut" }, [_vm._v("Almost Sold Out")])
-          : _vm.allproducts[1].stock > 5
-          ? _c("h3", [_vm._v("In Stock")])
-          : _vm._e(),
-        _vm._v(" "),
-        _c("h3", [_vm._v("🛒")]),
-        _vm._v(" "),
-        _c("h3", [
-          _c(
-            "button",
-            {
-              staticClass: "addToCart btn btn-primary",
-              on: {
-                click: function ($event) {
-                  return _vm.updateCart(_vm.allproducts[1])
-                },
+  return _vm.allproducts[_vm.productindex]
+    ? _c("div", [
+        _c("section", [
+          _c("div", { staticClass: "products block" }, [
+            _c("img", {
+              staticClass: "col-5",
+              attrs: {
+                src: _vm.imagePath + _vm.allproducts[_vm.productindex].image,
+                height: "700px",
               },
-            },
-            [_vm._v("Order ")]
-          ),
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-5", attrs: { id: "detail" } }, [
+              _c("h3", [
+                _c("b", [_vm._v("Name: ")]),
+                _vm._v(
+                  " " + _vm._s(_vm.allproducts[_vm.productindex].name) + " "
+                ),
+              ]),
+              _vm._v(" "),
+              _c("h3", [
+                _vm._v(
+                  " " + _vm._s(_vm.allproducts[_vm.productindex].info) + " "
+                ),
+              ]),
+              _c("hr"),
+              _vm._v(" "),
+              _c("h4", [
+                _c("b", [_vm._v("Description: ")]),
+                _c("br"),
+                _vm._v(
+                  " " + _vm._s(_vm.allproducts[_vm.productindex].description)
+                ),
+              ]),
+              _c("hr"),
+              _vm._v(" "),
+              _vm.allproducts[_vm.productindex].onsale30
+                ? _c("h3", [
+                    _c("b", [_vm._v("Sale 30%")]),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("b", [_vm._v("Old Price: ")]),
+                    _c("span", { staticClass: "onSale" }, [
+                      _vm._v(
+                        _vm._s(_vm.allproducts[_vm.productindex].price) + "$"
+                      ),
+                    ]),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "newPrice30" }, [
+                      _vm._v(" New Price: "),
+                      _c("b", [
+                        _vm._v(
+                          _vm._s(
+                            (_vm.allproducts[_vm.productindex].price * 30) / 100
+                          ) + "$"
+                        ),
+                      ]),
+                    ]),
+                    _c("hr"),
+                  ])
+                : _vm.allproducts[_vm.productindex].onsale50
+                ? _c("h3", [
+                    _c("b", [_vm._v("Sale 50%")]),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "onSale" }, [
+                      _vm._v(
+                        _vm._s(_vm.allproducts[_vm.productindex].price) + "$"
+                      ),
+                    ]),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "newPrice50" }, [
+                      _vm._v(" New Price: "),
+                      _c("b", [
+                        _vm._v(
+                          _vm._s(
+                            (_vm.allproducts[_vm.productindex].price * 50) / 100
+                          ) + "$"
+                        ),
+                      ]),
+                    ]),
+                    _c("hr"),
+                  ])
+                : _c("h3", [
+                    _vm._v(
+                      "Price: " +
+                        _vm._s(_vm.allproducts[_vm.productindex].price) +
+                        "$"
+                    ),
+                  ]),
+              _vm._v(" "),
+              _vm.allproducts[_vm.productindex].stock === 0
+                ? _c("h3", { staticClass: "soldOut" }, [_vm._v("Sold Out")])
+                : _vm.allproducts[_vm.productindex].stock <= 5 &&
+                  _vm.allproducts[_vm.productindex].stock > 0
+                ? _c("h3", { staticClass: "soldOut" }, [
+                    _vm._v("Almost Sold Out"),
+                  ])
+                : _vm.allproducts[_vm.productindex].stock > 5
+                ? _c("h3", [_vm._v("In Stock ")])
+                : _vm._e(),
+              _vm._v(" "),
+              _c("h3", [
+                _c(
+                  "button",
+                  {
+                    staticClass: "addToCart btn btn-primary",
+                    on: {
+                      click: function ($event) {
+                        return _vm.updateCart(_vm.allproducts[_vm.productindex])
+                      },
+                    },
+                  },
+                  [_c("h4", [_vm._v("Order 🛒")])]
+                ),
+              ]),
+            ]),
+          ]),
         ]),
-      ]),
-    ]),
-  ])
+      ])
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -29304,7 +29350,7 @@ var render = function () {
   return _c(
     "section",
     { staticClass: "products block" },
-    _vm._l(_vm.allproducts, function (product) {
+    _vm._l(_vm.allproducts, function (product, index) {
       return _c(
         "div",
         {
@@ -29329,11 +29375,6 @@ var render = function () {
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
             _c("h5", [_vm._v(_vm._s(product.name))]),
-            _c("hr"),
-            _vm._v(" "),
-            _c("p", { staticClass: "card-text" }, [
-              _vm._v(_vm._s(product.description)),
-            ]),
             _c("hr"),
             _vm._v(" "),
             product.onsale30
@@ -29389,10 +29430,19 @@ var render = function () {
               [_vm._v("Order ")]
             ),
             _vm._v(" "),
-            _c("a", { attrs: { href: "products/" + product.id } }, [
-              _c("button", { staticClass: "btn btn-primary" }, [
-                _vm._v("More Details"),
-              ]),
+            _c("a", { attrs: { href: "detail/" + product.id } }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  on: {
+                    click: function ($event) {
+                      return _vm.detail(index)
+                    },
+                  },
+                },
+                [_vm._v("More Details")]
+              ),
             ]),
           ]),
         ]

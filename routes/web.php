@@ -5,6 +5,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Api\AllproductController;
+use App\Http\Controllers\DetailController;
 use App\Models\Allproduct;
 use App\Models\User;
 
@@ -74,10 +75,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/admin/users/index', funct
     return view('admin.users.index', compact('users'));
 })->name('all.users');
 
-Route::get('/products/{id}', function ($id){
-    return view("detail", [
-        'id' => $id
-    ]);
-});
+// Route::get('/detail/{id}', function ($id){
+//     return view("detail", [
+//         'id' => $id
+//     ]);
+// });
 // Route::get('/allproducts', [AllproductController::class, 'index'])->name('all.products');
-Route::get('/allproducts', [AllproductController::class, 'index'])->name('all.products');
+Route::get('/detail/{id}',[DetailController::class, 'index'])->name('product.detail');

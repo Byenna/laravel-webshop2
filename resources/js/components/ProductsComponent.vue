@@ -1,32 +1,31 @@
 <template>
-<section class="products block">
-    <div class="product_card card container-fluid col-md-5" v-for="product in allproducts" :key="product.id" v-show="product.showstatus">
-        <a :href="imagePath + product.image">
-            <img :src="imagePath+product.image" class="card-img-top" :alt="product.alt" >
-        </a>
-        <div class="card-body">
-            <h5>{{product.name}}</h5><hr>
-            <p class="card-text">{{product.description}}</p><hr>
-            <p v-if="product.onsale30"><b>Sale 30%</b> 
-                <span class="onSale">{{product.price}}$</span><br>
-                <span class="newPrice30"> New Price: <b>{{product.price*30/100}}$</b></span>
-            </p>
-            <p v-else-if="product.onsale50"><b>Sale 50%</b>
-                <span class="onSale">{{product.price}}$</span><br>
-                <span class="newPrice50"> New Price: <b>{{product.price*50/100}}$</b></span>
-            </p>
-            <p v-else>Price: {{product.price}}$</p>
-            <p class="soldOut" v-if="product.stock===0">Sold Out</p>
-            <p class="soldOut" v-else-if="product.stock<=5 && product.stock>0">Almost Sold Out</p>
-            <p v-else-if="product.stock>5">In Stock</p>
-            <span>&#x1F6D2;</span>
-            <button class="addToCart btn btn-primary" @click="updateCart(product)">Order </button>
-            <a :href="'products/' + product.id">
-                <button class="btn btn-primary">More Details</button>
+    <section class="products block">
+        <div class="product_card card container-fluid col-md-5" v-for="(product, index) in allproducts" :key="product.id" v-show="product.showstatus">
+            <a :href="imagePath + product.image">
+                <img :src="imagePath+product.image" class="card-img-top" :alt="product.alt" >
             </a>
+            <div class="card-body">
+                <h5>{{product.name}}</h5><hr>
+                <p v-if="product.onsale30"><b>Sale 30%</b> 
+                    <span class="onSale">{{product.price}}$</span><br>
+                    <span class="newPrice30"> New Price: <b>{{product.price*30/100}}$</b></span>
+                </p>
+                <p v-else-if="product.onsale50"><b>Sale 50%</b>
+                    <span class="onSale">{{product.price}}$</span><br>
+                    <span class="newPrice50"> New Price: <b>{{product.price*50/100}}$</b></span>
+                </p>
+                <p v-else>Price: {{product.price}}$</p>
+                <p class="soldOut" v-if="product.stock===0">Sold Out</p>
+                <p class="soldOut" v-else-if="product.stock<=5 && product.stock>0">Almost Sold Out</p>
+                <p v-else-if="product.stock>5">In Stock</p>
+                <span>&#x1F6D2;</span>
+                <button class="addToCart btn btn-primary" @click="updateCart(product)">Order </button>
+                <a :href="'detail/' + product.id">
+                    <button class="btn btn-primary" @click="detail(index)">More Details</button>
+                </a>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 </template>
 
 <script>
@@ -34,7 +33,6 @@
     export default {
        
         props:{
-            product:{}
         },
 
         data() {
@@ -65,7 +63,6 @@
 
          created() {
         },
-
 
         methods: {
             // loadProduct(){
@@ -146,10 +143,12 @@
                 });
             },
 
-
             updateCart(product) {
                 this.$root.$emit('update-cart', product)
             },
+            detail(index){
+                this.$root.$emit('detail', index)
+            }
         },
     }
 </script>
