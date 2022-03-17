@@ -60,7 +60,6 @@ const app = new Vue({
 		shoppingCart: [],
 		totalPrice: 0,
 		totalQuantity: 0,
-		// productindex:0
 	},
 
 	created() {
@@ -295,7 +294,37 @@ const app = new Vue({
 		detail(index){
 			this.productindex == index;
 			localStorage.setItem('productindex', index);
-		}
+		},
+
+		// filter(){
+		// 	if(this.product_filter == 'all') {
+		// 		this.filterProducts.forEach(element => {
+		// 			element.showstatus =true;
+		// 		})
+		// 	}
+		// 	if (this.product_filter == 'machiens') {
+		// 		this.filterProducts.forEach(element1 => {
+		// 			if (!element1.category === 'machines'){
+		// 				element1.showstatus = false;
+		// 			}
+		// 		})
+		// 	}
+		// 	if (this.product_filter == 'beans') {
+		// 		this.filterProducts.forEach(element2 => {
+		// 			if (!element2.category === 'beans'){
+		// 				element2.showstatus = false;
+		// 			}
+		// 		})
+		// 	}
+
+		// 	if (this.product_filter == 'cups') {
+		// 		this.filterProducts.forEach(element3 => {
+		// 			if (!element3.category === 'cups'){
+		// 				element3.showstatus = false;
+		// 			}
+		// 		})
+		// 	} 
+		// }					
 	},
 	
 	mounted() {
