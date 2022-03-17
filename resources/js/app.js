@@ -7,11 +7,11 @@
 const { distanceAndSkiddingToXY } = require('@popperjs/core/lib/modifiers/offset');
 const { defaultsDeep, isEmpty } = require('lodash');
 
+import axios from 'axios';
  import Vue from 'vue';
 require('./bootstrap');
 
 window.Vue = require('vue').default;
-
 
 /**
  * The following block of code may be used to automatically register your
@@ -39,6 +39,9 @@ Vue.component('detail-component', require('./components/DetailComponent.vue').de
 const app = new Vue({
     el: '#app',
     props: {
+		productindex:{
+			type:Number
+		}
 	},
 
 	data: {
@@ -60,11 +63,11 @@ const app = new Vue({
 	},
 
 	created() {
-		this.totalPrice = localStorage.getItem('totalPrice') !== null ? parseInt(localStorage.getItem('totalPrice')) : 0;
+		this.totalPrice = localStorage.getItem('totalPrice') !== null ? parseFloat(localStorage.getItem('totalPrice')) : 0;
 		this.totalQuantity = localStorage.getItem('totalQuantity') !== null ? parseInt(localStorage.getItem('totalQuantity')) : 0;
-
 		localStorage.getItem('totalQuantity');
 		localStorage.getItem('totalPrice');
+		localStorage.getItem('productindex');
 	},
 
 	computed: {
@@ -74,7 +77,6 @@ const app = new Vue({
 	},
 
 	methods: {
-
 		        /**
          * Adds a new product to the cart or changes the amount of an 
          *  existing product in the cart
@@ -164,23 +166,7 @@ const app = new Vue({
 		addToCart(product) {
 			this.allproducts.forEach(item => {
 				if(item.id === product.id){
-					if(this.shoppingCart.includes(item)){
-						item.quantity++
-						item.stock--;
-						this.totalQuantity++;
-						if (item.onsale30) {
-							this.totalPrice += parseFloat(product.price)*30/100;
-
-						} else if (item.onsale50) {
-							this.totalPrice += parseFloat(product.price)*50/100;
-
-						} else {
-							this.totalPrice += parseFloat(item.price);
-						}
-						localStorage.setItem('totalQuantity', this.totalQuantity);
-						localStorage.setItem('totalPrice', parseFloat(this.totalPrice));
-
-					}else{
+					if(!this.shoppingCart.some(elem => elem.id === item.id)){
 						this.shoppingCart.push(item);
 						this.totalQuantity++;
 						item.quantity++;
@@ -196,6 +182,26 @@ const app = new Vue({
 
 						localStorage.setItem('totalQuantity', this.totalQuantity);
 						localStorage.setItem('totalPrice', this.totalPrice);
+
+					}else{
+						this.shoppingCart.forEach(ele => {
+							if(ele.id === product.id){
+								ele.quantity++
+								ele.stock--;
+								this.totalQuantity++;
+								if (ele.onsale30) {
+									this.totalPrice += parseFloat(ele.price)*30/100;
+
+								} else if (ele.onsale50) {
+									this.totalPrice += parseFloat(ele.price)*50/100;
+
+								} else {
+									this.totalPrice += parseFloat(ele.price);
+								}
+								localStorage.setItem('totalQuantity', this.totalQuantity);
+								localStorage.setItem('totalPrice', parseFloat(this.totalPrice));
+							}
+						})
 					}
 				}
 			})
@@ -284,12 +290,44 @@ const app = new Vue({
 			localStorage.totalQuantity = this.totalQuantity
 			localStorage.totalPrice = this.totalPrice
 		},
-		
+
+		detail(index){
+			this.productindex == index;
+			localStorage.setItem('productindex', index);
+		},
+
+		// filter(){
+		// 	if(this.product_filter == 'all') {
+		// 		this.filterProducts.forEach(element => {
+		// 			element.showstatus =true;
+		// 		})
+		// 	}
+		// 	if (this.product_filter == 'machiens') {
+		// 		this.filterProducts.forEach(element1 => {
+		// 			if (!element1.category === 'machines'){
+		// 				element1.showstatus = false;
+		// 			}
+		// 		})
+		// 	}
+		// 	if (this.product_filter == 'beans') {
+		// 		this.filterProducts.forEach(element2 => {
+		// 			if (!element2.category === 'beans'){
+		// 				element2.showstatus = false;
+		// 			}
+		// 		})
+		// 	}
+
+		// 	if (this.product_filter == 'cups') {
+		// 		this.filterProducts.forEach(element3 => {
+		// 			if (!element3.category === 'cups'){
+		// 				element3.showstatus = false;
+		// 			}
+		// 		})
+		// 	} 
+		// }					
 	},
 	
 	mounted() {
-
-
 		if (localStorage.shoppingCart) {	
 			this.shoppingCart = JSON.parse(localStorage.shoppingCart);
 		}
@@ -308,6 +346,9 @@ const app = new Vue({
 		this.$on('update-product', (product, index, updateType) => {
 			this.updateItem(product, index, updateType)
 		})
+		this.$on('detail', (index) => {
+			this.detail(index)
+		})
 
 		// this.loadProduct();
 		// this.loadProductMedia();
@@ -317,11 +358,9 @@ const app = new Vue({
 		// this.loadProductHasCategorie();
 		// this.loadProductStock();
 		this.loadAllproduct();
-
 	},
 
 	watch: {
-
 		shoppingCart: {
 			handler(newUpdate) {
 				localStorage.shoppingCart = JSON.stringify(newUpdate);
