@@ -24,4 +24,4 @@
             <a href="https://www.instagram.com/" class=" fa fa-instagram"></a>
         </li>
     </ul>
-</footer> -->
+</footer>

@@ -33,7 +33,7 @@
                             @else
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        {{ Auth::user()->name }}
+                                        {{ Auth::user()->first_name }}
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -51,7 +51,7 @@
                                 </li>
                             @endguest
                         </ul>
-                        <cart-component ref="shoppingComponent" :cart="cart" :shopping-cart="shoppingCart" :total-quantity="totalQuantity"
+                        <cart-component ref="shoppingComponent" :shopping-cart="shoppingCart" :total-quantity="totalQuantity"
         :total-price="totalPrice"></cart-component>
                     </div>
                 </div>

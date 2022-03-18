@@ -22,7 +22,7 @@
 </head>
     <body>
         <div id="app" >
-            @yield('content')
+            <cart-component ref="shoppingComponent" :shopping-cart="shoppingCart"  :total-quantity="totalQuantity" :total-price="totalPrice"></cart-component>            @yield('content')
         </div>
             @yield('scripts')
     </body>
