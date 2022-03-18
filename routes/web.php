@@ -64,12 +64,14 @@ Route::get('/pdelete/category/{id}', [CategoryController::class, 'Pdelete']);
 
 
 
-Route::get('/home', function () {
-    return view('home');
-});
+// Route::get('/home', function () {
+//     return view('home');
+// });
 
 
 Route::view('/products',['home']);
+
+Route::get('/detail/{id}',[DetailController::class, 'index'])->name('product.detail');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/admin/users/index', function () {
     //  $users = DB::table('users')->get();
@@ -78,4 +80,3 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/admin/users/index', funct
     return view('admin.users.index', compact('users'));
 })->name('all.users');
 
-Route::get('/detail/{id}',[DetailController::class, 'index'])->name('product.detail');
