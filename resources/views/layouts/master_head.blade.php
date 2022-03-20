@@ -24,6 +24,7 @@
         <div id="app" >
             <cart-component ref="shoppingComponent" :shopping-cart="shoppingCart"  :total-quantity="totalQuantity" :total-price="totalPrice"></cart-component>            @yield('content')
         </div>
+        
             @yield('scripts')
     </body>
 </html>

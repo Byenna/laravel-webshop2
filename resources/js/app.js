@@ -27,6 +27,9 @@ window.Vue = require('vue').default;
 Vue.component('cart-component', require('./components/CartComponent.vue').default);
 Vue.component('products-component', require('./components/ProductsComponent.vue').default);
 Vue.component('detail-component', require('./components/DetailComponent.vue').default);
+Vue.component('machines-component', require('./components/MachinesComponent.vue').default);
+Vue.component('beans-component', require('./components/BeansComponent.vue').default);
+Vue.component('cups-component', require('./components/CupsComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -41,22 +44,22 @@ const app = new Vue({
     props: {
 		productindex:{
 			type:Number
-		}
+		},
+		machines:{
+			type:Array
+		},
+		beans:{
+			type:Array
+		},
+		cups:{
+			type:Array
+		},
 	},
 
 	data: {
 		brand: '&#x1D554;&#x1D559;&#x1D556;&#x1D563;&#x1D55C;&#x1D55C;&#x1D560;&#x1D557;&#x1D557;&#x1D55A;&#x1D556;',
 		appName: 'Coffee Products',
-		// products:[],
-		// product_media: [],
-		// product_discounts: [],
-		// product_has_discounts: [],
-		// product_categoies: [],
-		// product_has_categories: [],
-		// product_stocks: [],
 		allproducts: [],
-        product_filter: 'all',
-		filters :'all',
 		shoppingCart: [],
 		totalPrice: 0,
 		totalQuantity: 0,
@@ -74,6 +77,15 @@ const app = new Vue({
 		title() {
 			return this.brand + " " + this.appName
 		},
+		machine(){
+			return this.machines = this.allproducts.filter(product => product.category == 'machines')
+		},
+		bean(){
+			return this.beans = this.allproducts.filter(product => product.category == 'beans')
+		},
+		cup(){
+			return this.cups = this.allproducts.filter(product => product.category == 'cups')
+		}
 	},
 
 	methods: {
@@ -84,75 +96,6 @@ const app = new Vue({
          * @returns void
          */
 
-        // loadProduct(){
-        //     axios.get('/api/products')
-        //     .then((response) =>{
-        //         this.products = response.data.data;
-        //     })
-        //     .catch(function(error){
-        //         console.log(error);
-        //     });
-        // },
-
-		// loadProductMedia(){
-        //     axios.get('/api/product_media')
-        //     .then((response) =>{
-        //         this.product_media = response.data.data;
-        //     })
-        //     .catch(function(error){
-        //         console.log(error);
-        //     });
-        // },
-
-		// loadProductDiscount(){
-        //     axios.get('/api/product_discounts')
-        //     .then((response) =>{
-        //         this.product_discounts = response.data.data;
-        //     })
-        //     .catch(function(error){
-        //         console.log(error);
-        //     });
-        // },
-		
-		// loadProductHasDiscount(){
-		// 	axios.get('/api/product_has_discounts')
-		// 	.then((response) =>{
-		// 		this.product_has_discounts = response.data.data;
-		// 	})
-		// 	.catch(function(error){
-		// 		console.log(error);
-		// 	});
-		// },
-
-        // loadProductCategorie(){
-        //     axios.get('/api/product_categories')
-        //     .then((response) =>{
-        //         this.product_categories = response.data.data;
-        //     })
-        //     .catch(function(error){
-        //         console.log(error);
-        //     });
-        // },
-
-        // loadProductHasCategorie(){
-        //     axios.get('/api/product_has_categories')
-        //     .then((response) =>{
-        //         this.product_has_categories = response.data.data;
-        //     })
-        //     .catch(function(error){
-        //         console.log(error);
-        //     });
-        // },
-
-		// loadProductStock(){
-		// 	axios.get('/api/product_stocks')
-		// 	.then((response) =>{
-		// 		this.product_stocks = response.data.data;
-		// 	})
-		// 	.catch(function(error){
-		// 		console.log(error);
-		// 	});
-		// },
 		loadAllproduct(){
 			axios.get('/api/allproducts')
 			.then((response) =>{
@@ -165,12 +108,13 @@ const app = new Vue({
 
 		addToCart(product) {
 			this.allproducts.forEach(item => {
-				if(item.id === product.id){
+				if(item.id === product.id && item.stock>0){
 					if(!this.shoppingCart.some(elem => elem.id === item.id)){
 						this.shoppingCart.push(item);
 						this.totalQuantity++;
-						item.quantity++;
-						item.stock--;
+						
+							item.quantity++;
+							item.stock--;
 
 						if (item.onsale30) {
 							this.totalPrice += (parseFloat(item.price))*30/100
@@ -185,9 +129,10 @@ const app = new Vue({
 
 					}else{
 						this.shoppingCart.forEach(ele => {
-							if(ele.id === product.id){
-								ele.quantity++
+							if(ele.id === product.id && ele.stock>0){
+								ele.quantity++;
 								ele.stock--;
+								
 								this.totalQuantity++;
 								if (ele.onsale30) {
 									this.totalPrice += parseFloat(ele.price)*30/100;
@@ -296,35 +241,6 @@ const app = new Vue({
 			localStorage.setItem('productindex', index);
 		},
 
-		// filter(){
-		// 	if(this.product_filter == 'all') {
-		// 		this.filterProducts.forEach(element => {
-		// 			element.showstatus =true;
-		// 		})
-		// 	}
-		// 	if (this.product_filter == 'machiens') {
-		// 		this.filterProducts.forEach(element1 => {
-		// 			if (!element1.category === 'machines'){
-		// 				element1.showstatus = false;
-		// 			}
-		// 		})
-		// 	}
-		// 	if (this.product_filter == 'beans') {
-		// 		this.filterProducts.forEach(element2 => {
-		// 			if (!element2.category === 'beans'){
-		// 				element2.showstatus = false;
-		// 			}
-		// 		})
-		// 	}
-
-		// 	if (this.product_filter == 'cups') {
-		// 		this.filterProducts.forEach(element3 => {
-		// 			if (!element3.category === 'cups'){
-		// 				element3.showstatus = false;
-		// 			}
-		// 		})
-		// 	} 
-		// }					
 	},
 	
 	mounted() {
@@ -349,14 +265,6 @@ const app = new Vue({
 		this.$on('detail', (index) => {
 			this.detail(index)
 		})
-
-		// this.loadProduct();
-		// this.loadProductMedia();
-		// this.loadProductDiscount();
-		// this.loadProductHasDiscount();
-		// this.loadProductCategorie();
-		// this.loadProductHasCategorie();
-		// this.loadProductStock();
 		this.loadAllproduct();
 	},
 

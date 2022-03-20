@@ -53,6 +53,8 @@
                         </ul>
                         <cart-component ref="shoppingComponent" :shopping-cart="shoppingCart" :total-quantity="totalQuantity"
         :total-price="totalPrice"></cart-component>
+        <a href="/products" class="fixlink btn btn-primary">Products</a>
+
                     </div>
                 </div>
             </nav>

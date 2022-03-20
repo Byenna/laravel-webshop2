@@ -48,7 +48,7 @@
             </ul>
         </div>
             <cart-component ref="shoppingComponent" :shopping-cart="shoppingCart"  :total-quantity="totalQuantity" :total-price="totalPrice"></cart-component>
-</nav>
+        </nav>
         
 
         
@@ -66,8 +66,9 @@
 
         <div class="sideBtn"><a href="{{ url('frontend/cups') }}" class="btn btn-primary">Coffee Cups</a></div> -->
 
-        <a href="/products" class="fixlink btn btn-primary">Products</a>
-        
+        {{-- <a href="/products" class="fixlink btn btn-primary">Products</a>
+
+
         
             <button class="btn btn-primary" type="button" id="dropdownMenuButton1"
             data-bs-toggle="dropdown" aria-expanded="false">More Information &#9662;
@@ -81,5 +82,5 @@
         </ul>
 
         <a href="{{ url('/') }}" class="btn btn-primary">Home</a>
-
+ --}}
         

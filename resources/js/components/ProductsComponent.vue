@@ -1,31 +1,46 @@
 <template>
-    <section class="products block">
-        <div class="product_card card container-fluid col-md-5" v-for="(product, index) in allproducts" :key="product.id" v-show="product.showstatus">
-            <a :href="imagePath + product.image">
-                <img :src="imagePath+product.image" class="card-img-top" :alt="product.alt" >
-            </a>
-            <div class="card-body">
-                <h5>{{product.name}}</h5><hr>
-                <p v-if="product.onsale30"><b>Sale 30%</b> 
-                    <span class="onSale">{{product.price}}$</span><br>
-                    <span class="newPrice30"> New Price: <b>{{product.price*30/100}}$</b></span>
-                </p>
-                <p v-else-if="product.onsale50"><b>Sale 50%</b>
-                    <span class="onSale">{{product.price}}$</span><br>
-                    <span class="newPrice50"> New Price: <b>{{product.price*50/100}}$</b></span>
-                </p>
-                <p v-else>Price: {{product.price}}$</p>
-                <p class="soldOut" v-if="product.stock===0">Sold Out</p>
-                <p class="soldOut" v-else-if="product.stock<=5 && product.stock>0">Almost Sold Out</p>
-                <p v-else-if="product.stock>5">In Stock</p>
-                <span>&#x1F6D2;</span>
-                <button class="addToCart btn btn-primary" @click="updateCart(product)">Order </button>
-                <a :href="'detail/' + product.id">
-                    <button class="btn btn-primary" @click="detail(index)">More Details</button>
-                </a>
+    <div>
+        <!-- <div class="products block">
+            <button class="btn btn-primary" type="button" id="dropdownMenuButton1"
+                data-bs-toggle="dropdown" aria-expanded="false">Products Filter &#9662;
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="/products" style="color:#cad2c5"> All Products</a></li>
+                <li><a class="dropdown-item" href="/machines" style="color:#cad2c5"> Machines</a></li>
+                <li><a class="dropdown-item" href="/beans" style="color:#cad2c5"> Beans</a></li>
+                <li><a class="dropdown-item" href="/cups" style="color:#cad2c5"> Cups</a></li>
+            </ul>
+        </div> -->
+        <div class="products block">
+            <div class="products block" :class="{'lds-spinner':loading}"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                <div class="product_card card container-fluid col-md-5"  v-for="(product, index) in allproducts" :key="product.id" v-show="product.showstatus">
+                    <a :href="imagePath + product.image">
+                        <img :src="imagePath+product.image" class="card-img-top" :alt="product.alt" >
+                    </a>
+                    <div class="card-body">
+                        <h5>{{product.name}}</h5><hr>
+                        <p v-if="product.onsale30"><b>Sale 30%</b> 
+                            <span class="onSale">{{product.price}}$</span><br>
+                            <span class="newPrice30"> New Price: <b>{{product.price*30/100}}$</b></span>
+                        </p>
+                        <p v-else-if="product.onsale50"><b>Sale 50%</b>
+                            <span class="onSale">{{product.price}}$</span><br>
+                            <span class="newPrice50"> New Price: <b>{{product.price*50/100}}$</b></span>
+                        </p>
+                        <p v-else>Price: {{product.price}}$</p>
+                        <p class="soldOut" v-if="product.stock===0">Sold Out</p>
+                        <p class="soldOut" v-else-if="product.stock<=5 && product.stock>0">Almost Sold Out</p>
+                        <p v-else-if="product.stock>5">In Stock</p>
+                        <span>&#x1F6D2;</span>
+                        <button class="addToCart btn btn-primary" @click="updateCart(product)" :disabled="product.stock === 0" :class="{disabledButton: product.stock === 0}">Add </button>
+                        <a :href="'detail/' + product.id">
+                            <button class="btn btn-primary" @click="detail(index)">More Details</button>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
 </template>
 
 <script>
@@ -33,6 +48,19 @@
     export default {
        
         props:{
+            machines:{
+                type: Array,
+                default:[]
+            },
+            beans:{
+                type: Array,
+                default:[]
+            },
+
+            cups:{
+                type: Array,
+                default:[]
+            },
         },
 
         data() {
@@ -46,6 +74,7 @@
                 // product_stocks: [],
                 allproducts: [],
                 imagePath: '/images/webshop/',
+                loading: true,
             }
         },
 
@@ -106,6 +135,7 @@
 
             // loadProductCategorie(){
             //     axios.get('/api/product_categories')
+                
             //     .then((response) =>{
             //         this.product_categories = response.data.data;
             //     })
@@ -137,6 +167,7 @@
                 axios.get('/api/allproducts')
                 .then((response) =>{
                     this.allproducts = response.data.data;
+                    this.loading = false;
                 })
                 .catch(function(error){
                     console.log(error);
@@ -148,7 +179,7 @@
             },
             detail(index){
                 this.$root.$emit('detail', index)
-            }
+            },
         },
     }
 </script>
