@@ -70,7 +70,9 @@
                     </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Check Out</button>
+                       <a :href="'/checkout'">
+                            <button type="submit" class="btn btn-primary">Check Out</button>
+                        </a>
                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
@@ -83,12 +85,14 @@
     export default {
         mounted() {
             console.log('Component mounted.');
-            this.loadproduct();
+            this.loadProduct();
+            this.loadUser();
         },
         
         data() {
             return {
                 products: [],
+                users: []
             }
         },
 
@@ -111,10 +115,19 @@
         },
 
         methods: {
-            loadproduct(){
+            loadProduct(){
                 axios.get('/api/products')
                 .then((response) =>{
                     this.products = response.data.data;
+                })
+                .catch(function(error){
+                    console.log(error);
+                });
+            },
+            loadUser(){
+                axios.get('/api/users')
+                .then((response) =>{
+                    this.users = response.data.data;
                 })
                 .catch(function(error){
                     console.log(error);

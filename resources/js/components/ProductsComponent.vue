@@ -3,9 +3,13 @@
         <div class="products block">
             <div class="products block" :class="{'lds-spinner':loading}"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
                 <div class="product_card card container-fluid col-md-5"  v-for="(product, index) in products" :key="product.id" v-show="product.showstatus">
-                    <a :href="imagePath + product.image">
-                        <img :src="imagePath+product.image" class="card-img-top" :alt="product.alt" >
-                    </a>
+                    <div v-for="productimage in product_media" :key="productimage.product_id">
+                        <span v-if="productimage.product_id === product.id">
+                            <a :href="imagePath + productimage.file_name">
+                                <img :src="imagePath+product.image" class="card-img-top" :alt="product.alt" >
+                            </a>
+                        </span>
+                    </div>
                     <div class="card-body">
                         <h5>{{product.name}}</h5><hr>
                         <p v-if="product.onsale30"><b>Sale 30%</b> 
@@ -37,25 +41,11 @@
     export default {
        
         props:{
-            machines:{
-                type: Array,
-                default:[]
-            },
-            beans:{
-                type: Array,
-                default:[]
-            },
-
-            cups:{
-                type: Array,
-                default:[]
-            },
         },
 
         data() {
             return {
-                // products:[],
-                // product_media: [],
+                product_media: [],
                 // product_discounts: [],
                 // product_has_discounts: [],
                 // product_categories: [],
@@ -70,38 +60,31 @@
         mounted() {
             // console.log('Component mounted.')
             // this.loadProduct();
-            // this.loadProductMedia();
+            this.loadProductMedia();
             // this.loadProductDiscount();
             // this.loadProductHasDiscount();
             // this.loadProductCategorie();
             // this.loadProductHasCategorie();
             // this.loadProductStock();
-            this.loadproduct();
+            this.loadProduct();
         },
 
          created() {
         },
 
         methods: {
-            // loadProduct(){
-            //     axios.get('/api/products')
-            //     .then((response) =>{
-            //         this.products = response.data.data;
-            //     })
-            //     .catch(function(error){
-            //         console.log(error);
-            //     });
-            // },
 
-            // loadProductMedia(){
-            //     axios.get('/api/product_media')
-            //     .then((response) =>{
-            //         this.product_media = response.data.data;
-            //     })
-            //     .catch(function(error){
-            //         console.log(error);
-            //     });
-            // },
+            loadProductMedia(){
+                axios.get('/api/product_media')
+                .then((response) =>{
+                    this.product_media = response.data.data;
+                    this.loading = false;
+
+                })
+                .catch(function(error){
+                    console.log(error);
+                });
+            },
 
             // loadProductDiscount(){
             //     axios.get('/api/product_discounts')
@@ -152,7 +135,7 @@
             //         console.log(error);
             //     });
             // },
-            loadproduct(){
+            loadProduct(){
                 axios.get('/api/products')
                 .then((response) =>{
                     this.products = response.data.data;

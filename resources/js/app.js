@@ -45,15 +45,6 @@ const app = new Vue({
 		productindex:{
 			type:Number
 		},
-		machines:{
-			type:Array
-		},
-		beans:{
-			type:Array
-		},
-		cups:{
-			type:Array
-		},
 	},
 
 	data: {
