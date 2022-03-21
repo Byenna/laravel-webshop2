@@ -11550,6 +11550,10 @@ h1, .h1 {
   color: red;
 }
 
+.nav-link {
+  font-weight: bold;
+}
+
 #homeNav {
   text-align: center;
   padding-top: 1rem;

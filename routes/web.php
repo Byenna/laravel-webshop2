@@ -28,9 +28,9 @@ Route::get('/checkout', function () {
     return view('checkout');
 });
 
-Route::get('/webshop', function () {
-    return view('webshop');
-});
+// Route::get('/webshop', function () {
+//     return view('webshop');
+// });
 
 
 Auth::routes();
@@ -64,12 +64,16 @@ Route::get('/pdelete/category/{id}', [CategoryController::class, 'Pdelete']);
 
 
 
-// Route::get('/home', function () {
-//     return view('home');
-// });
+Route::get('/home', function () {
+    return view('home');
+});
+
+Route::get('/products', function () {
+    return view('webshop');
+});
 
 
-Route::view('/products',['home']);
+// Route::view('/products',['home']);
 
 Route::get('/detail/{id}',[DetailController::class, 'index'])->name('product.detail');
 

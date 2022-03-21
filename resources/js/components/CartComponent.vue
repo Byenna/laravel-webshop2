@@ -70,7 +70,7 @@
                     </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Check Out</button>
+                         <a :href="'/checkout'" ><button  type="submit" class="btn btn-primary">Check Out</button></a>
                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>

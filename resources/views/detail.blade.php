@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master_head')
 @section('content')
 
     <div class="products block">
