@@ -74,7 +74,7 @@ Route::view('/machines', ['machines']);
 Route::view('/beans', ['beans']);
 Route::view('/cups', ['cups']);
 Route::get('/detail/{id}',[DetailController::class, 'index'])->name('product.detail');
-
+Route::view('/{any}', ['welcome']);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/admin/users/index', function () {
     //  $users = DB::table('users')->get();
