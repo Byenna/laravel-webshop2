@@ -70,7 +70,6 @@ Route::get('/pdelete/category/{id}', [CategoryController::class, 'Pdelete']);
 
 
 Route::view('/products',['home']);
-Route::view('{any}', ['home']);
 Route::view('/machines', ['machines']);
 Route::view('/beans', ['beans']);
 Route::view('/cups', ['cups']);

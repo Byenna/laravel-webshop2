@@ -96,7 +96,7 @@ const app = new Vue({
          * @returns void
          */
 
-		loadAllproduct(){
+		loadsproduct(){
 			axios.get('/api/products')
 			.then((response) =>{
 				this.products = response.data.data;
@@ -265,7 +265,7 @@ const app = new Vue({
 		this.$on('detail', (index) => {
 			this.detail(index)
 		})
-		this.loadAllproduct();
+		this.loadsproduct();
 	},
 
 	watch: {

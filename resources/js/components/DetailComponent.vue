@@ -34,7 +34,7 @@
     export default {
         mounted() {
             console.log('Component mounted.');
-            this.loadAllproduct();
+            this.loadproduct();
         },
       
         data() {
@@ -57,7 +57,7 @@
                 this.$root.$emit('update-cart', product)
             },
 
-            loadAllproduct(){
+            loadproduct(){
                 axios.get('/api/products')
                 .then((response) =>{
                     this.products = response.data.data;

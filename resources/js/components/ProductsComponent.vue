@@ -76,7 +76,7 @@
             // this.loadProductCategorie();
             // this.loadProductHasCategorie();
             // this.loadProductStock();
-            this.loadAllproduct();
+            this.loadproduct();
         },
 
          created() {
@@ -152,7 +152,7 @@
             //         console.log(error);
             //     });
             // },
-            loadAllproduct(){
+            loadproduct(){
                 axios.get('/api/products')
                 .then((response) =>{
                     this.products = response.data.data;

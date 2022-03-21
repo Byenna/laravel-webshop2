@@ -5426,11 +5426,11 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    this.loadAllproduct();
+    this.loadproduct();
   },
   created: function created() {},
   methods: {
-    loadAllproduct: function loadAllproduct() {
+    loadproduct: function loadproduct() {
       var _this = this;
 
       axios.get('/api/products').then(function (response) {
@@ -5546,7 +5546,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
     console.log('Component mounted.');
-    this.loadAllproduct();
+    this.loadproduct();
   },
   data: function data() {
     return {
@@ -5568,7 +5568,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {},
   methods: {
-    loadAllproduct: function loadAllproduct() {
+    loadproduct: function loadproduct() {
       var _this = this;
 
       axios.get('/api/products').then(function (response) {
@@ -5660,11 +5660,11 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    this.loadAllproduct();
+    this.loadproduct();
   },
   created: function created() {},
   methods: {
-    loadAllproduct: function loadAllproduct() {
+    loadproduct: function loadproduct() {
       var _this = this;
 
       axios.get('/api/products').then(function (response) {
@@ -5731,7 +5731,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
     console.log('Component mounted.');
-    this.loadAllproduct();
+    this.loadproduct();
   },
   data: function data() {
     return {
@@ -5751,7 +5751,7 @@ __webpack_require__.r(__webpack_exports__);
     updateCart: function updateCart(product) {
       this.$root.$emit('update-cart', product);
     },
-    loadAllproduct: function loadAllproduct() {
+    loadproduct: function loadproduct() {
       var _this = this;
 
       axios.get('/api/products').then(function (response) {
@@ -5834,11 +5834,11 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    this.loadAllproduct();
+    this.loadproduct();
   },
   created: function created() {},
   methods: {
-    loadAllproduct: function loadAllproduct() {
+    loadproduct: function loadproduct() {
       var _this = this;
 
       axios.get('/api/products').then(function (response) {
@@ -5942,7 +5942,7 @@ __webpack_require__.r(__webpack_exports__);
     // this.loadProductCategorie();
     // this.loadProductHasCategorie();
     // this.loadProductStock();
-    this.loadAllproduct();
+    this.loadproduct();
   },
   created: function created() {},
   methods: {
@@ -6009,7 +6009,7 @@ __webpack_require__.r(__webpack_exports__);
     //         console.log(error);
     //     });
     // },
-    loadAllproduct: function loadAllproduct() {
+    loadproduct: function loadproduct() {
       var _this = this;
 
       axios.get('/api/products').then(function (response) {
@@ -6141,7 +6141,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_1__["default"]({
     * @param product (object)
     * @returns void
     */
-    loadAllproduct: function loadAllproduct() {
+    loadsproduct: function loadsproduct() {
       var _this = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/products').then(function (response) {
@@ -6308,7 +6308,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_1__["default"]({
     this.$on('detail', function (index) {
       _this4.detail(index);
     });
-    this.loadAllproduct();
+    this.loadsproduct();
   },
   watch: {
     shoppingCart: {
@@ -29274,7 +29274,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "products block" }, [
-      _c("h2", [_vm._v("BEANS")]),
+      _c("h3", [_vm._v("BEANS")]),
       _vm._v(" "),
       _c(
         "div",

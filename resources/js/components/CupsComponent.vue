@@ -62,14 +62,14 @@
         },
 
         mounted() {
-            this.loadAllproduct();
+            this.loadproduct();
         },
 
          created() {
         },
 
         methods: {
-            loadAllproduct(){
+            loadproduct(){
                 axios.get('/api/products')
                 .then((response) =>{
                     this.products = response.data.data;

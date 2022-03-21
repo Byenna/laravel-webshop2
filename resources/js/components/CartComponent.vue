@@ -83,7 +83,7 @@
     export default {
         mounted() {
             console.log('Component mounted.');
-            this.loadAllproduct();
+            this.loadproduct();
         },
         
         data() {
@@ -111,7 +111,7 @@
         },
 
         methods: {
-            loadAllproduct(){
+            loadproduct(){
                 axios.get('/api/products')
                 .then((response) =>{
                     this.products = response.data.data;

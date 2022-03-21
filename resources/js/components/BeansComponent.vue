@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="products block">
-            <h2>BEANS</h2>
+            <h3>BEANS</h3>
             <div class="products block" :class="{'lds-spinner':loading}"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
                 <div class="product_card card container-fluid col-md-5"  v-for="(product, index) in beans" :key="product.id" v-show="product.showstatus">
                     <a :href="imagePath + product.image">
@@ -62,14 +62,14 @@
         },
 
         mounted() {
-            this.loadAllproduct();
+            this.loadproduct();
         },
 
          created() {
         },
 
         methods: {
-            loadAllproduct(){
+            loadproduct(){
                 axios.get('/api/products')
                 .then((response) =>{
                     this.products = response.data.data;
