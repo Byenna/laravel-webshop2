@@ -83,25 +83,11 @@
     export default {
         mounted() {
             console.log('Component mounted.');
-            // this.loadProduct();
-            // this.loadProductMedia();
-            // this.loadProductDiscount();
-            // this.loadProductHasDiscount();
-            // this.loadProductCategorie();
-            // this.loadProductHasCategorie();
-            // this.loadProductStock();
             this.loadAllproduct();
         },
         
         data() {
             return {
-                // products:[],
-                // product_media: [],
-                // product_discounts: [],
-                // product_has_discounts: [],
-                // product_categories: [],
-                // product_has_ca-0potegories: [],
-                // product_stocks: [],
                 allproducts: [],
             }
         },
@@ -125,75 +111,6 @@
         },
 
         methods: {
-            // loadProduct(){
-            //     axios.get('/api/products')
-            //     .then((response) =>{
-            //         this.products = response.data.data;
-            //     })
-            //     .catch(function(error){
-            //         console.log(error);
-            //     });
-            // },
-
-            // loadProductMedia(){
-            //     axios.get('/api/product_media')
-            //     .then((response) =>{
-            //         this.product_media = response.data.data;
-            //     })
-            //     .catch(function(error){
-            //         console.log(error);
-            //     });
-            // },
-
-            // loadProductDiscount(){
-            //     axios.get('/api/product_discounts')
-            //     .then((response) =>{
-            //         this.product_discounts = response.data.data;
-            //     })
-            //     .catch(function(error){
-            //         console.log(error);
-            //     });
-            // },
-
-            // loadProductHasDiscount(){
-            //     axios.get('/api/product_has_discounts')
-            //     .then((response) =>{
-            //         this.product_has_discounts = response.data.data;
-            //     })
-            //     .catch(function(error){
-            //         console.log(error);
-            //     });
-            // },
-
-            // loadProductCategorie(){
-            //     axios.get('/api/product_categories')
-            //     .then((response) =>{
-            //         this.product_categories = response.data.data;
-            //     })
-            //     .catch(function(error){
-            //         console.log(error);
-            //     });
-            // },
-
-            // loadProductHasCategorie(){
-            //     axios.get('/api/product_has_categories')
-            //     .then((response) =>{
-            //         this.product_has_categories = response.data.data;
-            //     })
-            //     .catch(function(error){
-            //         console.log(error);
-            //     });
-            // },
-
-            // loadProductStock(){
-            //     axios.get('/api/product_stocks')
-            //     .then((response) =>{
-            //         this.product_stocks = response.data.data;
-            //     })
-            //     .catch(function(error){
-            //         console.log(error);
-            //     });
-            // },
             loadAllproduct(){
                 axios.get('/api/allproducts')
                 .then((response) =>{

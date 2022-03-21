@@ -1,16 +1,5 @@
 <template>
     <div>
-        <!-- <div class="products block">
-            <button class="btn btn-primary" type="button" id="dropdownMenuButton1"
-                data-bs-toggle="dropdown" aria-expanded="false">Products Filter &#9662;
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="/products" style="color:#cad2c5"> All Products</a></li>
-                <li><a class="dropdown-item" href="/machines" style="color:#cad2c5"> Machines</a></li>
-                <li><a class="dropdown-item" href="/beans" style="color:#cad2c5"> Beans</a></li>
-                <li><a class="dropdown-item" href="/cups" style="color:#cad2c5"> Cups</a></li>
-            </ul>
-        </div> -->
         <div class="products block">
             <div class="products block" :class="{'lds-spinner':loading}"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
                 <div class="product_card card container-fluid col-md-5"  v-for="(product, index) in allproducts" :key="product.id" v-show="product.showstatus">

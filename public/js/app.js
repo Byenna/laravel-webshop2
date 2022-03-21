@@ -5545,25 +5545,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
-    console.log('Component mounted.'); // this.loadProduct();
-    // this.loadProductMedia();
-    // this.loadProductDiscount();
-    // this.loadProductHasDiscount();
-    // this.loadProductCategorie();
-    // this.loadProductHasCategorie();
-    // this.loadProductStock();
-
+    console.log('Component mounted.');
     this.loadAllproduct();
   },
   data: function data() {
     return {
-      // products:[],
-      // product_media: [],
-      // product_discounts: [],
-      // product_has_discounts: [],
-      // product_categories: [],
-      // product_has_ca-0potegories: [],
-      // product_stocks: [],
       allproducts: []
     };
   },
@@ -5582,69 +5568,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {},
   methods: {
-    // loadProduct(){
-    //     axios.get('/api/products')
-    //     .then((response) =>{
-    //         this.products = response.data.data;
-    //     })
-    //     .catch(function(error){
-    //         console.log(error);
-    //     });
-    // },
-    // loadProductMedia(){
-    //     axios.get('/api/product_media')
-    //     .then((response) =>{
-    //         this.product_media = response.data.data;
-    //     })
-    //     .catch(function(error){
-    //         console.log(error);
-    //     });
-    // },
-    // loadProductDiscount(){
-    //     axios.get('/api/product_discounts')
-    //     .then((response) =>{
-    //         this.product_discounts = response.data.data;
-    //     })
-    //     .catch(function(error){
-    //         console.log(error);
-    //     });
-    // },
-    // loadProductHasDiscount(){
-    //     axios.get('/api/product_has_discounts')
-    //     .then((response) =>{
-    //         this.product_has_discounts = response.data.data;
-    //     })
-    //     .catch(function(error){
-    //         console.log(error);
-    //     });
-    // },
-    // loadProductCategorie(){
-    //     axios.get('/api/product_categories')
-    //     .then((response) =>{
-    //         this.product_categories = response.data.data;
-    //     })
-    //     .catch(function(error){
-    //         console.log(error);
-    //     });
-    // },
-    // loadProductHasCategorie(){
-    //     axios.get('/api/product_has_categories')
-    //     .then((response) =>{
-    //         this.product_has_categories = response.data.data;
-    //     })
-    //     .catch(function(error){
-    //         console.log(error);
-    //     });
-    // },
-    // loadProductStock(){
-    //     axios.get('/api/product_stocks')
-    //     .then((response) =>{
-    //         this.product_stocks = response.data.data;
-    //     })
-    //     .catch(function(error){
-    //         console.log(error);
-    //     });
-    // },
     loadAllproduct: function loadAllproduct() {
       var _this = this;
 
@@ -5947,17 +5870,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
