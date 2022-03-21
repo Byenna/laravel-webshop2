@@ -55,7 +55,7 @@
 
         data() {
             return {
-                allproducts: [],
+                products: [],
                 imagePath: '/images/webshop/',
                 loading: true,
             }
@@ -70,9 +70,9 @@
 
         methods: {
             loadAllproduct(){
-                axios.get('/api/allproducts')
+                axios.get('/api/products')
                 .then((response) =>{
-                    this.allproducts = response.data.data;
+                    this.products = response.data.data;
                     this.loading = false;
                 })
                 .catch(function(error){

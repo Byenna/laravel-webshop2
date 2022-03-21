@@ -5420,7 +5420,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      allproducts: [],
+      products: [],
       imagePath: '/images/webshop/',
       loading: true
     };
@@ -5433,8 +5433,8 @@ __webpack_require__.r(__webpack_exports__);
     loadAllproduct: function loadAllproduct() {
       var _this = this;
 
-      axios.get('/api/allproducts').then(function (response) {
-        _this.allproducts = response.data.data;
+      axios.get('/api/products').then(function (response) {
+        _this.products = response.data.data;
         _this.loading = false;
       })["catch"](function (error) {
         console.log(error);
@@ -5550,7 +5550,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      allproducts: []
+      products: []
     };
   },
   props: {
@@ -5571,8 +5571,8 @@ __webpack_require__.r(__webpack_exports__);
     loadAllproduct: function loadAllproduct() {
       var _this = this;
 
-      axios.get('/api/allproducts').then(function (response) {
-        _this.allproducts = response.data.data;
+      axios.get('/api/products').then(function (response) {
+        _this.products = response.data.data;
       })["catch"](function (error) {
         console.log(error);
       });
@@ -5654,7 +5654,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      allproducts: [],
+      products: [],
       imagePath: '/images/webshop/',
       loading: true
     };
@@ -5667,8 +5667,8 @@ __webpack_require__.r(__webpack_exports__);
     loadAllproduct: function loadAllproduct() {
       var _this = this;
 
-      axios.get('/api/allproducts').then(function (response) {
-        _this.allproducts = response.data.data;
+      axios.get('/api/products').then(function (response) {
+        _this.products = response.data.data;
         _this.loading = false;
       })["catch"](function (error) {
         console.log(error);
@@ -5735,7 +5735,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      allproducts: [],
+      products: [],
       imagePath: '/images/webshop/',
       shoppingCart: []
     };
@@ -5754,8 +5754,8 @@ __webpack_require__.r(__webpack_exports__);
     loadAllproduct: function loadAllproduct() {
       var _this = this;
 
-      axios.get('/api/allproducts').then(function (response) {
-        _this.allproducts = response.data.data;
+      axios.get('/api/products').then(function (response) {
+        _this.products = response.data.data;
       })["catch"](function (error) {
         console.log(error);
       });
@@ -5828,7 +5828,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      allproducts: [],
+      products: [],
       imagePath: '/images/webshop/',
       loading: true
     };
@@ -5841,8 +5841,8 @@ __webpack_require__.r(__webpack_exports__);
     loadAllproduct: function loadAllproduct() {
       var _this = this;
 
-      axios.get('/api/allproducts').then(function (response) {
-        _this.allproducts = response.data.data;
+      axios.get('/api/products').then(function (response) {
+        _this.products = response.data.data;
         _this.loading = false;
       })["catch"](function (error) {
         console.log(error);
@@ -5928,7 +5928,7 @@ __webpack_require__.r(__webpack_exports__);
       // product_categories: [],
       // product_has_categories: [],
       // product_stocks: [],
-      allproducts: [],
+      products: [],
       imagePath: '/images/webshop/',
       loading: true
     };
@@ -6012,8 +6012,8 @@ __webpack_require__.r(__webpack_exports__);
     loadAllproduct: function loadAllproduct() {
       var _this = this;
 
-      axios.get('/api/allproducts').then(function (response) {
-        _this.allproducts = response.data.data;
+      axios.get('/api/products').then(function (response) {
+        _this.products = response.data.data;
         _this.loading = false;
       })["catch"](function (error) {
         console.log(error);
@@ -6102,7 +6102,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_1__["default"]({
   data: {
     brand: '&#x1D554;&#x1D559;&#x1D556;&#x1D563;&#x1D55C;&#x1D55C;&#x1D560;&#x1D557;&#x1D557;&#x1D55A;&#x1D556;',
     appName: 'Coffee Products',
-    allproducts: [],
+    products: [],
     shoppingCart: [],
     totalPrice: 0,
     totalQuantity: 0
@@ -6119,17 +6119,17 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_1__["default"]({
       return this.brand + " " + this.appName;
     },
     machine: function machine() {
-      return this.machines = this.allproducts.filter(function (product) {
+      return this.machines = this.products.filter(function (product) {
         return product.category == 'machines';
       });
     },
     bean: function bean() {
-      return this.beans = this.allproducts.filter(function (product) {
+      return this.beans = this.products.filter(function (product) {
         return product.category == 'beans';
       });
     },
     cup: function cup() {
-      return this.cups = this.allproducts.filter(function (product) {
+      return this.cups = this.products.filter(function (product) {
         return product.category == 'cups';
       });
     }
@@ -6144,8 +6144,8 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_1__["default"]({
     loadAllproduct: function loadAllproduct() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/allproducts').then(function (response) {
-        _this.allproducts = response.data.data;
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/products').then(function (response) {
+        _this.products = response.data.data;
       })["catch"](function (error) {
         console.log(error);
       });
@@ -6153,7 +6153,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_1__["default"]({
     addToCart: function addToCart(product) {
       var _this2 = this;
 
-      this.allproducts.forEach(function (item) {
+      this.products.forEach(function (item) {
         if (item.id === product.id && item.stock > 0) {
           if (!_this2.shoppingCart.some(function (elem) {
             return elem.id === item.id;
@@ -29916,14 +29916,14 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.allproducts[_vm.productindex]
+  return _vm.products[_vm.productindex]
     ? _c("div", [
         _c("section", [
           _c("div", { staticClass: "products block" }, [
             _c("img", {
               staticClass: "col-5",
               attrs: {
-                src: _vm.imagePath + _vm.allproducts[_vm.productindex].image,
+                src: _vm.imagePath + _vm.products[_vm.productindex].image,
                 height: "700px",
               },
             }),
@@ -29931,15 +29931,11 @@ var render = function () {
             _c("div", { staticClass: "col-5", attrs: { id: "detail" } }, [
               _c("h3", [
                 _c("b", [_vm._v("Name: ")]),
-                _vm._v(
-                  " " + _vm._s(_vm.allproducts[_vm.productindex].name) + " "
-                ),
+                _vm._v(" " + _vm._s(_vm.products[_vm.productindex].name) + " "),
               ]),
               _vm._v(" "),
               _c("h3", [
-                _vm._v(
-                  " " + _vm._s(_vm.allproducts[_vm.productindex].info) + " "
-                ),
+                _vm._v(" " + _vm._s(_vm.products[_vm.productindex].info) + " "),
               ]),
               _c("hr"),
               _vm._v(" "),
@@ -29947,12 +29943,12 @@ var render = function () {
                 _c("b", [_vm._v("Description: ")]),
                 _c("br"),
                 _vm._v(
-                  " " + _vm._s(_vm.allproducts[_vm.productindex].description)
+                  " " + _vm._s(_vm.products[_vm.productindex].description)
                 ),
               ]),
               _c("hr"),
               _vm._v(" "),
-              _vm.allproducts[_vm.productindex].onsale30
+              _vm.products[_vm.productindex].onsale30
                 ? _c("h3", [
                     _c("b", [_vm._v("Sale 30%")]),
                     _c("br"),
@@ -29960,7 +29956,7 @@ var render = function () {
                     _c("b", [_vm._v("Old Price: ")]),
                     _c("span", { staticClass: "onSale" }, [
                       _vm._v(
-                        _vm._s(_vm.allproducts[_vm.productindex].price) + "$"
+                        _vm._s(_vm.products[_vm.productindex].price) + "$"
                       ),
                     ]),
                     _c("br"),
@@ -29970,20 +29966,20 @@ var render = function () {
                       _c("b", [
                         _vm._v(
                           _vm._s(
-                            (_vm.allproducts[_vm.productindex].price * 30) / 100
+                            (_vm.products[_vm.productindex].price * 30) / 100
                           ) + "$"
                         ),
                       ]),
                     ]),
                     _c("hr"),
                   ])
-                : _vm.allproducts[_vm.productindex].onsale50
+                : _vm.products[_vm.productindex].onsale50
                 ? _c("h3", [
                     _c("b", [_vm._v("Sale 50%")]),
                     _vm._v(" "),
                     _c("span", { staticClass: "onSale" }, [
                       _vm._v(
-                        _vm._s(_vm.allproducts[_vm.productindex].price) + "$"
+                        _vm._s(_vm.products[_vm.productindex].price) + "$"
                       ),
                     ]),
                     _c("br"),
@@ -29993,7 +29989,7 @@ var render = function () {
                       _c("b", [
                         _vm._v(
                           _vm._s(
-                            (_vm.allproducts[_vm.productindex].price * 50) / 100
+                            (_vm.products[_vm.productindex].price * 50) / 100
                           ) + "$"
                         ),
                       ]),
@@ -30003,19 +29999,19 @@ var render = function () {
                 : _c("h3", [
                     _vm._v(
                       "Price: " +
-                        _vm._s(_vm.allproducts[_vm.productindex].price) +
+                        _vm._s(_vm.products[_vm.productindex].price) +
                         "$"
                     ),
                   ]),
               _vm._v(" "),
-              _vm.allproducts[_vm.productindex].stock === 0
+              _vm.products[_vm.productindex].stock === 0
                 ? _c("h3", { staticClass: "soldOut" }, [_vm._v("Sold Out")])
-                : _vm.allproducts[_vm.productindex].stock <= 5 &&
-                  _vm.allproducts[_vm.productindex].stock > 0
+                : _vm.products[_vm.productindex].stock <= 5 &&
+                  _vm.products[_vm.productindex].stock > 0
                 ? _c("h3", { staticClass: "soldOut" }, [
                     _vm._v("Almost Sold Out"),
                   ])
-                : _vm.allproducts[_vm.productindex].stock > 5
+                : _vm.products[_vm.productindex].stock > 5
                 ? _c("h3", [_vm._v("In Stock ")])
                 : _vm._e(),
               _vm._v(" "),
@@ -30026,7 +30022,7 @@ var render = function () {
                     staticClass: "addToCart btn btn-primary",
                     on: {
                       click: function ($event) {
-                        return _vm.updateCart(_vm.allproducts[_vm.productindex])
+                        return _vm.updateCart(_vm.products[_vm.productindex])
                       },
                     },
                   },
@@ -30248,7 +30244,7 @@ var render = function () {
           _c("div"),
           _c("div"),
           _vm._v(" "),
-          _vm._l(_vm.allproducts, function (product, index) {
+          _vm._l(_vm.products, function (product, index) {
             return _c(
               "div",
               {

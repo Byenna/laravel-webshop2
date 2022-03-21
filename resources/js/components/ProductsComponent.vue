@@ -2,7 +2,7 @@
     <div>
         <div class="products block">
             <div class="products block" :class="{'lds-spinner':loading}"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-                <div class="product_card card container-fluid col-md-5"  v-for="(product, index) in allproducts" :key="product.id" v-show="product.showstatus">
+                <div class="product_card card container-fluid col-md-5"  v-for="(product, index) in products" :key="product.id" v-show="product.showstatus">
                     <a :href="imagePath + product.image">
                         <img :src="imagePath+product.image" class="card-img-top" :alt="product.alt" >
                     </a>
@@ -61,7 +61,7 @@
                 // product_categories: [],
                 // product_has_categories: [],
                 // product_stocks: [],
-                allproducts: [],
+                products: [],
                 imagePath: '/images/webshop/',
                 loading: true,
             }
@@ -153,9 +153,9 @@
             //     });
             // },
             loadAllproduct(){
-                axios.get('/api/allproducts')
+                axios.get('/api/products')
                 .then((response) =>{
-                    this.allproducts = response.data.data;
+                    this.products = response.data.data;
                     this.loading = false;
                 })
                 .catch(function(error){

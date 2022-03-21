@@ -88,7 +88,7 @@
         
         data() {
             return {
-                allproducts: [],
+                products: [],
             }
         },
 
@@ -112,9 +112,9 @@
 
         methods: {
             loadAllproduct(){
-                axios.get('/api/allproducts')
+                axios.get('/api/products')
                 .then((response) =>{
-                    this.allproducts = response.data.data;
+                    this.products = response.data.data;
                 })
                 .catch(function(error){
                     console.log(error);
