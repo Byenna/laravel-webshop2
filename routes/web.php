@@ -38,8 +38,13 @@ Auth::routes();
 // Route::get('/products/all', [ProductController::class, 'index'])->name('all.product');
 
 //ADMIN ROUTES
-Route::get('/admin/index', [AdminController::class, 'index'])->name('home.admin');
-Route::get('/admin/products', [AdminController::class, 'products']);
+Route::get('/admin/', [AdminController::class, 'index'])->name('admin');
+Route::get('/admin/users', [AdminController::class, 'showUsers'])->name('users');
+Route::get('/admin/products', [ProductController::class, 'showProducts'])->name('products');
+Route::get('/admin/category', [CategoryController::class, 'showCategories'])->name('categories');
+
+
+
 
 //CATEGORY ROUTES
 // Route::get('/', [CategoryController::class, 'index']);
@@ -53,14 +58,14 @@ Route::get('/category/restore/{id}', [CategoryController::class, 'Restore']);
 Route::get('/pdelete/category/{id}', [CategoryController::class, 'Pdelete']);
 
 // PRODUCTS ROUTE
-// Route::get('/products/all', [ProductController::class, 'AllProduct'])->name('all.product');
-// Route::post('/products/add', [ProductController::class, 'StoreProduct'])->name('store.product');
-// Route::get('/products/edit/{id}', [ProductController::class, 'Edit']);
-// Route::post('/products/update/{id}', [ProductController::class, 'Update']);
-// Route::get('/products/delete/{id}', [ProductController::class, 'Delete']);
+ Route::get('/products/all', [ProductController::class, 'index'])->name('product');
+ Route::post('/products/add', [ProductController::class, 'StoreProduct'])->name('store.product');
+ Route::get('/products/edit/{id}', [ProductController::class, 'Edit']);
+ Route::post('/products/update/{id}', [ProductController::class, 'Update']);
+ Route::get('/products/delete/{id}', [ProductController::class, 'Delete']);
 
-// Route::get('/admin/media', [AdminController::class, 'media']);
-// Route::get('/admin/stock', [AdminController::class, 'stock']);
+ Route::get('/admin/media', [AdminController::class, 'media']);
+ Route::get('/admin/stock', [AdminController::class, 'stock']);
 
 
 

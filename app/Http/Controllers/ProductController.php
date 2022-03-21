@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 use App\Models\Allproduct;
 use Illuminate\Http\Request;
 
-class AllproductController extends Controller
+class ProductController extends Controller
 {
-    public function index(){
+    public function showProducts(){
 
         $allproducts =   Allproduct::all();
-        return view('detail',['allproducts' => $allproducts]);
+        return view('admin/products/productindex',['allproducts' => $allproducts]);
         // return view('detail');
     }
 }
