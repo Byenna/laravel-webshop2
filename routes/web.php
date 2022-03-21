@@ -73,9 +73,12 @@ Route::get('/products', function () {
 });
 
 
-// Route::view('/products',['home']);
-
+Route::view('/products',['home']);
+Route::view('/machines', ['machines']);
+Route::view('/beans', ['beans']);
+Route::view('/cups', ['cups']);
 Route::get('/detail/{id}',[DetailController::class, 'index'])->name('product.detail');
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/admin/users/index', function () {
     //  $users = DB::table('users')->get();
