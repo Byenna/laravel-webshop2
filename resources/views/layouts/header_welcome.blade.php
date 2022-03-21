@@ -66,21 +66,6 @@
         </nav>
         
 
-        
-                <!-- <select class="btn btn-primary">
-                    <option selected value="all">More Information</option>
-                    <option  value="all"></option>
-                    <option value="machines">About</option>
-                    <option value="beans">contact</option>
-                </select> -->
-         <!-- <div class="sideBtn"><a href="{{ url('frontend/products') }}" class="btn btn-primary">All Products</a></div>
-
-        <div class="sideBtn"><a href="{{ url('frontend/machines') }}" class="btn btn-primary">Coffee Machines</a></div>
-
-        <div class="sideBtn"><a href="{{ url('frontend/beans') }}" class="btn btn-primary">Coffee Beans</a></div>
-
-        <div class="sideBtn"><a href="{{ url('frontend/cups') }}" class="btn btn-primary">Coffee Cups</a></div> -->
-
         {{-- <a href="/products" class="fixlink btn btn-primary">Products</a>
 
 

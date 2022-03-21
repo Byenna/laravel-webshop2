@@ -7,6 +7,7 @@
 @include('layouts.menu_buttons')
 
 
-<products-component></products-component> 
+<products-component ref="productsComponent" :machine="machine" :bean="bean" :cup="cup" :machines="machines" :beans="beans" :cups="cups"></products-component> 
+
 
 @endsection
