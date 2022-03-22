@@ -1,4 +1,4 @@
-@extends('layouts.master_welcome')
+@extends('layouts.master_head')
 
 @section('content')
     

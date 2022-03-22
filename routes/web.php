@@ -28,9 +28,9 @@ Route::get('/checkout', function () {
     return view('checkout');
 });
 
-Route::get('/webshop', function () {
-    return view('webshop');
-});
+// Route::get('/webshop', function () {
+//     return view('webshop');
+// });
 
 
 Auth::routes();
@@ -64,14 +64,21 @@ Route::get('/pdelete/category/{id}', [CategoryController::class, 'Pdelete']);
 
 
 
-// Route::get('/home', function () {
-//     return view('home');
-// });
+Route::get('/home', function () {
+    return view('home');
+});
+
+Route::get('/products', function () {
+    return view('webshop');
+});
 
 
 Route::view('/products',['home']);
-
+Route::view('/machines', ['machines']);
+Route::view('/beans', ['beans']);
+Route::view('/cups', ['cups']);
 Route::get('/detail/{id}',[DetailController::class, 'index'])->name('product.detail');
+Route::view('/{any}', ['welcome']);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/admin/users/index', function () {
     //  $users = DB::table('users')->get();
