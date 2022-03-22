@@ -27,5 +27,4 @@ Route::get('/product_has_discounts', [App\Http\Controllers\Api\ProductHasDiscoun
 Route::get('/product_stocks', [App\Http\Controllers\Api\ProductStockController::class, 'index'])->name('products.stock');
 Route::get('/product_categories', [App\Http\Controllers\Api\ProductCategorieController::class, 'index'])->name('products.categories');
 Route::get('/product_has_categories', [App\Http\Controllers\Api\ProductHasCategorieController::class, 'index'])->name('product.has.categorie');
-Route::get('/allproducts', [App\Http\Controllers\Api\AllproductController::class, 'index'])->name('products.tables');
-
+Route::get('/users', [App\Http\Controllers\Api\UserController::class, 'index'])->name('users.all');

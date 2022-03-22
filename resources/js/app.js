@@ -45,21 +45,12 @@ const app = new Vue({
 		productindex:{
 			type:Number
 		},
-		machines:{
-			type:Array
-		},
-		beans:{
-			type:Array
-		},
-		cups:{
-			type:Array
-		},
 	},
 
 	data: {
 		brand: '&#x1D554;&#x1D559;&#x1D556;&#x1D563;&#x1D55C;&#x1D55C;&#x1D560;&#x1D557;&#x1D557;&#x1D55A;&#x1D556;',
 		appName: 'Coffee Products',
-		allproducts: [],
+		products: [],
 		shoppingCart: [],
 		totalPrice: 0,
 		totalQuantity: 0,
@@ -78,13 +69,13 @@ const app = new Vue({
 			return this.brand + " " + this.appName
 		},
 		machine(){
-			return this.machines = this.allproducts.filter(product => product.category == 'machines')
+			return this.machines = this.products.filter(product => product.category == 'machines')
 		},
 		bean(){
-			return this.beans = this.allproducts.filter(product => product.category == 'beans')
+			return this.beans = this.products.filter(product => product.category == 'beans')
 		},
 		cup(){
-			return this.cups = this.allproducts.filter(product => product.category == 'cups')
+			return this.cups = this.products.filter(product => product.category == 'cups')
 		}
 	},
 
@@ -96,10 +87,10 @@ const app = new Vue({
          * @returns void
          */
 
-		loadAllproduct(){
-			axios.get('/api/allproducts')
+		loadsproduct(){
+			axios.get('/api/products')
 			.then((response) =>{
-				this.allproducts = response.data.data;
+				this.products = response.data.data;
 			})
 			.catch(function(error){
 				console.log(error);
@@ -107,7 +98,7 @@ const app = new Vue({
 		},
 
 		addToCart(product) {
-			this.allproducts.forEach(item => {
+			this.products.forEach(item => {
 				if(item.id === product.id && item.stock>0){
 					if(!this.shoppingCart.some(elem => elem.id === item.id)){
 						this.shoppingCart.push(item);
@@ -265,7 +256,7 @@ const app = new Vue({
 		this.$on('detail', (index) => {
 			this.detail(index)
 		})
-		this.loadAllproduct();
+		this.loadsproduct();
 	},
 
 	watch: {

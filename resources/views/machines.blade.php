@@ -1,6 +1,10 @@
 @extends('layouts.master_head')
 @section('content')
 
+
+
+
+
 @include('layouts.menu_buttons')
 
 

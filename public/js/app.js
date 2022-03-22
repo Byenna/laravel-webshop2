@@ -5399,39 +5399,47 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
-    machines: {
-      type: Array,
-      "default": []
-    },
     beans: {
-      type: Array,
-      "default": []
-    },
-    cups: {
       type: Array,
       "default": []
     }
   },
   data: function data() {
     return {
-      allproducts: [],
+      products: [],
+      product_media: [],
       imagePath: '/images/webshop/',
       loading: true
     };
   },
   mounted: function mounted() {
-    this.loadAllproduct();
+    this.loadProduct();
+    this.loadProductMedia();
   },
   created: function created() {},
   methods: {
-    loadAllproduct: function loadAllproduct() {
+    loadProduct: function loadProduct() {
       var _this = this;
 
-      axios.get('/api/allproducts').then(function (response) {
-        _this.allproducts = response.data.data;
+      axios.get('/api/products').then(function (response) {
+        _this.products = response.data.data;
         _this.loading = false;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    loadProductMedia: function loadProductMedia() {
+      var _this2 = this;
+
+      axios.get('/api/product_media').then(function (response) {
+        _this2.product_media = response.data.data;
+        _this2.loading = false;
       })["catch"](function (error) {
         console.log(error);
       });
@@ -5539,28 +5547,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
-    console.log('Component mounted.'); // this.loadProduct();
-    // this.loadProductMedia();
-    // this.loadProductDiscount();
-    // this.loadProductHasDiscount();
-    // this.loadProductCategorie();
-    // this.loadProductHasCategorie();
-    // this.loadProductStock();
-
-    this.loadAllproduct();
+    console.log('Component mounted.');
+    this.loadProduct();
+    this.loadUser();
   },
   data: function data() {
     return {
-      // products:[],
-      // product_media: [],
-      // product_discounts: [],
-      // product_has_discounts: [],
-      // product_categories: [],
-      // product_has_ca-0potegories: [],
-      // product_stocks: [],
-      allproducts: []
+      products: [],
+      users: []
     };
   },
   props: {
@@ -5578,74 +5576,20 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {},
   methods: {
-    // loadProduct(){
-    //     axios.get('/api/products')
-    //     .then((response) =>{
-    //         this.products = response.data.data;
-    //     })
-    //     .catch(function(error){
-    //         console.log(error);
-    //     });
-    // },
-    // loadProductMedia(){
-    //     axios.get('/api/product_media')
-    //     .then((response) =>{
-    //         this.product_media = response.data.data;
-    //     })
-    //     .catch(function(error){
-    //         console.log(error);
-    //     });
-    // },
-    // loadProductDiscount(){
-    //     axios.get('/api/product_discounts')
-    //     .then((response) =>{
-    //         this.product_discounts = response.data.data;
-    //     })
-    //     .catch(function(error){
-    //         console.log(error);
-    //     });
-    // },
-    // loadProductHasDiscount(){
-    //     axios.get('/api/product_has_discounts')
-    //     .then((response) =>{
-    //         this.product_has_discounts = response.data.data;
-    //     })
-    //     .catch(function(error){
-    //         console.log(error);
-    //     });
-    // },
-    // loadProductCategorie(){
-    //     axios.get('/api/product_categories')
-    //     .then((response) =>{
-    //         this.product_categories = response.data.data;
-    //     })
-    //     .catch(function(error){
-    //         console.log(error);
-    //     });
-    // },
-    // loadProductHasCategorie(){
-    //     axios.get('/api/product_has_categories')
-    //     .then((response) =>{
-    //         this.product_has_categories = response.data.data;
-    //     })
-    //     .catch(function(error){
-    //         console.log(error);
-    //     });
-    // },
-    // loadProductStock(){
-    //     axios.get('/api/product_stocks')
-    //     .then((response) =>{
-    //         this.product_stocks = response.data.data;
-    //     })
-    //     .catch(function(error){
-    //         console.log(error);
-    //     });
-    // },
-    loadAllproduct: function loadAllproduct() {
+    loadProduct: function loadProduct() {
       var _this = this;
 
-      axios.get('/api/allproducts').then(function (response) {
-        _this.allproducts = response.data.data;
+      axios.get('/api/products').then(function (response) {
+        _this.products = response.data.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    loadUser: function loadUser() {
+      var _this2 = this;
+
+      axios.get('/api/users').then(function (response) {
+        _this2.users = response.data.data;
       })["catch"](function (error) {
         console.log(error);
       });
@@ -5710,16 +5654,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
-    machines: {
-      type: Array,
-      "default": []
-    },
-    beans: {
-      type: Array,
-      "default": []
-    },
     cups: {
       type: Array,
       "default": []
@@ -5727,22 +5667,33 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      allproducts: [],
+      products: [],
       imagePath: '/images/webshop/',
       loading: true
     };
   },
   mounted: function mounted() {
-    this.loadAllproduct();
+    this.loadProduct();
+    this.loadProductMedia();
   },
   created: function created() {},
   methods: {
-    loadAllproduct: function loadAllproduct() {
+    loadProduct: function loadProduct() {
       var _this = this;
 
-      axios.get('/api/allproducts').then(function (response) {
-        _this.allproducts = response.data.data;
+      axios.get('/api/products').then(function (response) {
+        _this.products = response.data.data;
         _this.loading = false;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    loadProductMedia: function loadProductMedia() {
+      var _this2 = this;
+
+      axios.get('/api/product_media').then(function (response) {
+        _this2.product_media = response.data.data;
+        _this2.loading = false;
       })["catch"](function (error) {
         console.log(error);
       });
@@ -5804,11 +5755,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
     console.log('Component mounted.');
-    this.loadAllproduct();
+    this.loadproduct();
   },
   data: function data() {
     return {
-      allproducts: [],
+      products: [],
       imagePath: '/images/webshop/',
       shoppingCart: []
     };
@@ -5824,11 +5775,11 @@ __webpack_require__.r(__webpack_exports__);
     updateCart: function updateCart(product) {
       this.$root.$emit('update-cart', product);
     },
-    loadAllproduct: function loadAllproduct() {
+    loadproduct: function loadproduct() {
       var _this = this;
 
-      axios.get('/api/allproducts').then(function (response) {
-        _this.allproducts = response.data.data;
+      axios.get('/api/products').then(function (response) {
+        _this.products = response.data.data;
       })["catch"](function (error) {
         console.log(error);
       });
@@ -5884,39 +5835,47 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     machines: {
-      type: Array,
-      "default": []
-    },
-    beans: {
-      type: Array,
-      "default": []
-    },
-    cups: {
       type: Array,
       "default": []
     }
   },
   data: function data() {
     return {
-      allproducts: [],
+      products: [],
+      product_media: [],
       imagePath: '/images/webshop/',
       loading: true
     };
   },
   mounted: function mounted() {
-    this.loadAllproduct();
+    this.loadProduct();
+    this.loadProductMedia();
   },
   created: function created() {},
   methods: {
-    loadAllproduct: function loadAllproduct() {
+    loadProduct: function loadProduct() {
       var _this = this;
 
-      axios.get('/api/allproducts').then(function (response) {
-        _this.allproducts = response.data.data;
+      axios.get('/api/products').then(function (response) {
+        _this.products = response.data.data;
         _this.loading = false;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    loadProductMedia: function loadProductMedia() {
+      var _this2 = this;
+
+      axios.get('/api/product_media').then(function (response) {
+        _this2.product_media = response.data.data;
+        _this2.loading = false;
       })["catch"](function (error) {
         console.log(error);
       });
@@ -5981,38 +5940,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: {
-    machines: {
-      type: Array,
-      "default": []
-    },
-    beans: {
-      type: Array,
-      "default": []
-    },
-    cups: {
-      type: Array,
-      "default": []
-    }
-  },
+  props: {},
   data: function data() {
     return {
-      // products:[],
-      // product_media: [],
+      product_media: [],
       // product_discounts: [],
       // product_has_discounts: [],
       // product_categories: [],
       // product_has_categories: [],
       // product_stocks: [],
-      allproducts: [],
+      products: [],
       imagePath: '/images/webshop/',
       loading: true
     };
@@ -6020,34 +5958,26 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     // console.log('Component mounted.')
     // this.loadProduct();
-    // this.loadProductMedia();
-    // this.loadProductDiscount();
+    this.loadProductMedia(); // this.loadProductDiscount();
     // this.loadProductHasDiscount();
     // this.loadProductCategorie();
     // this.loadProductHasCategorie();
     // this.loadProductStock();
-    this.loadAllproduct();
+
+    this.loadProduct();
   },
   created: function created() {},
   methods: {
-    // loadProduct(){
-    //     axios.get('/api/products')
-    //     .then((response) =>{
-    //         this.products = response.data.data;
-    //     })
-    //     .catch(function(error){
-    //         console.log(error);
-    //     });
-    // },
-    // loadProductMedia(){
-    //     axios.get('/api/product_media')
-    //     .then((response) =>{
-    //         this.product_media = response.data.data;
-    //     })
-    //     .catch(function(error){
-    //         console.log(error);
-    //     });
-    // },
+    loadProductMedia: function loadProductMedia() {
+      var _this = this;
+
+      axios.get('/api/product_media').then(function (response) {
+        _this.product_media = response.data.data;
+        _this.loading = false;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
     // loadProductDiscount(){
     //     axios.get('/api/product_discounts')
     //     .then((response) =>{
@@ -6093,12 +6023,12 @@ __webpack_require__.r(__webpack_exports__);
     //         console.log(error);
     //     });
     // },
-    loadAllproduct: function loadAllproduct() {
-      var _this = this;
+    loadProduct: function loadProduct() {
+      var _this2 = this;
 
-      axios.get('/api/allproducts').then(function (response) {
-        _this.allproducts = response.data.data;
-        _this.loading = false;
+      axios.get('/api/products').then(function (response) {
+        _this2.products = response.data.data;
+        _this2.loading = false;
       })["catch"](function (error) {
         console.log(error);
       });
@@ -6172,21 +6102,12 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_1__["default"]({
   props: {
     productindex: {
       type: Number
-    },
-    machines: {
-      type: Array
-    },
-    beans: {
-      type: Array
-    },
-    cups: {
-      type: Array
     }
   },
   data: {
     brand: '&#x1D554;&#x1D559;&#x1D556;&#x1D563;&#x1D55C;&#x1D55C;&#x1D560;&#x1D557;&#x1D557;&#x1D55A;&#x1D556;',
     appName: 'Coffee Products',
-    allproducts: [],
+    products: [],
     shoppingCart: [],
     totalPrice: 0,
     totalQuantity: 0
@@ -6203,17 +6124,17 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_1__["default"]({
       return this.brand + " " + this.appName;
     },
     machine: function machine() {
-      return this.machines = this.allproducts.filter(function (product) {
+      return this.machines = this.products.filter(function (product) {
         return product.category == 'machines';
       });
     },
     bean: function bean() {
-      return this.beans = this.allproducts.filter(function (product) {
+      return this.beans = this.products.filter(function (product) {
         return product.category == 'beans';
       });
     },
     cup: function cup() {
-      return this.cups = this.allproducts.filter(function (product) {
+      return this.cups = this.products.filter(function (product) {
         return product.category == 'cups';
       });
     }
@@ -6225,11 +6146,11 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_1__["default"]({
     * @param product (object)
     * @returns void
     */
-    loadAllproduct: function loadAllproduct() {
+    loadsproduct: function loadsproduct() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/allproducts').then(function (response) {
-        _this.allproducts = response.data.data;
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/products').then(function (response) {
+        _this.products = response.data.data;
       })["catch"](function (error) {
         console.log(error);
       });
@@ -6237,7 +6158,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_1__["default"]({
     addToCart: function addToCart(product) {
       var _this2 = this;
 
-      this.allproducts.forEach(function (item) {
+      this.products.forEach(function (item) {
         if (item.id === product.id && item.stock > 0) {
           if (!_this2.shoppingCart.some(function (elem) {
             return elem.id === item.id;
@@ -6392,7 +6313,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_1__["default"]({
     this.$on('detail', function (index) {
       _this4.detail(index);
     });
-    this.loadAllproduct();
+    this.loadsproduct();
   },
   watch: {
     shoppingCart: {
@@ -29358,7 +29279,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "products block" }, [
-      _c("h2", [_vm._v("BEANS")]),
+      _c("h3", [_vm._v("BEANS")]),
       _vm._v(" "),
       _c(
         "div",
@@ -29396,15 +29317,31 @@ var render = function () {
                 staticClass: "product_card card container-fluid col-md-5",
               },
               [
-                _c("a", { attrs: { href: _vm.imagePath + product.image } }, [
-                  _c("img", {
-                    staticClass: "card-img-top",
-                    attrs: {
-                      src: _vm.imagePath + product.image,
-                      alt: product.alt,
-                    },
-                  }),
-                ]),
+                _vm._l(_vm.product_media, function (productimage) {
+                  return _c("div", { key: productimage.product_id }, [
+                    productimage.product_id === product.id
+                      ? _c("span", [
+                          _c(
+                            "a",
+                            {
+                              attrs: {
+                                href: _vm.imagePath + productimage.file_name,
+                              },
+                            },
+                            [
+                              _c("img", {
+                                staticClass: "card-img-top",
+                                attrs: {
+                                  src: _vm.imagePath + product.image,
+                                  alt: product.alt,
+                                },
+                              }),
+                            ]
+                          ),
+                        ])
+                      : _vm._e(),
+                  ])
+                }),
                 _vm._v(" "),
                 _c("div", { staticClass: "card-body" }, [
                   _c("h5", [_vm._v(_vm._s(product.name))]),
@@ -29488,7 +29425,8 @@ var render = function () {
                     ),
                   ]),
                 ]),
-              ]
+              ],
+              2
             )
           }),
         ],
@@ -29875,15 +29813,31 @@ var render = function () {
                 staticClass: "product_card card container-fluid col-md-5",
               },
               [
-                _c("a", { attrs: { href: _vm.imagePath + product.image } }, [
-                  _c("img", {
-                    staticClass: "card-img-top",
-                    attrs: {
-                      src: _vm.imagePath + product.image,
-                      alt: product.alt,
-                    },
-                  }),
-                ]),
+                _vm._l(_vm.product_media, function (productimage) {
+                  return _c("div", { key: productimage.product_id }, [
+                    productimage.product_id === product.id
+                      ? _c("span", [
+                          _c(
+                            "a",
+                            {
+                              attrs: {
+                                href: _vm.imagePath + productimage.file_name,
+                              },
+                            },
+                            [
+                              _c("img", {
+                                staticClass: "card-img-top",
+                                attrs: {
+                                  src: _vm.imagePath + product.image,
+                                  alt: product.alt,
+                                },
+                              }),
+                            ]
+                          ),
+                        ])
+                      : _vm._e(),
+                  ])
+                }),
                 _vm._v(" "),
                 _c("div", { staticClass: "card-body" }, [
                   _c("h5", [_vm._v(_vm._s(product.name))]),
@@ -29967,7 +29921,8 @@ var render = function () {
                     ),
                   ]),
                 ]),
-              ]
+              ],
+              2
             )
           }),
         ],
@@ -29999,14 +29954,14 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.allproducts[_vm.productindex]
+  return _vm.products[_vm.productindex]
     ? _c("div", [
         _c("section", [
           _c("div", { staticClass: "products block" }, [
             _c("img", {
               staticClass: "col-5",
               attrs: {
-                src: _vm.imagePath + _vm.allproducts[_vm.productindex].image,
+                src: _vm.imagePath + _vm.products[_vm.productindex].image,
                 height: "700px",
               },
             }),
@@ -30014,15 +29969,11 @@ var render = function () {
             _c("div", { staticClass: "col-5", attrs: { id: "detail" } }, [
               _c("h3", [
                 _c("b", [_vm._v("Name: ")]),
-                _vm._v(
-                  " " + _vm._s(_vm.allproducts[_vm.productindex].name) + " "
-                ),
+                _vm._v(" " + _vm._s(_vm.products[_vm.productindex].name) + " "),
               ]),
               _vm._v(" "),
               _c("h3", [
-                _vm._v(
-                  " " + _vm._s(_vm.allproducts[_vm.productindex].info) + " "
-                ),
+                _vm._v(" " + _vm._s(_vm.products[_vm.productindex].info) + " "),
               ]),
               _c("hr"),
               _vm._v(" "),
@@ -30030,12 +29981,12 @@ var render = function () {
                 _c("b", [_vm._v("Description: ")]),
                 _c("br"),
                 _vm._v(
-                  " " + _vm._s(_vm.allproducts[_vm.productindex].description)
+                  " " + _vm._s(_vm.products[_vm.productindex].description)
                 ),
               ]),
               _c("hr"),
               _vm._v(" "),
-              _vm.allproducts[_vm.productindex].onsale30
+              _vm.products[_vm.productindex].onsale30
                 ? _c("h3", [
                     _c("b", [_vm._v("Sale 30%")]),
                     _c("br"),
@@ -30043,7 +29994,7 @@ var render = function () {
                     _c("b", [_vm._v("Old Price: ")]),
                     _c("span", { staticClass: "onSale" }, [
                       _vm._v(
-                        _vm._s(_vm.allproducts[_vm.productindex].price) + "$"
+                        _vm._s(_vm.products[_vm.productindex].price) + "$"
                       ),
                     ]),
                     _c("br"),
@@ -30053,20 +30004,20 @@ var render = function () {
                       _c("b", [
                         _vm._v(
                           _vm._s(
-                            (_vm.allproducts[_vm.productindex].price * 30) / 100
+                            (_vm.products[_vm.productindex].price * 30) / 100
                           ) + "$"
                         ),
                       ]),
                     ]),
                     _c("hr"),
                   ])
-                : _vm.allproducts[_vm.productindex].onsale50
+                : _vm.products[_vm.productindex].onsale50
                 ? _c("h3", [
                     _c("b", [_vm._v("Sale 50%")]),
                     _vm._v(" "),
                     _c("span", { staticClass: "onSale" }, [
                       _vm._v(
-                        _vm._s(_vm.allproducts[_vm.productindex].price) + "$"
+                        _vm._s(_vm.products[_vm.productindex].price) + "$"
                       ),
                     ]),
                     _c("br"),
@@ -30076,7 +30027,7 @@ var render = function () {
                       _c("b", [
                         _vm._v(
                           _vm._s(
-                            (_vm.allproducts[_vm.productindex].price * 50) / 100
+                            (_vm.products[_vm.productindex].price * 50) / 100
                           ) + "$"
                         ),
                       ]),
@@ -30086,19 +30037,19 @@ var render = function () {
                 : _c("h3", [
                     _vm._v(
                       "Price: " +
-                        _vm._s(_vm.allproducts[_vm.productindex].price) +
+                        _vm._s(_vm.products[_vm.productindex].price) +
                         "$"
                     ),
                   ]),
               _vm._v(" "),
-              _vm.allproducts[_vm.productindex].stock === 0
+              _vm.products[_vm.productindex].stock === 0
                 ? _c("h3", { staticClass: "soldOut" }, [_vm._v("Sold Out")])
-                : _vm.allproducts[_vm.productindex].stock <= 5 &&
-                  _vm.allproducts[_vm.productindex].stock > 0
+                : _vm.products[_vm.productindex].stock <= 5 &&
+                  _vm.products[_vm.productindex].stock > 0
                 ? _c("h3", { staticClass: "soldOut" }, [
                     _vm._v("Almost Sold Out"),
                   ])
-                : _vm.allproducts[_vm.productindex].stock > 5
+                : _vm.products[_vm.productindex].stock > 5
                 ? _c("h3", [_vm._v("In Stock ")])
                 : _vm._e(),
               _vm._v(" "),
@@ -30109,7 +30060,7 @@ var render = function () {
                     staticClass: "addToCart btn btn-primary",
                     on: {
                       click: function ($event) {
-                        return _vm.updateCart(_vm.allproducts[_vm.productindex])
+                        return _vm.updateCart(_vm.products[_vm.productindex])
                       },
                     },
                   },
@@ -30185,15 +30136,31 @@ var render = function () {
                 staticClass: "product_card card container-fluid col-md-5",
               },
               [
-                _c("a", { attrs: { href: _vm.imagePath + product.image } }, [
-                  _c("img", {
-                    staticClass: "card-img-top",
-                    attrs: {
-                      src: _vm.imagePath + product.image,
-                      alt: product.alt,
-                    },
-                  }),
-                ]),
+                _vm._l(_vm.product_media, function (productimage) {
+                  return _c("div", { key: productimage.product_id }, [
+                    productimage.product_id === product.id
+                      ? _c("span", [
+                          _c(
+                            "a",
+                            {
+                              attrs: {
+                                href: _vm.imagePath + productimage.file_name,
+                              },
+                            },
+                            [
+                              _c("img", {
+                                staticClass: "card-img-top",
+                                attrs: {
+                                  src: _vm.imagePath + product.image,
+                                  alt: product.alt,
+                                },
+                              }),
+                            ]
+                          ),
+                        ])
+                      : _vm._e(),
+                  ])
+                }),
                 _vm._v(" "),
                 _c("div", { staticClass: "card-body" }, [
                   _c("h5", [_vm._v(_vm._s(product.name))]),
@@ -30277,7 +30244,8 @@ var render = function () {
                     ),
                   ]),
                 ]),
-              ]
+              ],
+              2
             )
           }),
         ],
@@ -30331,7 +30299,7 @@ var render = function () {
           _c("div"),
           _c("div"),
           _vm._v(" "),
-          _vm._l(_vm.allproducts, function (product, index) {
+          _vm._l(_vm.products, function (product, index) {
             return _c(
               "div",
               {
@@ -30347,15 +30315,31 @@ var render = function () {
                 staticClass: "product_card card container-fluid col-md-5",
               },
               [
-                _c("a", { attrs: { href: _vm.imagePath + product.image } }, [
-                  _c("img", {
-                    staticClass: "card-img-top",
-                    attrs: {
-                      src: _vm.imagePath + product.image,
-                      alt: product.alt,
-                    },
-                  }),
-                ]),
+                _vm._l(_vm.product_media, function (productimage) {
+                  return _c("div", { key: productimage.product_id }, [
+                    productimage.product_id === product.id
+                      ? _c("span", [
+                          _c(
+                            "a",
+                            {
+                              attrs: {
+                                href: _vm.imagePath + productimage.file_name,
+                              },
+                            },
+                            [
+                              _c("img", {
+                                staticClass: "card-img-top",
+                                attrs: {
+                                  src: _vm.imagePath + product.image,
+                                  alt: product.alt,
+                                },
+                              }),
+                            ]
+                          ),
+                        ])
+                      : _vm._e(),
+                  ])
+                }),
                 _vm._v(" "),
                 _c("div", { staticClass: "card-body" }, [
                   _c("h5", [_vm._v(_vm._s(product.name))]),
@@ -30439,7 +30423,8 @@ var render = function () {
                     ),
                   ]),
                 ]),
-              ]
+              ],
+              2
             )
           }),
         ],

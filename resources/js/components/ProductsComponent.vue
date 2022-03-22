@@ -1,22 +1,15 @@
 <template>
     <div>
-        <!-- <div class="products block">
-            <button class="btn btn-primary" type="button" id="dropdownMenuButton1"
-                data-bs-toggle="dropdown" aria-expanded="false">Products Filter &#9662;
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="/products" style="color:#cad2c5"> All Products</a></li>
-                <li><a class="dropdown-item" href="/machines" style="color:#cad2c5"> Machines</a></li>
-                <li><a class="dropdown-item" href="/beans" style="color:#cad2c5"> Beans</a></li>
-                <li><a class="dropdown-item" href="/cups" style="color:#cad2c5"> Cups</a></li>
-            </ul>
-        </div> -->
         <div class="products block">
             <div class="products block" :class="{'lds-spinner':loading}"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-                <div class="product_card card container-fluid col-md-5"  v-for="(product, index) in allproducts" :key="product.id" v-show="product.showstatus">
-                    <a :href="imagePath + product.image">
-                        <img :src="imagePath+product.image" class="card-img-top" :alt="product.alt" >
-                    </a>
+                <div class="product_card card container-fluid col-md-5"  v-for="(product, index) in products" :key="product.id" v-show="product.showstatus">
+                    <div v-for="productimage in product_media" :key="productimage.product_id">
+                        <span v-if="productimage.product_id === product.id">
+                            <a :href="imagePath + productimage.file_name">
+                                <img :src="imagePath+product.image" class="card-img-top" :alt="product.alt" >
+                            </a>
+                        </span>
+                    </div>
                     <div class="card-body">
                         <h5>{{product.name}}</h5><hr>
                         <p v-if="product.onsale30"><b>Sale 30%</b> 
@@ -48,31 +41,17 @@
     export default {
        
         props:{
-            machines:{
-                type: Array,
-                default:[]
-            },
-            beans:{
-                type: Array,
-                default:[]
-            },
-
-            cups:{
-                type: Array,
-                default:[]
-            },
         },
 
         data() {
             return {
-                // products:[],
-                // product_media: [],
+                product_media: [],
                 // product_discounts: [],
                 // product_has_discounts: [],
                 // product_categories: [],
                 // product_has_categories: [],
                 // product_stocks: [],
-                allproducts: [],
+                products: [],
                 imagePath: '/images/webshop/',
                 loading: true,
             }
@@ -81,38 +60,31 @@
         mounted() {
             // console.log('Component mounted.')
             // this.loadProduct();
-            // this.loadProductMedia();
+            this.loadProductMedia();
             // this.loadProductDiscount();
             // this.loadProductHasDiscount();
             // this.loadProductCategorie();
             // this.loadProductHasCategorie();
             // this.loadProductStock();
-            this.loadAllproduct();
+            this.loadProduct();
         },
 
          created() {
         },
 
         methods: {
-            // loadProduct(){
-            //     axios.get('/api/products')
-            //     .then((response) =>{
-            //         this.products = response.data.data;
-            //     })
-            //     .catch(function(error){
-            //         console.log(error);
-            //     });
-            // },
 
-            // loadProductMedia(){
-            //     axios.get('/api/product_media')
-            //     .then((response) =>{
-            //         this.product_media = response.data.data;
-            //     })
-            //     .catch(function(error){
-            //         console.log(error);
-            //     });
-            // },
+            loadProductMedia(){
+                axios.get('/api/product_media')
+                .then((response) =>{
+                    this.product_media = response.data.data;
+                    this.loading = false;
+
+                })
+                .catch(function(error){
+                    console.log(error);
+                });
+            },
 
             // loadProductDiscount(){
             //     axios.get('/api/product_discounts')
@@ -163,10 +135,10 @@
             //         console.log(error);
             //     });
             // },
-            loadAllproduct(){
-                axios.get('/api/allproducts')
+            loadProduct(){
+                axios.get('/api/products')
                 .then((response) =>{
-                    this.allproducts = response.data.data;
+                    this.products = response.data.data;
                     this.loading = false;
                 })
                 .catch(function(error){
