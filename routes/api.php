@@ -28,3 +28,4 @@ Route::get('/product_stocks', [App\Http\Controllers\Api\ProductStockController::
 Route::get('/product_categories', [App\Http\Controllers\Api\ProductCategorieController::class, 'index'])->name('products.categories');
 Route::get('/product_has_categories', [App\Http\Controllers\Api\ProductHasCategorieController::class, 'index'])->name('product.has.categorie');
 Route::get('/users', [App\Http\Controllers\Api\UserController::class, 'index'])->name('users.all');
+Route::get('/user_orders', [App\Http\Controllers\Api\UserOrderController::class, 'index'])->name('users.orders');

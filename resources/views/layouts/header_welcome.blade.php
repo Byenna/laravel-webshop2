@@ -62,7 +62,7 @@
                 @endguest
             </ul>
         </div>
-            <cart-component ref="shoppingComponent" :shopping-cart="shoppingCart"  :total-quantity="totalQuantity" :total-price="totalPrice"></cart-component>
+            <cart-component ref="shoppingComponent" :shopping-cart="shoppingCart"  :total-quantity="totalQuantity" :total-price="totalPrice" :total-price-no-sale="totalPriceNoSale"></cart-component>
         </nav>
         
 

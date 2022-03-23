@@ -7,7 +7,7 @@
                     <div v-for="productimage in product_media" :key="productimage.product_id">
                         <span v-if="productimage.product_id === product.id">
                             <a :href="imagePath + productimage.file_name">
-                                <img :src="imagePath+product.image" class="card-img-top" :alt="product.alt" >
+                                <img :src="imagePath+productimage.file_name" class="card-img-top" :alt="productimage.alt" >
                             </a>
                         </span>
                     </div>

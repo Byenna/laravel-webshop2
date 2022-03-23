@@ -62,6 +62,8 @@
                         <ul id="shoppingCart">
                             <li> <span id="shopping">Total Price:</span>
                                 <span><b>$ {{totalPrice}}</b></span>
+                                                                <span><b>$ {{totalPriceNoSale}}</b></span>
+
                             </li>
                             <li><span id="shopping">Remove All:</span>
                                 <i class="fa fa-trash-o" id="deletBtn" @click="remove()" ></i>
@@ -108,6 +110,10 @@
                 type: parseFloat(Number),
                 default: 0,
             },
+            totalPriceNoSale:{
+                type: parseFloat(Number),
+                default: 0,
+            }
             
         },
 
@@ -144,6 +150,10 @@
             updateProduct(product, index, updateType) {
                 this.$root.$emit('update-product', product,index, updateType)
             },
+            updateCart(product) {
+                this.$root.$emit('update-cart', product)
+            },
+
 
         },
     }

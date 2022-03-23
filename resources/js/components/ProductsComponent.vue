@@ -6,7 +6,7 @@
                     <div v-for="productimage in product_media" :key="productimage.product_id">
                         <span v-if="productimage.product_id === product.id">
                             <a :href="imagePath + productimage.file_name">
-                                <img :src="imagePath+product.image" class="card-img-top" :alt="product.alt" >
+                                <img :src="imagePath+productimage.file_name" class="card-img-top" :alt="productimage.alt" >
                             </a>
                         </span>
                     </div>
@@ -33,6 +33,15 @@
                 </div>
             </div>
         </div>
+        <!-- <nav aria-label="Products Page" class="products block">
+            <ul class="pagination">
+                <li class="page-item"><a class="page-link btn btn-primary" href="#">previece</a></li>
+                <li class="page-item"><a class="page-link btn btn-primary" href="#">1</a></li>
+                <li class="page-item"><a class="page-link btn btn-primary" href="#">2</a></li>
+                <li class="page-item"><a class="page-link btn btn-primary" href="#">3</a></li>
+                <li class="page-item"><a class="page-link btn btn-primary" href="#">next</a></li>
+            </ul>
+        </nav> -->
     </div>
 </template>
 
@@ -46,11 +55,6 @@
         data() {
             return {
                 product_media: [],
-                // product_discounts: [],
-                // product_has_discounts: [],
-                // product_categories: [],
-                // product_has_categories: [],
-                // product_stocks: [],
                 products: [],
                 imagePath: '/images/webshop/',
                 loading: true,
@@ -58,14 +62,8 @@
         },
 
         mounted() {
-            // console.log('Component mounted.')
-            // this.loadProduct();
+            console.log('Component mounted.')
             this.loadProductMedia();
-            // this.loadProductDiscount();
-            // this.loadProductHasDiscount();
-            // this.loadProductCategorie();
-            // this.loadProductHasCategorie();
-            // this.loadProductStock();
             this.loadProduct();
         },
 
@@ -73,7 +71,6 @@
         },
 
         methods: {
-
             loadProductMedia(){
                 axios.get('/api/product_media')
                 .then((response) =>{
@@ -86,55 +83,6 @@
                 });
             },
 
-            // loadProductDiscount(){
-            //     axios.get('/api/product_discounts')
-            //     .then((response) =>{
-            //         this.product_discounts = response.data.data;
-            //     })
-            //     .catch(function(error){
-            //         console.log(error);
-            //     });
-            // },
-            // loadProductHasDiscount(){
-            //     axios.get('/api/product_has_discounts')
-            //     .then((response) =>{
-            //         this.product_has_discounts = response.data.data;
-            //     })
-            //     .catch(function(error){
-            //         console.log(error);
-            //     });
-            // },
-
-            // loadProductCategorie(){
-            //     axios.get('/api/product_categories')
-                
-            //     .then((response) =>{
-            //         this.product_categories = response.data.data;
-            //     })
-            //     .catch(function(error){
-            //         console.log(error);
-            //     });
-            // },
-
-            // loadProductHasCategorie(){
-            //     axios.get('/api/product_has_categories')
-            //     .then((response) =>{
-            //         this.product_has_categories = response.data.data;
-            //     })
-            //     .catch(function(error){
-            //         console.log(error);
-            //     });
-            // },
-
-            // loadProductStock(){
-            //     axios.get('/api/product_stocks')
-            //     .then((response) =>{
-            //         this.product_stocks = response.data.data;
-            //     })
-            //     .catch(function(error){
-            //         console.log(error);
-            //     });
-            // },
             loadProduct(){
                 axios.get('/api/products')
                 .then((response) =>{

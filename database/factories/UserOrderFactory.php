@@ -17,6 +17,7 @@ class UserOrderFactory extends Factory
     public function definition()
     {
         return [
+            'total'     => $this->faker->numberBetween(0,100),        
         ];
     }
 }

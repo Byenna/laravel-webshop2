@@ -1,61 +1,53 @@
-@extends('layouts.master_head')
-
-@section('content')
-    
-    {{-- <div id="checkout" class="container">
-      
+<template>
+    <div id="checkout" class="container">
         <div class="py-5 text-center">
           <h2>Checkout form</h2>
+          <h3>{{user.first_name}}</h3>
         </div>
-    
         <div class="row g-5">
           <div class="col-md-5 col-lg-4 order-md-last">
             <h4 class="d-flex justify-content-between align-items-center mb-3">
               <span>Your cart</span>
-              <span class="badge bg-primary rounded-pill">3</span>
+              <span class="badge bg-danger rounded-pill">{{totalQuantity}}</span>
             </h4>
-            <ul class="list-group mb-3">
+            <ul class="list-group mb-3"  v-for="product in shoppingCart" :key="product.id">
               <li class="list-group-item d-flex justify-content-between lh-sm">
                 <div>
-                  <h6 class="my-0">Product name</h6>
-                  <small class="text-muted">Brief description</small>
+                    <span>Product Name:</span>
+                  <h6 class="mb-2">{{product.name}}</h6>
+                  <span>Quantity:</span>
+                  <small class="text-muted">{{product.quantity}}</small>
                 </div>
-                <span class="text-muted">$12</span>
-              </li>
-              <li class="list-group-item d-flex justify-content-between lh-sm">
                 <div>
-                  <h6 class="my-0">Second product</h6>
-                  <small class="text-muted">Brief description</small>
+                  <h6 class="mb-2">Price:</h6>
+                    <span v-if="product.onsale30">
+                        <span> 
+                            <b>$ {{(product.price - product.price*30/100)*product.quantity}}</b>
+                        </span>
+                        <div class="newPrice30">30%</div>
+                    </span>
+                    <span v-else-if="product.onsale50">
+                        <span> 
+                            <b>$ {{(product.price - product.price*50/100)*product.quantity}}</b>
+                        </span>
+                        <div class="newPrice50">50%</div>
+                    </span>
+                    <span v-else><b>$ {{product.price*product.quantity}}</b></span><br>
                 </div>
-                <span class="text-muted">$8</span>
-              </li>
-              <li class="list-group-item d-flex justify-content-between lh-sm">
-                <div>
-                  <h6 class="my-0">Third item</h6>
-                  <small class="text-muted">Brief description</small>
-                </div>
-                <span class="text-muted">$5</span>
-              </li>
-              <li class="list-group-item d-flex justify-content-between bg-light">
-                <div class="text-success">
-                  <h6 class="my-0">Promo code</h6>
-                  <small>EXAMPLECODE</small>
-                </div>
-                <span class="text-success">−$5</span>
-              </li>
-              <li class="list-group-item d-flex justify-content-between">
-                <span>Total (USD)</span>
-                <strong>$20</strong>
               </li>
             </ul>
-    
-            <form class="card p-2">
-              <div class="input-group">
-                <input type="text" class="form-control" placeholder="Promo code">
-                <button type="submit" class="btn btn-secondary">Redeem</button>
-              </div>
-            </form>
+              <li class="list-group-item d-flex justify-content-between bg-light">
+                <div class="text-success">
+                  <h6 class="my-0">Total Discount</h6>
+                </div>
+                <span class="text-success">${{totalPriceNoSale - totalPrice}}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between">
+                <span><strong>Total (USD)</strong></span>
+                <strong>${{totalPrice}}</strong>
+              </li>
           </div>
+
           <div class="col-md-7 col-lg-8">
             <h4 class="mb-3">Billing address</h4>
             <form class="needs-validation" novalidate>
@@ -204,15 +196,123 @@
         </div>
     
     
-    </div> --}}
-    
-        @if(Auth::check())
-       <checkout-component :shopping-cart="shoppingCart"  :total-quantity="totalQuantity" :total-price="totalPrice" :total-price-no-sale="totalPriceNoSale" :user="{{Auth::user()}}"></checkout-component> 
-       @else
-       <checkout-component :shopping-cart="shoppingCart"  :total-quantity="totalQuantity" :total-price="totalPrice" :total-price-no-sale="totalPriceNoSale" :user="false"></checkout-component>
-        @endif
-        @endsection
-    @section('scripts')
-          <script src="{{ asset('/checkout.js') }}"></script>
-          @endsection
-    
+    </div>
+</template>
+
+<script>
+
+    export default {
+       
+        props:{
+            shoppingCart: {
+                type: Array,
+            },
+            totalQuantity: {
+                type: Number,
+                default: 0,
+            },
+            totalPrice: {
+                type: parseFloat(Number),
+                default: 0,
+            },
+            totalPriceNoSale:{
+                type: parseFloat(Number),
+                default: 0,
+            },
+            user:{
+                type:Object
+            }
+
+
+        },
+
+        data() {
+            return {
+                products:[],
+                users:[],
+                user_orders:[],
+                logUser:'',
+                loading: true,
+            }
+        },
+
+        mounted() {
+            console.log('Component mounted.')
+            this.loadProductMedia();
+            this.loadProduct();
+            this.loadUser();
+            this.loadUserOrder();
+            
+        },
+
+         created() {
+        },
+
+        methods: {
+            loadProductMedia(){
+                axios.get('/api/product_media')
+                .then((response) =>{
+                    this.product_media = response.data.data;
+                    this.loading = false;
+
+                })
+                .catch(function(error){
+                    console.log(error);
+                });
+            },
+
+            loadProduct(){
+                axios.get('/api/products')
+                .then((response) =>{
+                    this.products = response.data.data;
+                    this.loading = false;
+                })
+                .catch(function(error){
+                    console.log(error);
+                });
+            },
+            loadUser(){
+                axios.get('/api/users')
+                .then((response) =>{
+                    this.users = response.data.data;
+                })
+                .catch(function(error){
+                    console.log(error);
+                });
+            },
+            loadUserOrder(){
+                axios.get('/api/user_orders')
+                .then((response) =>{
+                    this.user_orders = response.data.data;
+                })
+                .catch(function(error){
+                    console.log(error);
+                });
+            },
+
+
+            remove() {
+                this.$root.$emit('remove')
+            },
+            removeProduct(index) {
+                this.$root.$emit('remove-product', index)
+            },
+
+            updateProduct(product, index, updateType) {
+                this.$root.$emit('update-product', product,index, updateType)
+            },
+
+            updateCart(product) {
+                this.$root.$emit('update-cart', product)
+            },
+
+            updateCart(product) {
+                this.$root.$emit('update-cart', product)
+            },
+
+            detail(index){
+                this.$root.$emit('detail', index)
+            },
+        },
+    }
+</script>
