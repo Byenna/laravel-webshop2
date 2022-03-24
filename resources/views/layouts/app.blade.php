@@ -29,7 +29,8 @@
         @include('layouts.header_welcome')
         
         @yield('content')
-        @include('layouts.footer')
+        @include('layouts.icons')
+        @include('layouts.footer_info')
     </div>
 </body>
 </html>

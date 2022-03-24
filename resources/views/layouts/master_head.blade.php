@@ -24,14 +24,19 @@
     <!-- Styles -->
     <link  href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+
+
+
 </head>
     <body>
         <div id="app" >        
         @include('layouts.header_welcome')
         
         @yield('content')
-        @include('layouts.footer')
-        </div>
+        @include('layouts.icons')
+        @include('layouts.footer_info')
+    </div>
+
         @yield('scripts')
     </body>
 </html>

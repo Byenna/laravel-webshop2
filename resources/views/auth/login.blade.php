@@ -70,4 +70,5 @@
         </div>
     </div>
 </div>
+<div class="auth_space"></div>
 @endsection

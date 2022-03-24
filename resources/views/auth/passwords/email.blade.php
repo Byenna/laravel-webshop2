@@ -44,4 +44,5 @@
         </div>
     </div>
 </div>
+<div class="auth_space_email"></div>
 @endsection

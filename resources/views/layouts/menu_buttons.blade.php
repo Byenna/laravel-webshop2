@@ -24,7 +24,7 @@
 
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
             <li><a class="dropdown-item" href="{{ URL::to('/contact') }}" style="color:#cad2c5"> Contact us</a></li>
-            <li><a class="dropdown-item" href="{{ URL::to('/about') }}"
+            <li><a class="dropdown-item" href="https://nl.wikipedia.org/wiki/Koffie_(drank)"
                     style="color:#cad2c5">About</a></li>
         </ul>
         </div>

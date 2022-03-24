@@ -28,6 +28,9 @@ Route::get('/checkout', function () {
     return view('checkout');
 });
 
+Route::get('/contact', function () {
+    return view('contact');
+});
 // Route::get('/webshop', function () {
 //     return view('webshop');
 // });

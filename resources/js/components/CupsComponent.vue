@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="products block">
-            <h3>CUPS</h3>
+            <div class="title_products" ><p>CUPS</p></div>
             <div class="products block" :class="{'lds-spinner':loading}"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
                 <div class="product_card card container-fluid col-md-5"  v-for="(product, index) in cups" :key="product.id" v-show="product.showstatus">
                     <div v-for="productimage in product_media" :key="productimage.product_id">
