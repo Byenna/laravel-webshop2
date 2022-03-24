@@ -5829,8 +5829,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     shoppingCart: {
@@ -5857,58 +5855,77 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       products: [],
       users: [],
       user_orders: [],
-      logUser: '',
+      user_addresses: [],
+      useremail: '',
       loading: true,
       firstN: "",
-      lastN: ""
+      lastN: "",
+      userstreet: ''
     };
   },
   mounted: function mounted() {
+    var _this = this;
+
     console.log('Component mounted.');
     this.loadProductMedia();
     this.loadProduct();
     this.loadUser();
     this.loadUserOrder();
+    this.loadUserAddress();
     this.firstN = document.getElementById('firstName').value = this.user.first_name;
     this.lastN = document.getElementById('lastName').value = this.user.last_name;
     this.useremail = document.getElementById('email').value = this.user.email;
+    this.user_addresses.forEach(function (element) {
+      if (element.user_id == _this.user.id) {
+        _this.userstreet = document.getElementById('street').value = element.street;
+      }
+    });
   },
   created: function created() {},
   methods: (_methods = {
     loadProductMedia: function loadProductMedia() {
-      var _this = this;
-
-      axios.get('/api/product_media').then(function (response) {
-        _this.product_media = response.data.data;
-        _this.loading = false;
-      })["catch"](function (error) {
-        console.log(error);
-      });
-    },
-    loadProduct: function loadProduct() {
       var _this2 = this;
 
-      axios.get('/api/products').then(function (response) {
-        _this2.products = response.data.data;
+      axios.get('/api/product_media').then(function (response) {
+        _this2.product_media = response.data.data;
         _this2.loading = false;
       })["catch"](function (error) {
         console.log(error);
       });
     },
-    loadUser: function loadUser() {
+    loadProduct: function loadProduct() {
       var _this3 = this;
 
+      axios.get('/api/products').then(function (response) {
+        _this3.products = response.data.data;
+        _this3.loading = false;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    loadUser: function loadUser() {
+      var _this4 = this;
+
       axios.get('/api/users').then(function (response) {
-        _this3.users = response.data.data;
+        _this4.users = response.data.data;
       })["catch"](function (error) {
         console.log(error);
       });
     },
     loadUserOrder: function loadUserOrder() {
-      var _this4 = this;
+      var _this5 = this;
 
       axios.get('/api/user_orders').then(function (response) {
-        _this4.user_orders = response.data.data;
+        _this5.user_orders = response.data.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    loadUserAddress: function loadUserAddress() {
+      var _this6 = this;
+
+      axios.get('/api/user_addresses').then(function (response) {
+        _this6.user_addresses = response.data.data;
       })["catch"](function (error) {
         console.log(error);
       });
@@ -30431,6 +30448,7 @@ var staticRenderFns = [
                   type: "text",
                   id: "street",
                   placeholder: "Brinkstraat",
+                  vlaue: "userstreet",
                   required: "",
                 },
               }),

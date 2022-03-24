@@ -78,7 +78,7 @@
     
                 <div class="col-sm-12">
                   <label for="address" class="form-label">Street</label>
-                  <input type="text" class="form-control" id="street" placeholder="Brinkstraat" required>
+                  <input type="text" class="form-control" id="street" placeholder="Brinkstraat" vlaue=userstreet required>
                   <div class="invalid-feedback">
                     Please enter your shipping address.
                   </div>
@@ -97,8 +97,6 @@
                   </div>
                 </div>
               </div>
-    
-                
     
                 <div class="col-md-4">
                   <label for="state" class="form-label">City</label>
@@ -229,10 +227,12 @@
                 products:[],
                 users:[],
                 user_orders:[],
-                logUser:'',
+                user_addresses:[],
+                useremail: '',
                 loading: true,
                 firstN:"",
-                lastN:""
+                lastN:"",
+                userstreet:''
             }
         },
 
@@ -242,11 +242,16 @@
             this.loadProduct();
             this.loadUser();
             this.loadUserOrder();
+            this.loadUserAddress();
             this.firstN=document.getElementById('firstName').value=this.user.first_name;
             this.lastN=document.getElementById('lastName').value=this.user.last_name;
             this.useremail=document.getElementById('email').value=this.user.email;
+            this.user_addresses.forEach(element => {
+                if(element.user_id == this.user.id){
+                    this.userstreet = document.getElementById('street').value= element.street;
+                }
+            });
 
-            
         },
 
          created() {
@@ -293,6 +298,16 @@
                     console.log(error);
                 });
             },
+            loadUserAddress(){
+                axios.get('/api/user_addresses')
+                .then((response) =>{
+                    this.user_addresses = response.data.data;
+                })
+                .catch(function(error){
+                    console.log(error);
+                });
+            },
+
 
 
             remove() {
