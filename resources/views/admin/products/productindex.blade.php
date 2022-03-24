@@ -29,7 +29,7 @@
                     </thead>
                     <tbody>
                             @php($i = 1)
-                            @foreach($allproducts as $product)
+                            @foreach($products as $product)
                         <tr>
                             <th scope="row">{{ $i++ }}</th>
                             <td>{{ $product->name }}</td>

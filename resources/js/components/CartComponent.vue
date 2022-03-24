@@ -108,6 +108,10 @@
                 type: parseFloat(Number),
                 default: 0,
             },
+            totalPriceNoSale:{
+                type: parseFloat(Number),
+                default: 0,
+            }
             
         },
 
@@ -144,6 +148,10 @@
             updateProduct(product, index, updateType) {
                 this.$root.$emit('update-product', product,index, updateType)
             },
+            updateCart(product) {
+                this.$root.$emit('update-cart', product)
+            },
+
 
         },
     }
