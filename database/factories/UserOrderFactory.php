@@ -17,7 +17,9 @@ class UserOrderFactory extends Factory
     public function definition()
     {
         return [
-            'total'     => $this->faker->numberBetween(0,100),        
+            'user_id'       => \App\Models\User::inRandomOrder()->first()->id,
+            // 'payment_id'    => \App\Models\Payment::inRandomOrder()->first()->id,
+            'total'         => $this->faker->numberBetween(0,100),        
         ];
     }
 }

@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class UserAddresses extends Authenticatable
+class UserAddress extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -18,7 +18,7 @@ class UserAddresses extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'steet',
+        'street',
         'zip_code',
         'house_number',
         'city',
