@@ -2,7 +2,7 @@
     <div id="checkout" class="container">
         <div class="py-5 text-center">
           <h2>Checkout form</h2>
-          <h3>{{user.first_name}}</h3>
+          <h3>{{user.first_name}} {{' '}} {{user.last_name}}</h3>
         </div>
         <div class="row g-5">
           <div class="col-md-5 col-lg-4 order-md-last">
@@ -54,7 +54,7 @@
               <div class="row g-3">
                 <div class="col-sm-6">
                   <label for="firstName" class="form-label">First name</label>
-                  <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                  <input type="text" class="form-control" id="firstName" placeholder="" value=firstN required>
                   <div class="invalid-feedback">
                     Valid first name is required.
                   </div>
@@ -62,7 +62,7 @@
     
                 <div class="col-sm-6">
                   <label for="lastName" class="form-label">Last name</label>
-                  <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                  <input type="text" class="form-control" id="lastName" placeholder="" value=lastN required>
                   <div class="invalid-feedback">
                     Valid last name is required.
                   </div>
@@ -70,7 +70,7 @@
     
                 <div class="col-12">
                   <label for="email" class="form-label">Email <span class="text-muted">(Optional)</span></label>
-                  <input type="email" class="form-control" id="email" placeholder="you@example.com">
+                  <input type="email" class="form-control" id="email" placeholder="you@example.com" value=useremail>
                   <div class="invalid-feedback">
                     Please enter a valid email address for shipping updates.
                   </div>
@@ -221,9 +221,7 @@
             },
             user:{
                 type:Object
-            }
-
-
+            },
         },
 
         data() {
@@ -233,6 +231,8 @@
                 user_orders:[],
                 logUser:'',
                 loading: true,
+                firstN:"",
+                lastN:""
             }
         },
 
@@ -242,6 +242,10 @@
             this.loadProduct();
             this.loadUser();
             this.loadUserOrder();
+            this.firstN=document.getElementById('firstName').value=this.user.first_name;
+            this.lastN=document.getElementById('lastName').value=this.user.last_name;
+            this.useremail=document.getElementById('email').value=this.user.email;
+
             
         },
 

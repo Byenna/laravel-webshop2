@@ -29,3 +29,4 @@ Route::get('/product_categories', [App\Http\Controllers\Api\ProductCategorieCont
 Route::get('/product_has_categories', [App\Http\Controllers\Api\ProductHasCategorieController::class, 'index'])->name('product.has.categorie');
 Route::get('/users', [App\Http\Controllers\Api\UserController::class, 'index'])->name('users.all');
 Route::get('/user_orders', [App\Http\Controllers\Api\UserOrderController::class, 'index'])->name('users.orders');
+Route::get('/user_addresses', [App\Http\Controllers\Api\UserAddressController::class, 'index'])->name('users.orders');

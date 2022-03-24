@@ -5553,8 +5553,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -5864,7 +5862,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       users: [],
       user_orders: [],
       logUser: '',
-      loading: true
+      loading: true,
+      firstN: "",
+      lastN: ""
     };
   },
   mounted: function mounted() {
@@ -5873,6 +5873,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.loadProduct();
     this.loadUser();
     this.loadUserOrder();
+    this.firstN = document.getElementById('firstName').value = this.user.first_name;
+    this.lastN = document.getElementById('lastName').value = this.user.last_name;
+    this.useremail = document.getElementById('email').value = this.user.email;
   },
   created: function created() {},
   methods: (_methods = {
@@ -30061,10 +30064,6 @@ var render = function () {
                       _c("span", [
                         _c("b", [_vm._v("$ " + _vm._s(_vm.totalPrice))]),
                       ]),
-                      _vm._v(" "),
-                      _c("span", [
-                        _c("b", [_vm._v("$ " + _vm._s(_vm.totalPriceNoSale))]),
-                      ]),
                     ]),
                     _vm._v(" "),
                     _c("li", [
@@ -30163,7 +30162,15 @@ var render = function () {
     _c("div", { staticClass: "py-5 text-center" }, [
       _c("h2", [_vm._v("Checkout form")]),
       _vm._v(" "),
-      _c("h3", [_vm._v(_vm._s(_vm.user.first_name))]),
+      _c("h3", [
+        _vm._v(
+          _vm._s(_vm.user.first_name) +
+            " " +
+            _vm._s(" ") +
+            " " +
+            _vm._s(_vm.user.last_name)
+        ),
+      ]),
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "row g-5" }, [
@@ -30340,7 +30347,7 @@ var staticRenderFns = [
                   type: "text",
                   id: "firstName",
                   placeholder: "",
-                  value: "",
+                  value: "firstN",
                   required: "",
                 },
               }),
@@ -30365,7 +30372,7 @@ var staticRenderFns = [
                   type: "text",
                   id: "lastName",
                   placeholder: "",
-                  value: "",
+                  value: "lastN",
                   required: "",
                 },
               }),
@@ -30395,6 +30402,7 @@ var staticRenderFns = [
                   type: "email",
                   id: "email",
                   placeholder: "you@example.com",
+                  value: "useremail",
                 },
               }),
               _vm._v(" "),

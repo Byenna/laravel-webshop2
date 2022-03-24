@@ -62,8 +62,6 @@
                         <ul id="shoppingCart">
                             <li> <span id="shopping">Total Price:</span>
                                 <span><b>$ {{totalPrice}}</b></span>
-                                                                <span><b>$ {{totalPriceNoSale}}</b></span>
-
                             </li>
                             <li><span id="shopping">Remove All:</span>
                                 <i class="fa fa-trash-o" id="deletBtn" @click="remove()" ></i>
