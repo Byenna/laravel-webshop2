@@ -24,9 +24,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/checkout', function () {
-    return view('checkout');
-});
+
 
 Route::get('/contact', function () {
     return view('contact');
@@ -79,6 +77,10 @@ Route::get('/home', function () {
 Route::get('/products', function () {
     return view('webshop');
 });
+Route::get('/checkout', function () {
+    return view('checkout');
+});
+
 
 
 Route::view('/products',['home']);
@@ -86,6 +88,12 @@ Route::view('/machines', ['machines']);
 Route::view('/beans', ['beans']);
 Route::view('/cups', ['cups']);
 Route::get('/detail/{id}',[DetailController::class, 'index'])->name('product.detail');
+
+
+// Checkout Routes
+Route::get('/pay', [ProductController::class, 'CheckoutCreate']);
+
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/admin/users/index', function () {
     //  $users = DB::table('users')->get();

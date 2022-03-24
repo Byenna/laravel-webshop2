@@ -189,7 +189,7 @@
               </div>
     
               <hr class="my-4">
-    
+              <!-- <a class="w-100 btn btn-primary btn-lg" type="submit" :href="'checkout/' + product.id">Continue to checkout</a> -->
               <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
             </form>
           </div>

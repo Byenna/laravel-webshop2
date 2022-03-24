@@ -12,4 +12,13 @@ class ProductController extends Controller
         return view('admin/products/productindex',['products' => $products]);
         // return view('detail');
     }
+
+
+    // Checkout Method
+    public function CheckoutCreate(){
+        return view('checkout');
+
+    }// end method
+
+
 }

@@ -49,6 +49,7 @@
         <div class="admin_content">
             <main>
             @yield('content')
+            @include('layouts.footer_admin')
             </main>
         </div>
     </div>
