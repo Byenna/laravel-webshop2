@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
       $this->call(ProductMediaSeeder::class);
       $this->call(ProductSeeder::class);
       $this->call(ProductStockSeeder::class);
-      $this->call(UserAddressesSeeder::class);
+      $this->call(UserAddressSeeder::class);
       $this->call(UserOrderSeeder::class);
       $this->call(UserPhonesSeeder::class);
       $this->call(UserSeeder::class);

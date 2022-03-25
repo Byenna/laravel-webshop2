@@ -11839,6 +11839,10 @@ body {
     padding: 4rem;
   }
 }
+.dropdown-item {
+  color: #cad2c5;
+}
+
 .admin_menu {
   display: flex;
   justify-content: center;

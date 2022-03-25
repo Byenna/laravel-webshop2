@@ -47,10 +47,10 @@
                             {{ __('Logout') }}
                         </a>
 
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}"
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="color:beige">
+                            <a class="dropdown-item" href="{{ route('logout') }}" 
                             onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
+                                            document.getElementById('logout-form').submit();" style="color:beige">
                                 {{ __('Logout') }}
                             </a>
 
@@ -59,6 +59,14 @@
                             </form>
                         </div>
                     </li>
+                    @if (Route::has('login'))
+                    <!-- webshop-link is visible only when user is nog logged in -->
+                     <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/products') }}">{{ __('Webshop') }}</a>
+                    </li>
+                @endif
+
+
                 @endguest
             </ul>
         </div>

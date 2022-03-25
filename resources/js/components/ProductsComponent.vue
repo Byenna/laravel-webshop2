@@ -13,14 +13,14 @@
                     <div class="card-body">
                         <h5>{{product.name}}</h5><hr>
                         <p v-if="product.onsale30"><b>Sale 30%</b> 
-                            <span class="onSale">{{product.price}}$</span><br>
-                            <span class="newPrice30"> New Price: <b>{{product.price*30/100}}$</b></span>
+                            <span class="onSale">{{(product.price*1).toFixed(2)}}$</span><br>
+                            <span class="newPrice30"> New Price: <b>{{(product.price -product.price*30/100).toFixed(2)}}$</b></span>
                         </p>
                         <p v-else-if="product.onsale50"><b>Sale 50%</b>
-                            <span class="onSale">{{product.price}}$</span><br>
-                            <span class="newPrice50"> New Price: <b>{{product.price*50/100}}$</b></span>
+                            <span class="onSale">{{(product.price*1).toFixed(2)}}$</span><br>
+                            <span class="newPrice50"> New Price: <b>{{(product.price - product.price*50/100).toFixed(2)}}$</b></span>
                         </p>
-                        <p v-else>Price: {{product.price}}$</p>
+                        <p v-else>Price: {{(product.price*1).toFixed(2)}}$</p>
                         <p class="soldOut" v-if="product.stock===0">Sold Out</p>
                         <p class="soldOut" v-else-if="product.stock<=5 && product.stock>0">Almost Sold Out</p>
                         <p v-else-if="product.stock>5">In Stock</p>
