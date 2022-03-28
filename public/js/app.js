@@ -6023,7 +6023,7 @@ __webpack_require__.r(__webpack_exports__);
       this.useremail = document.getElementById('email').value = this.user.email;
     }
 
-    ; // this.addOrd  er();
+    ; // this.addOrd  er(); ss
   },
   created: function created() {},
   methods: {
@@ -6087,9 +6087,6 @@ __webpack_require__.r(__webpack_exports__);
     //         console.log('Error: ' + error);
     //     });
     // },
-    empty: function empty() {
-      this.orders.totalPrice = 0;
-    },
     remove: function remove() {
       this.$root.$emit('remove');
     }
@@ -30855,12 +30852,8 @@ var render = function () {
                               staticClass: "btn btn-primary btn-lg",
                               attrs: { type: "submit" },
                               on: {
-                                submit: function ($event) {
-                                  return _vm.addOrder()
-                                },
                                 click: function ($event) {
-                                  _vm.remove()
-                                  _vm.empty()
+                                  return _vm.remove()
                                 },
                               },
                             },
