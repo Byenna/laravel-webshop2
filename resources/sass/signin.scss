@@ -52,5 +52,13 @@ body {
 }
 
 .dropdown-item{
-    color:#cad2c5;
+    color: #cad2c5;
+    background-color: #414833;
+    border-color: #656d4a;
+}
+.dropdown-item:hover,
+.dropdown-item:focus{
+    color: #2e401c;
+    background-color: #bfab67;
+    border-color: #656d4a;
 }
