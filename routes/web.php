@@ -90,11 +90,6 @@ Route::view('/cups', ['cups']);
 Route::get('/detail/{id}',[DetailController::class, 'index'])->name('product.detail');
 
 
-// Checkout Routes
-Route::get('/pay', [ProductController::class, 'CheckoutCreate']);
-
-
-
 Route::middleware(['auth:sanctum', 'verified'])->get('/admin/users/index', function () {
     //  $users = DB::table('users')->get();
     $users = User::all();
@@ -104,4 +99,3 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/admin/users/index', funct
 
 
 Route::view('/{any}', ['welcome']);
-

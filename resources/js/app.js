@@ -114,10 +114,10 @@ const app = new Vue({
 							item.stock--;
 
 						if (item.onsale30) {
-							this.totalPrice += (parseFloat(item.price))*30/100
+							this.totalPrice += parseFloat(item.price) -((parseFloat(item.price))*30/100)
 							this.totalPriceNoSale += parseFloat(item.price);
 						} else if (item.onsale50) {
-							this.totalPrice += (parseFloat(item.price))*50/100
+							this.totalPrice += parseFloat(item.price) - ((parseFloat(item.price))*50/100)
 							this.totalPriceNoSale += parseFloat(item.price);
 
 						} else {
@@ -138,12 +138,12 @@ const app = new Vue({
 								
 								this.totalQuantity++;
 								if (ele.onsale30) {
-									this.totalPrice += parseFloat(ele.price)*30/100;
+									this.totalPrice += parseFloat(item.price) - (parseFloat(ele.price)*30/100);
 									this.totalPriceNoSale += parseFloat(ele.price);
 
 
 								} else if (ele.onsale50) {
-									this.totalPrice += parseFloat(ele.price)*50/100;
+									this.totalPrice += parseFloat(item.price) - (parseFloat(ele.price)*50/100);
 									this.totalPriceNoSale += parseFloat(ele.price);
 
 								} else {
@@ -170,14 +170,14 @@ const app = new Vue({
 						cart.stock--;
 						this.totalQuantity++;
 						if(cart.onsale30){
-							this.totalPrice += parseFloat(cart.price*30/100);
+							this.totalPrice += parseFloat(cart.price) - (parseFloat(cart.price*30/100));
 							this.totalPriceNoSale += parseFloat(cart.price);
 						}else if(cart.onsale50){
-							this.totalPrice += parseFloat(cart.price*50/100);
+							this.totalPrice += parseFloat(cart.price) - (parseFloat(cart.price*50/100));
 							this.totalPriceNoSale += parseFloat(cart.price);
 						}else{
 							this.totalPrice += parseFloat(cart.price);
-							this.totalPriceNoSale += parseFloat(cart.price);
+							this.totalPriceNoSale +=parseFloat(cart.price);
 						}
 						localStorage.setItem('totalQuantity', this.totalQuantity)
 						localStorage.setItem('totalPrice', this.totalPrice)
@@ -189,15 +189,15 @@ const app = new Vue({
 							cart.quantity--;
 							cart.stock++;
 							if(cart.onsale30){
-								this.totalPrice -= cart.price*30/100;
-								this.totalPriceNoSale -=cart.price;
+								this.totalPrice -= parseFloat(cart.price) -(parseFloat(cart.price*30/100));
+								this.totalPriceNoSale -=parseFloat(cart.price);
 							}else if(cart.onsale50){
-								this.totalPrice -= cart.price*50/100;
-								this.totalPriceNoSale -=cart.price;
+								this.totalPrice -= parseFloat(cart.price) - (parseFloat(cart.price*50/100));
+								this.totalPriceNoSale -= parseFloat(cart.price);
 
 							}else{
-								this.totalPrice -= cart.price;
-								this.totalPriceNoSale -= cart.price;
+								this.totalPrice -= parseFloat(cart.price);
+								this.totalPriceNoSale -= parseFloat(cart.price);
 							}
 						}else{
 							this.shoppingCart.splice(index, 1);
@@ -205,16 +205,16 @@ const app = new Vue({
 							cart.quantity--;
 							cart.stock++;
 							if(cart.onsale30){
-								this.totalPrice -= cart.price*30/100;
-								this.totalPriceNoSale -=cart.price;
+								this.totalPrice -= parseFloat(cart.price) - (parseFloat(cart.price*30/100));
+								this.totalPriceNoSale -=parseFloat(cart.price);
 
 							}else if(cart.onsale50){
-								this.totalPrice -= cart.price*50/100;
-								this.totalPriceNoSale -=cart.price;
+								this.totalPrice -= parseFloat(cart.price) - (parseFloat(cart.price*50/100));
+								this.totalPriceNoSale -=parseFloat(cart.price);
 
 							}else{
-								this.totalPrice -= cart.price;
-								this.totalPriceNoSale -= cart.price;
+								this.totalPrice -= parseFloat(cart.price);
+								this.totalPriceNoSale -= parseFloat(cart.price);
 							}
 						}
 						localStorage.removeItem('shoppingCart');
