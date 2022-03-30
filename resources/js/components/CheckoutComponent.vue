@@ -202,23 +202,29 @@
                             </div>
                             <span class="text-success">${{(totalPriceNoSale - totalPrice).toFixed(2)}}</span>
                         </li>
+                        <li class="list-group-item d-flex justify-content-between bg-light">
+                            <div class="text-success">
+                                <h6 class="my-0">Total Quantity</h6>
+                            </div>
+                            <span class="text-success">({{totalQuantity}})</span>
+                        </li>
+
                         <li class="list-group-item d-flex justify-content-between">
                             <span><strong>Total (USD)</strong></span>
                             <strong>${{totalPrice.toFixed(2)}}</strong>
                         </li>
 
-                        <span class="form-check" style="position: absolute;
-                                                        bottom: 0em;">
+                        <span class="form-check checkout_form">
                             <form method="POST" action="/api/user_orders">
-                                <div class="alert aler-success" v-show="success">Your Order is successfully submited</div>
                                 <label for="total" class="form-label">Total Price</label>
                                 <input id="total" class="form-control" type="float" name="total" v-model="orders.totalPrice" value="total"><br>
+                                <label for="total_quantity" class="form-label">Total Quantity</label>
+                                <input id="total_quantity" class="form-control" type="integer" name="total_quantity" v-model="orders.total_quantity" value="total_quantity"><br>
                                 <label for="user_id" class="form-label">{{user.first_name}} id</label>
-                                <input id="user_id" class="form-control" type="number" name="user_id" v-model="orders.user_id" value="user_id"><br>
-                                <button class="btn btn-primary btn-lg" type="submit" @click="remove()">checkout order</button><hr>
+                                <input id="user_id" class="form-control" type="integer" name="user_id" v-model="orders.user_id" value="user_id"><br>
+                                <button class="btn btn-primary" type="submit" @submit.prevent @click="remove()">checkout order</button>
                             </form>
                         </span>
-
                     </div>
 
 
@@ -267,6 +273,15 @@
                                         <label for="country" class="form-label">Country</label>
                                         <input type="text" class="form-control" id="country" placeholder="The Netherlands" v-model="userinfo.country" required>
                                     </div>
+                                    <div class="col-md-5" v-for="phone in user_phones" :key="phone.id">
+                                        <span v-if="phone.user_id == user.id">
+                                            <label for="phone1" class="form-label">Phone1</label>
+                                            <input type="phone" class="form-control" id="phone1" placeholder="" v-model="phone.phone_number1" required>
+                                            <label for="phone2" class="form-label">Phone2</label>
+                                            <input type="phone" class="form-control" id="phone2" placeholder="" v-model="phone.phone_number2" required>
+                                        </span>
+                                    </div>
+
                                     <div class="form-check">
                                         <input id="choose" name="chooseAddress" type="radio" class="form-check-input" checked required>
                                         <label class="form-check-label" for="choose">Check Address</label>
@@ -364,6 +379,7 @@
                 users:[],
                 user_orders:[],
                 user_addresses:[],
+                user_phones:[],
                 useremail: '',
                 loading: true,
                 firstN:"",
@@ -371,9 +387,8 @@
                 orders:{
                     totalPrice:(this.totalPrice*1).toFixed(2),
                     user_id: this.user.id,
+                    total_quantity: this.totalQuantity,
                 },
-                success:false
-                
             }
         },
 
@@ -384,14 +399,13 @@
             this.loadUser();
             this.loadUserOrder();
             this.loadUserAddress();
+            this.loadUserPhone();
 
             if(this.user!=false){
             this.firstN=document.getElementById('firstName').value=this.user.first_name;
             this.lastN=document.getElementById('lastName').value=this.user.last_name;
             this.useremail=document.getElementById('email').value=this.user.email;
             };
-
-            // this.addOrd  er(); ss
         },
 
          created() {
@@ -447,6 +461,16 @@
                     console.log(error);
                 });
             },
+            loadUserPhone(){
+                axios.get('/api/user_phones')
+                .then((response) =>{
+                    this.user_phones = response.data.data;
+                })
+                .catch(function(error){
+                    console.log(error);
+                });
+
+            },
             // addOrder(e){
             //     // console.log(this.orders)
             //     axios.post('/api/user_orders', this.orders)
@@ -464,7 +488,6 @@
             remove() {
                 this.$root.$emit('remove')
             },
-
         },
     }
 </script>
