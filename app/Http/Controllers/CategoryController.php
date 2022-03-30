@@ -5,16 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\ProductCategory;
 use Illuminate\Support\Carbon;
-use Auth;
+use Illuminate\Support\Facades\Auth;
+
 // use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
-    public function AllCategory(){
-        $categories = ProductCategory::latest()->paginate(5);
-        $trashCat = ProductCategory::onlyTrashed()->latest()->paginate(3);
-
-        return view('admin.category.index', compact('categories','trashCat'));
+    public function index(){
+        $categories= ProductCategory::all();
+        return view('admin/categories/categoryindex',['categories' => $categories]);
     }
 
     public function AddCategory(Request $request){
@@ -30,21 +29,12 @@ class CategoryController extends Controller
         ]);
 
 
-// ---------------two ways to insert data in database-------------
 ProductCategory::insert([
     'name' => $request->name,
     'user_id' => Auth::user()->id,
     'created_at' => Carbon::now()
 ]);
 
-        // ProductCategory::insert([
-        //     'name'  => $request->name,
-        //     'created_at' =>Carbon::now()
-        // ]);
-
-        // $category = new ProductCategory;
-        // $category->name = $request->name;
-        // $category->save();
 
             return Redirect()->back()->with('success', 'Category Inserted Successfully');
 
@@ -54,7 +44,6 @@ ProductCategory::insert([
 
     public function Edit($id){
         $categories = ProductCategory::find($id);
-        // $categories = DB::table('categories')->where('id',$id)->first();
         return view('admin.category.edit',compact('categories'));
     }
 
@@ -64,23 +53,14 @@ ProductCategory::insert([
             'user_id' => Auth::user()->id
         ]);
 
-        // $data = array();
-        // $data['category_name'] = $request->category_name;
-        // $data['user_id'] = Auth::user()->id;
-        // DB::table('categories')->where('id',$id)->update($data);
+         return Redirect()->route('all.category')->with('success', 'Category Updated Successfull');
 
-
-
-        return Redirect()->route('all.category')->with('success', 'Category Updated Successfull');
-
-
-    }
+   }
 
     public function SoftDelete($id){
         $delete = ProductCategory::find($id)->delete();
         return Redirect()->back()->with('success','Category Soft Deleted Successfully');
     }
-
 
     public function Restore($id){
         $delete = ProductCategory::withTrashed()->find($id)->restore();

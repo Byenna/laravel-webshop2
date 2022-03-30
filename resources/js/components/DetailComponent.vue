@@ -1,83 +1,66 @@
 
 <template>
-    <section>
-        <div class="products block">
-        <!-- <div class="products block" v-for="detailproduct in allproducts" :key="detailproduct.id"> -->
-            <img :src="imagePath+allproducts[1].image" class="col-5"  height="700px">
-            <div class="col-5" id="detail">
-                <h3> {{allproducts[1].name}} </h3>
-                <h3> {{allproducts[1].info}} </h3><hr>
-                <h4> {{allproducts[1].description}}</h4><hr>
+    <div v-if="products[productindex]">
+        <section>
+            <div class="products block" style="padding:2em">
+                <img :src="imagePath + products[productindex].image" class="col-5"  height="700px">
+                <div class="col-5" id="detail" style="padding:2em">
+                    <h3><b>Name: </b> {{products[productindex].name}} </h3>
+                    <h3> {{products[productindex].info}} </h3><hr>
+                    <h4><b>Description: </b><br> {{products[productindex].description}}</h4><hr>
 
-                <h3 v-if="allproducts[1].onsale30"><b>Sale 30%</b>
-                    <span class="onSale">{{allproducts[1].price}}$</span><br>
-                    <span class="newPrice30"> New Price: <b>{{allproducts[1].price*30/100}}$</b></span>
-                </h3>
-                <h3 v-else-if="allproducts[1].onsale50"><b>Sale 50%</b>
-                    <span class="onSale">{{allproducts[1].price}}$</span><br>
-                    <span class="newPrice50"> New Price: <b>{{allproducts[1].price*50/100}}$</b></span>
-                </h3>
-                <h3 v-else>Price: {{allproducts[1].price}}$</h3>
-                <h3 class="soldOut" v-if="allproducts[1].stock===0">Sold Out</h3>
-                <h3 class="soldOut" v-else-if="allproducts[1].stock<=5 && allproducts[1].stock>0">Almost Sold Out</h3>
-                <h3 v-else-if="allproducts[1].stock>5">In Stock</h3>
-                <h3>&#x1F6D2;</h3>
-                <h3>
-                    <button class="addToCart btn btn-primary" @click="updateCart(allproducts[1])">Order </button>
-                </h3>
+                    <h3 v-if="products[productindex].onsale30"><b>Sale 30%</b><br>
+                        <b>Old Price: </b><span class="onSale">{{products[productindex].price}}$</span><br>
+                        <span class="newPrice30"> New Price: <b>{{products[productindex].price*30/100}}$</b></span><hr>
+                    </h3>
+                    <h3 v-else-if="products[productindex].onsale50"><b>Sale 50%</b>
+                        <span class="onSale">{{products[productindex].price}}$</span><br>
+                        <span class="newPrice50"> New Price: <b>{{products[productindex].price*50/100}}$</b></span><hr>
+                    </h3>
+                    <h3 v-else>Price: {{products[productindex].price}}$</h3>
+                    <h3 class="soldOut" v-if="products[productindex].stock===0">Sold Out</h3>
+                    <h3 class="soldOut" v-else-if="products[productindex].stock<=5 && products[productindex].stock>0">Almost Sold Out</h3>
+                    <h3 v-else-if="products[productindex].stock>5">In Stock </h3>
+                    <h3>
+                        <button class="addToCart btn btn-primary" @click="updateCart(products[productindex])"><h4>Order &#x1F6D2;</h4></button>
+                    </h3>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 </template>
 
 <script>
     export default {
         mounted() {
             console.log('Component mounted.');
-            this.loadAllproduct();
-
+            this.loadproduct();
         },
       
         data() {
             return {
-                allproducts:[],
+                products:[],
                 imagePath: '/images/webshop/',
+                shoppingCart:[],
             }
         },
         props:{
-            shoppingCart: {
-                type: Array,
-            },
-            totalQuantity: {
-                type: Number,
-                default: 0,
-            },
-            totalPrice: {
-                type: parseFloat(Number),
-                default: 0,
-            },
-
         },
         created() {
-            
+            this.productindex=localStorage.getItem('productindex')
         },
-
         methods: {
-            remove() {
-                this.$root.$emit('remove')
+            detail(index) {
+                this.$root.$emit('detail', index)
             },
-            removeProduct(index) {
-                this.$root.$emit('remove-product', index)
-            },
-
             updateCart(product) {
                 this.$root.$emit('update-cart', product)
             },
 
-            loadAllproduct(){
-                axios.get('/api/allproducts')
+            loadproduct(){
+                axios.get('/api/products')
                 .then((response) =>{
-                    this.allproducts = response.data.data;
+                    this.products = response.data.data;
                 })
                 .catch(function(error){
                     console.log(error);
