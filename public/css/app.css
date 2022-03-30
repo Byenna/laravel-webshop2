@@ -11925,6 +11925,13 @@ svg:not(:root) {
 #checkout .checkout_badge {
   background-color: #414833;
 }
+#checkout .checkout_form {
+  position: absolute;
+  bottom: 0em;
+  border: 0.5px solid #41483355;
+  padding-right: 1rem;
+  margin-bottom: 2rem;
+}
 @media (min-width: 768px) {
   #checkout .bd-placeholder-img-lg {
     font-size: 3.5rem;
