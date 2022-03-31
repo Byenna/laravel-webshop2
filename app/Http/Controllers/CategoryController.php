@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ProductCategory;
+use App\Models\ProductHasCategory;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,41 +14,38 @@ class CategoryController extends Controller
 {
     public function index(){
         $categories= ProductCategory::all();
-        return view('admin/categories/categoryindex',['categories' => $categories]);
+        return view('admin/categories/categoryindex',
+            ['categories' => $categories,
+            ]);
     }
 
-    public function AddCategory(Request $request){
-        $validated = $request->validate([
-            'name' => 'required|unique:product_categories|max:255',
-            
-        ],
-        
-        [
-            'name.required' => 'Please Input Category Name',
-            'name.max' => 'Category Less Then 255Cars',
-            
+    public function createCategory()
+    {
+        return view('admin/category/createcategory');
+    }
+
+    public function storeCategory(Request $request){
+        $this->validate($request, [
+            'id' => 'required',
+            'name' => 'required', 
         ]);
 
+        $newCategory = $request->all();
 
-ProductCategory::insert([
-    'name' => $request->name,
-    'user_id' => Auth::user()->id,
-    'created_at' => Carbon::now()
-]);
+        productcategory::create($newCategory);
 
-
-            return Redirect()->back()->with('success', 'Category Inserted Successfully');
+        return redirect()->route('admin');
 
     }
 
 
-
-    public function Edit($id){
+    public function editCategory($id){
         $categories = ProductCategory::find($id);
-        return view('admin.category.edit',compact('categories'));
+        return view('admin.category.edit');
+        
     }
 
-    public function Update(Request $request ,$id){
+    public function updateCategory(Request $request ,$id){
         $update = ProductCategory::find($id)->update([
             'name' => $request->name,
             'user_id' => Auth::user()->id

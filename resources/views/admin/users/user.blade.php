@@ -9,6 +9,7 @@
         <div class="col-12"><?= $useraddress->country ?></div>
         <div class="col-12"><?= $userphone->phone_number1 ?></div>
         <div class="col-12"><?= $userphone->phone_number2 ?></div>
+        <div class="col-12"><a href="/admin/users/edit/<?= $user->id ?>">Edit</a></div>
 
     </div>
 </div>

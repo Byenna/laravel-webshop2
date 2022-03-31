@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\UserAddresses;
 use App\Models\UserPhones;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 class UserController extends Controller
 {
 
@@ -31,9 +31,9 @@ class UserController extends Controller
             'password' => 'required',
         ]);
 
-        $input = $request->all();
+        $newUser = $request->all();
 
-        user::create($input);
+        user::create($newUser);
 
         return redirect()->route('admin');
 
@@ -69,8 +69,9 @@ class UserController extends Controller
         return redirect()->route('admin');
    }
 
-    public function destroyUser($id)
-    {
-        //
-    }
+    // public function deleteUser($id)
+    // {
+    //     $delete = User::find($id)->delete();
+    //     return Redirect()->back()->with('User deleted');
+    // }
 }

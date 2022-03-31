@@ -9,7 +9,7 @@ class ProductHasCategory extends Model
 {
     use HasFactory;
 
-    protected $table = 'product_has_Categories';
+    protected $table = 'product_has_categories';
 
     protected $guarded = [
         'id',
