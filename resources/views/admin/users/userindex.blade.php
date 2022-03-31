@@ -32,7 +32,7 @@
                             @foreach($users as $user)
                         <tr>
                             <th scope="row">{{ $i++ }}</th>
-                            <td>{{ $user->first_name }}</td>
+                            <td><a href="/admin/users/show/<?= $user->id?>">{{ $user->first_name }}</a></td>
                             <td>{{ $user->last_name }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ Carbon\Carbon::parse($user->created_at)->diffForHumans() }}</td>

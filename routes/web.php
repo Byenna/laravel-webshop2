@@ -45,18 +45,18 @@ Route::get('/admin/users/create', [UserController::class, 'createUser'])->name('
 Route::post('/admin/users/store', [UserController::class, 'storeUser'])->name('store.user');
 Route::get('/admin/users/edit/{id}', [UserController::class, 'editUser'])->name('edit.user');
 Route::post('/admin/users/update/{id}', [UserController::class, 'updateUser'])->name('update.user');
-Route::get('admin/users/delete/{id}', [UserController::class, 'deleteUser'])->name('delete.user');
+Route::get('/admin/users/delete/{id}', [UserController::class, 'deleteUser'])->name('delete.user');
 
-//PRODUCT ROUTES
+//ADMIN PRODUCT ROUTES
 Route::get('/admin/products', [ProductController::class, 'index'])->name('index.products');
-Route::get('/admin/products/show/{id}', [UserController::class, 'showProduct'])->name('show.product');
-Route::get('/admin/products/create', [UserController::class, 'createProduct'])->name('store.product');
-Route::get('/admin/products/store', [UserController::class, 'storeProduct'])->name('store.product');
-Route::get('/admin/products/edit/{id}', [UserController::class, 'editProduct'])->name('edit.product');
-Route::put('/admin/products/update/{id}', [UserController::class, 'updateProduct'])->name('update.product');
-Route::get('admin/products/delete/{id}', [UserController::class, 'deleteProduct'])->name('delete.product');
+Route::get('/admin/products/show/{id}', [ProductController::class, 'showProduct'])->name('show.product');
+Route::get('/admin/products/create', [ProductController::class, 'createProduct'])->name('create.product');
+Route::get('/admin/products/store', [ProductController::class, 'storeProduct'])->name('store.product');
+Route::get('/admin/products/edit/{id}', [ProductController::class, 'editProduct'])->name('edit.product');
+Route::post('/admin/products/update/{id}', [ProductController::class, 'updateProduct'])->name('update.product');
+Route::get('/admin/products/delete/{id}', [ProductController::class, 'deleteProduct'])->name('delete.product');
 
-//CATEGORY ROUTES
+//ADMIN CATEGORY ROUTES
 Route::get('/admin/category', [CategoryController::class, 'index'])->name('index.categories');
 Route::get('admin/category/all', [CategoryController::class, 'AllCategory'])->name('all.category');
 Route::post('admin/category/add', [CategoryController::class, 'AddCategory'])->name('store.category');
@@ -66,18 +66,8 @@ Route::get('admin/softdelete/category/{id}', [CategoryController::class, 'SoftDe
 Route::get('admin/category/restore/{id}', [CategoryController::class, 'Restore']);
 Route::get('admin/pdelete/category/{id}', [CategoryController::class, 'Pdelete']);
 
-
-//PRODUCTS ROUTE
- Route::get('/products/all', [ProductController::class, 'index'])->name('product');
- Route::post('/products/add', [ProductController::class, 'StoreProduct'])->name('store.product');
- Route::get('/products/edit/{id}', [ProductController::class, 'Edit']);
- Route::post('/products/update/{id}', [ProductController::class, 'Update']);
- Route::get('/products/delete/{id}', [ProductController::class, 'Delete']);
-
- Route::get('/admin/media', [AdminController::class, 'media']);
- Route::get('/admin/stock', [AdminController::class, 'stock']);
-
-
+Route::get('/admin/media', [AdminController::class, 'media']);
+Route::get('/admin/stock', [AdminController::class, 'stock']);
 
 Route::get('/home', function () {
     return view('home');

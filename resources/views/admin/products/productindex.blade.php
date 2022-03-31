@@ -32,12 +32,11 @@
                             @foreach($products as $product)
                         <tr>
                             <th scope="row">{{ $i++ }}</th>
-                            <td>{{ $product->name }}</td>
+                            <td><a href="/admin/products/show/{{ $product->id }}">{{ $product->name }}</a></td>
                             <td>{{ $product->info }}</td>
                             <td>{{ $product->price }}</td>
                         </tr>
                         @endforeach
-
                     </tbody>
                 </table>
             </div>
